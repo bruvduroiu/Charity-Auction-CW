@@ -2,6 +2,7 @@ package org.bogdanbuduroiu.auction.client.view;
 
 import org.bogdanbuduroiu.auction.model.Category;
 import org.bogdanbuduroiu.auction.model.Item;
+import org.bogdanbuduroiu.auction.model.User;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -19,10 +20,11 @@ import java.util.HashMap;
 /**
  * Created by bogdanbuduroiu on 29.04.16.
  */
-class MainAuctionScreen extends JFrame {
+public class MainAuctionScreen extends JFrame {
     private static final int WIDTH = 1100;
     private static final int HEIGHT = 600;
     private static final String TITLE = "jBay - Overview";
+    private User currentUser;
     private JTextField txt_searchField;
     private JComboBox<String> cmb_searchCategory;
     private JButton btn_submitSearch;
@@ -41,13 +43,14 @@ class MainAuctionScreen extends JFrame {
         put("Sports & Outdoor", Category.SPORTS_OUTDOOR);
         put("Watches", Category.WATCHES);
     }};
-    public MainAuctionScreen() {
+    private MainAuctionScreen(User user) {
         //TODO: Sort the Categories List
+        this.currentUser = user;
         String[] categories = CATEGORIES.keySet().toArray(new String[CATEGORIES.size()]);
         txt_searchField = new JTextField("Search", 20);
         cmb_searchCategory = new JComboBox<>(categories);
         btn_submitSearch = new JButton("Search");
-        lbl_user = new JLabel("<userFName placeholder>\n<username placeholder>");
+        lbl_user = new JLabel(user.getUsername());
         lbl_categories = new JLabel("Categories");
         lst_categories = new JList<>(categories);
 
@@ -55,7 +58,12 @@ class MainAuctionScreen extends JFrame {
         scrl_auctions = new JScrollPane(tbl_auctions);
         scrl_auctions.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
+
         init();
+    }
+
+    public static MainAuctionScreen initializeScreen(User user) {
+        return new MainAuctionScreen(user);
     }
 
     private JTable loadAuctions() {

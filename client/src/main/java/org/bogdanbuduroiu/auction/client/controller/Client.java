@@ -1,9 +1,9 @@
 package org.bogdanbuduroiu.auction.client.controller;
 
 import org.bogdanbuduroiu.auction.client.view.ClientLoginScreen;
-import org.bogdanbuduroiu.auction.model.comms.message.LoginRequest;
-import org.bogdanbuduroiu.auction.model.comms.Comms;
-import org.bogdanbuduroiu.auction.model.comms.message.RegistrationRequest;
+import org.bogdanbuduroiu.auction.client.view.MainAuctionScreen;
+import org.bogdanbuduroiu.auction.model.comms.events.MessageReceivedEvent;
+import org.bogdanbuduroiu.auction.model.comms.message.*;
 import org.bogdanbuduroiu.auction.model.User;
 
 import java.io.*;
@@ -14,13 +14,15 @@ import java.io.*;
 public class Client {
 
     protected Comms worker;
+    ClientLoginScreen clientLoginScreen;
+    MainAuctionScreen mainAuctionScreen;
 
     public Client() {
         try {
             worker = new Comms(8080);
             Thread t = new Thread(worker);
             t.start();
-            ClientLoginScreen clientLoginScreen = new ClientLoginScreen(this);
+            clientLoginScreen = new ClientLoginScreen(this);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -28,7 +30,9 @@ public class Client {
 
     public void validateDetails(User user, char[] password){
         try {
-            worker.sendMessage(new LoginRequest(user, password));
+            ResponseHandler rspHandler = new ResponseHandler();
+            worker.sendMessage(new LoginRequest(user, password), rspHandler);
+            rspHandler.waitForResponse(this);
         } catch (IOException e) {
             //TODO: Error Handling
             e.printStackTrace();
@@ -37,7 +41,9 @@ public class Client {
 
     public void newRegistration(User user, char[] password) {
         try {
-            worker.sendMessage(new RegistrationRequest(user, password));
+            ResponseHandler rspHandler = new ResponseHandler();
+            worker.sendMessage(new RegistrationRequest(user, password), rspHandler);
+            rspHandler.waitForResponse(this);
         }
         catch (IOException e) {
             //TODO: Error Handling
@@ -45,13 +51,18 @@ public class Client {
         }
     }
 
+    public void processMessage(Message message) {
+        if (message.type() == MessageType.ACK) {
+            if (((AcknowledgedMessage) message).ack_type() == AckType.ACK_LOGIN) {
+                clientLoginScreen.dispose();
+                mainAuctionScreen = MainAuctionScreen.initializeScreen(message.getSender());
+            }
+        }
+    }
+
     public static void main(String[] args) {
         new Client();
     }
-
-
-
-
 }
 
 

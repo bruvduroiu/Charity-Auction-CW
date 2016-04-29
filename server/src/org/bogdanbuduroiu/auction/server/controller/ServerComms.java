@@ -1,6 +1,7 @@
-package org.bogdanbuduroiu.auction.model.comms;
+package org.bogdanbuduroiu.auction.server.controller;
 
 
+import org.bogdanbuduroiu.auction.model.comms.ChangeRequest;
 import org.bogdanbuduroiu.auction.model.comms.events.MessageReceivedEvent;
 import org.bogdanbuduroiu.auction.model.comms.message.Message;
 import org.bogdanbuduroiu.auction.model.comms.events.MessageReceivedListener;
@@ -22,6 +23,7 @@ import java.util.*;
 //TODO: Add console messages
 public class ServerComms implements Runnable {
 
+    private Server server;
     private ServerSocketChannel serverSocketChannel;
     private Selector selector;
     private final int PORT = 8080;
@@ -30,7 +32,8 @@ public class ServerComms implements Runnable {
     private ByteBuffer data;
     private static MessageReceivedListener li;
 
-    public ServerComms() throws IOException {
+    public ServerComms(Server server) throws IOException {
+        this.server = server;
         System.out.println("[SRV]\tInitiating Communication Channel...");
         serverSocketChannel = ServerSocketChannel.open();
         selector = this.initSelector();
@@ -187,9 +190,7 @@ public class ServerComms implements Runnable {
                     dataByteBuffer = null;
                     readLength = true;
 
-                    if (li == null)
-                        return;
-                    li.messageReceived(new MessageReceivedEvent(socket, message));
+                    server.processMessage(socket, message);
                 }
             }
         }

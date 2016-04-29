@@ -1,14 +1,12 @@
-package org.bogdanbuduroiu.auction.model.comms;
+package org.bogdanbuduroiu.auction.client.controller;
 
 
 
-import org.bogdanbuduroiu.auction.model.comms.events.MessageReceivedEvent;
+import org.bogdanbuduroiu.auction.model.comms.ChangeRequest;
 import org.bogdanbuduroiu.auction.model.comms.message.Message;
 import org.bogdanbuduroiu.auction.model.comms.events.MessageReceivedListener;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
@@ -30,9 +28,10 @@ public class Comms implements Runnable {
     private ByteBuffer data;
     private List<ChangeRequest> pendingChanges;
     private Map<SocketChannel, List<byte[]>> pendingData;
-    private SocketChannel socketChannel;
     //TODO: Implement RspHandlers
+    private Map<SocketChannel, ResponseHandler> rspHandlers;
     private MessageReceivedListener messageReceivedListener = null;
+    private static MessageReceivedListener li;
 
     public Comms(int port) throws IOException {
         this(InetAddress.getLocalHost(), port);
@@ -45,6 +44,7 @@ public class Comms implements Runnable {
         this.data = ByteBuffer.allocate(8192);
         this.pendingChanges = new LinkedList<>();
         this.pendingData = new HashMap<>();
+        this.rspHandlers = Collections.synchronizedMap(new HashMap<>());
     }
 
     private Selector initSelector() throws IOException {
@@ -97,10 +97,8 @@ public class Comms implements Runnable {
         }
     }
 
-    private void initiateConnection() throws IOException {
-        if (this.socketChannel != null)
-            return;
-        this.socketChannel = SocketChannel.open();
+    private SocketChannel initiateConnection() throws IOException {
+        SocketChannel socketChannel = SocketChannel.open();
         System.out.println("[CON]\tAttempting to connect to server...");
         socketChannel = SocketChannel.open();
         socketChannel.configureBlocking(false);
@@ -111,6 +109,8 @@ public class Comms implements Runnable {
         synchronized (this.pendingChanges) {
             this.pendingChanges.add(new ChangeRequest(socketChannel, ChangeRequest.REGISTER, SelectionKey.OP_CONNECT));
         }
+
+        return socketChannel;
     }
 
 
@@ -129,52 +129,24 @@ public class Comms implements Runnable {
         key.interestOps(SelectionKey.OP_WRITE);
     }
 
-    private void send(byte[] data) throws IOException {
-        initiateConnection();
+    private void send(byte[] data, ResponseHandler handler) throws IOException {
+        SocketChannel socket = this.initiateConnection();
+
+        this.rspHandlers.put(socket, handler);
 
         synchronized (this.pendingData) {
-            List queue = (List) this.pendingData.get(this.socketChannel);
+            List queue = (List) this.pendingData.get(socket);
             if (queue == null) {
                 queue = new ArrayList();
-                this.pendingData.put(this.socketChannel, queue);
+                this.pendingData.put(socket, queue);
             }
             queue.add(ByteBuffer.wrap(data));
         }
         synchronized (this.pendingChanges){
-            pendingChanges.add(new ChangeRequest(this.socketChannel, ChangeRequest.CHANGEOPS, SelectionKey.OP_WRITE));
+            pendingChanges.add(new ChangeRequest(socket, ChangeRequest.CHANGEOPS, SelectionKey.OP_WRITE));
         }
 
         this.selector.wakeup();
-    }
-
-    protected void read(SelectionKey key) throws IOException{
-        SocketChannel socketChannel = (SocketChannel) key.channel();
-
-        this.data.clear();
-
-        int numRead;
-        try {
-            numRead = socketChannel.read(this.data);
-            System.out.println("[I/O]\tReceived bytes from: " + socketChannel.socket().getInetAddress() + ". Printing:");
-            data.flip();
-        }
-        catch (IOException e) {
-            key.cancel();
-            socketChannel.close();
-            return;
-        }
-
-        if (numRead == -1) {
-            System.out.println("[CON]\tServer has closed connection.");
-            key.channel().close();
-            key.cancel();
-            return;
-        }
-
-        System.out.println("[MSG]\t");
-        while (data.hasRemaining())
-            System.out.print((char) data.get());
-        System.out.println("\n");
     }
 
     protected void write(SelectionKey key) throws IOException {
@@ -201,8 +173,60 @@ public class Comms implements Runnable {
             }
         }
     }
+    private final ByteBuffer lengthByteBuffer = ByteBuffer.wrap(new byte[4]);
+    private ByteBuffer dataByteBuffer = null;
+    private boolean readLength = true;
 
-    public void sendMessage(Message message) throws  IOException {
+    private void read(SelectionKey key) throws IOException, ClassNotFoundException {
+
+        SocketChannel socket = (SocketChannel) key.channel();
+
+        int numRead;
+        try {
+            if (readLength) {
+                numRead = socket.read(lengthByteBuffer);
+                if (lengthByteBuffer.remaining() == 0) {
+                    readLength = false;
+                    dataByteBuffer = ByteBuffer.allocate(lengthByteBuffer.getInt(0));
+                    lengthByteBuffer.clear();
+                }
+            } else {
+                numRead = socket.read(dataByteBuffer);
+                if (dataByteBuffer.remaining() == 0) {
+                    ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(dataByteBuffer.array()));
+                    final Message message = (Message) ois.readObject();
+
+                    dataByteBuffer = null;
+                    readLength = true;
+
+                    this.handleResponse(socket, message);
+                }
+            }
+        }
+        catch (IOException e) {
+            key.cancel();
+            socket.close();
+            return;
+        }
+
+        if (numRead == -1) {
+            System.out.println("[CON]\tServer has closed connection.");
+            key.channel().close();
+            key.cancel();
+            return;
+        }
+    }
+
+    private void handleResponse(SocketChannel socketChannel, Message message) throws IOException{
+        ResponseHandler handler = this.rspHandlers.get(socketChannel);
+
+        if (handler.handleResponse(message)) {
+            socketChannel.close();
+            socketChannel.keyFor(this.selector).cancel();
+        }
+    }
+
+    public void sendMessage(Message message, ResponseHandler handler) throws  IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         for(int i=0;i<4;i++) baos.write(0);
         ObjectOutputStream oos = new ObjectOutputStream(baos);
@@ -210,10 +234,10 @@ public class Comms implements Runnable {
         oos.close();
         final ByteBuffer wrap = ByteBuffer.wrap(baos.toByteArray());
         wrap.putInt(0, baos.size()-4);
-        this.send(wrap.array());
+        this.send(wrap.array(), handler);
     }
 
-    private void receiveMessage(Message message) {
+    private void read(Message message) {
         //TODO: Implement object deserialization
     }
 
