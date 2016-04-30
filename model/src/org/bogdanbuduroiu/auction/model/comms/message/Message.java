@@ -10,7 +10,6 @@ import java.io.Serializable;
 public abstract class Message implements Serializable {
 
     private User sender;
-    //TODO: Add way to monitor Message-packet type (Huw's Idea)
     private final MessageType TYPE;
 
     public Message(User sender, MessageType TYPE) {

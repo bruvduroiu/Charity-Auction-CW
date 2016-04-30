@@ -1,6 +1,6 @@
 package org.bogdanbuduroiu.auction.model;
 
-import java.awt.*;
+
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.util.*;
@@ -26,8 +26,8 @@ public class Item implements Serializable {
             (Bid o1, Bid o2) -> o2.getBidAmmount().compareTo(o1.getBidAmmount())
     );
 
-    public Item(long itemID, String title, String description, Category category, int vendorID, long expiryTime, Double reservePrice, BufferedImage itemImage) {
-        this.itemID = itemID;
+    public Item(String title, String description, Category category, int vendorID, long expiryTime, Double reservePrice, BufferedImage itemImage) {
+        this.itemID = this.hashCode();
         this.title = title;
         this.description = description;
         this.category = category;
