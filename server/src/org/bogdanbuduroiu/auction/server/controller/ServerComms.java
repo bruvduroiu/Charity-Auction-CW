@@ -2,9 +2,8 @@ package org.bogdanbuduroiu.auction.server.controller;
 
 
 import org.bogdanbuduroiu.auction.model.comms.ChangeRequest;
-import org.bogdanbuduroiu.auction.model.comms.events.MessageReceivedEvent;
 import org.bogdanbuduroiu.auction.model.comms.message.Message;
-import org.bogdanbuduroiu.auction.model.comms.events.MessageReceivedListener;
+import org.bogdanbuduroiu.auction.model.comms.message.PingMessage;
 
 import java.io.*;
 import java.net.InetSocketAddress;
@@ -30,7 +29,6 @@ public class ServerComms implements Runnable {
     private List<ChangeRequest> pendingChanges;
     private Map<SocketChannel, List<byte[]>> pendingData;
     private ByteBuffer data;
-    private static MessageReceivedListener li;
 
     public ServerComms(Server server) throws IOException {
         this.server = server;
@@ -152,7 +150,6 @@ public class ServerComms implements Runnable {
      * Implementation of the Object Serializer/Deserialized using ByteArrayOutputStream
      * taken from: http://stackoverflow.com/questions/5862971/java-readobject-with-nio
      */
-
     public void sendMessage(SocketChannel socketChannel, Message message) throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         for(int i=0;i<4;i++) baos.write(0);
@@ -206,9 +203,5 @@ public class ServerComms implements Runnable {
             key.cancel();
             return;
         }
-    }
-
-    public void addMessageReceivedListener(MessageReceivedListener li) {
-        this.li = li;
     }
 }

@@ -2,7 +2,6 @@ package org.bogdanbuduroiu.auction.client.controller;
 
 import org.bogdanbuduroiu.auction.client.view.ClientLoginScreen;
 import org.bogdanbuduroiu.auction.client.view.MainAuctionScreen;
-import org.bogdanbuduroiu.auction.model.comms.events.MessageReceivedEvent;
 import org.bogdanbuduroiu.auction.model.comms.message.*;
 import org.bogdanbuduroiu.auction.model.User;
 
@@ -56,6 +55,14 @@ public class Client {
             if (((AcknowledgedMessage) message).ack_type() == AckType.ACK_LOGIN) {
                 clientLoginScreen.dispose();
                 mainAuctionScreen = MainAuctionScreen.initializeScreen(message.getSender());
+            }
+            else if (((AcknowledgedMessage) message).ack_type() == AckType.ACK_REGISTRATION) {
+                clientLoginScreen.registrationSuccessful();
+            }
+        }
+        else if(message.type() == MessageType.ERR) {
+            if (((ErrMessage) message).err_type() == ErrType.INVALID_LOGIN_ERR) {
+                clientLoginScreen.invalidLogin();
             }
         }
     }

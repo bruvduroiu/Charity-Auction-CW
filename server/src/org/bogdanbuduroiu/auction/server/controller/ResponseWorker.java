@@ -1,13 +1,10 @@
 package org.bogdanbuduroiu.auction.server.controller;
 
-import org.bogdanbuduroiu.auction.model.User;
 import org.bogdanbuduroiu.auction.model.comms.message.*;
 import org.bogdanbuduroiu.auction.server.model.ServerMessageEvent;
 
 import java.io.IOException;
 import java.nio.channels.SocketChannel;
-import java.time.ZonedDateTime;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 

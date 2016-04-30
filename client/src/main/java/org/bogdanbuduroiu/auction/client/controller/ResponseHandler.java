@@ -1,7 +1,5 @@
 package org.bogdanbuduroiu.auction.client.controller;
 
-import org.bogdanbuduroiu.auction.model.comms.events.MessageReceivedEvent;
-import org.bogdanbuduroiu.auction.model.comms.events.MessageReceivedListener;
 import org.bogdanbuduroiu.auction.model.comms.message.Message;
 
 import java.nio.ByteBuffer;

@@ -49,4 +49,13 @@ public class ClientLoginScreen extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
+
+    public void registrationSuccessful() {
+        JOptionPane.showMessageDialog(null, "Registration Successful");
+        cardLayout.show(cards, LOGIN_CARD);
+    }
+
+    public void invalidLogin() {
+        clientLoginPanel.setErr("Invalid username/password.");
+    }
 }

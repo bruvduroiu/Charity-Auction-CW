@@ -36,6 +36,7 @@ class ClientRegistrationPanel extends JPanel {
         lbl_passwd = new JLabel("Password:");
         lbl_cnfrmPasswd = new JLabel("Confirm Password:");
         lbl_err_msg = new JLabel();
+        lbl_err_msg.setForeground(Color.RED);
         txt_fName = new JTextField(20);
         txt_lName = new JTextField(20);
         txt_username = new JTextField(20);

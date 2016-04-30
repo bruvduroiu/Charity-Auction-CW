@@ -4,7 +4,7 @@ package org.bogdanbuduroiu.auction.client.controller;
 
 import org.bogdanbuduroiu.auction.model.comms.ChangeRequest;
 import org.bogdanbuduroiu.auction.model.comms.message.Message;
-import org.bogdanbuduroiu.auction.model.comms.events.MessageReceivedListener;
+import org.bogdanbuduroiu.auction.model.comms.message.PingMessage;
 
 import java.io.*;
 import java.net.InetAddress;
@@ -30,8 +30,6 @@ public class Comms implements Runnable {
     private Map<SocketChannel, List<byte[]>> pendingData;
     //TODO: Implement RspHandlers
     private Map<SocketChannel, ResponseHandler> rspHandlers;
-    private MessageReceivedListener messageReceivedListener = null;
-    private static MessageReceivedListener li;
 
     public Comms(int port) throws IOException {
         this(InetAddress.getLocalHost(), port);
@@ -221,6 +219,7 @@ public class Comms implements Runnable {
         ResponseHandler handler = this.rspHandlers.get(socketChannel);
 
         if (handler.handleResponse(message)) {
+            sendMessage(new PingMessage(null), handler);
             socketChannel.close();
             socketChannel.keyFor(this.selector).cancel();
         }
@@ -241,13 +240,6 @@ public class Comms implements Runnable {
         //TODO: Implement object deserialization
     }
 
-    public void addMessageReceivedListener(MessageReceivedListener li) {
-        messageReceivedListener = li;
-    }
-
-    public void removeMessageReceivedListener() {
-        messageReceivedListener = null;
-    }
 
 }
 
