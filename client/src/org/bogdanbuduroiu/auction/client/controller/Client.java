@@ -56,8 +56,8 @@ public class Client {
             if (((AcknowledgedMessage) message).ack_type() == AckType.ACK_LOGIN) {
                 clientLoginScreen.dispose();
                 currentUser = message.getSender();
-                requestData(DataRequestType.AUCTIONS_REQ);
                 mainAuctionScreen = MainAuctionScreen.initializeScreen(this);
+                requestData(DataRequestType.AUCTIONS_REQ);
             }
             else if (((AcknowledgedMessage) message).ack_type() == AckType.ACK_REGISTRATION) {
                 clientLoginScreen.registrationSuccessful();

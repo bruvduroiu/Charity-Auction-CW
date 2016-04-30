@@ -3,14 +3,12 @@ package org.bogdanbuduroiu.auction.client.view;
 import org.bogdanbuduroiu.auction.client.controller.Client;
 import org.bogdanbuduroiu.auction.model.Category;
 import org.bogdanbuduroiu.auction.model.Item;
-import org.bogdanbuduroiu.auction.model.User;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,14 +22,9 @@ public class MainAuctionScreen extends JFrame {
     private static final int HEIGHT = 600;
     private static final String TITLE = "jBay - Overview";
     private Client client;
-    private JTextField txt_searchField;
-    private JComboBox<String> cmb_searchCategory;
-    private JButton btn_submitSearch;
-    private JLabel lbl_user;
-    private JLabel lbl_categories;
-    private JList<String> lst_categories;
-    private JTable tbl_auctions;
-    private JScrollPane scrl_auctions;
+    private JTabbedPane pnl_tabbed;
+    private BrowsePanel pnl_auctions;
+    private SellPanel pnl_newAuction;
     private Object[][] auctionData;
 
     private final HashMap<String, Category> CATEGORIES = new HashMap<String, Category>() {{
@@ -46,82 +39,27 @@ public class MainAuctionScreen extends JFrame {
     private MainAuctionScreen(Client client) {
         //TODO: Sort the Categories List
         this.client = client;
-        String[] categories = CATEGORIES.keySet().toArray(new String[CATEGORIES.size()]);
-        txt_searchField = new JTextField("Search", 20);
-        cmb_searchCategory = new JComboBox<>(categories);
-        btn_submitSearch = new JButton("Search");
-        lbl_user = new JLabel(client.getCurrentUsername());
-        lbl_categories = new JLabel("Categories");
-        lst_categories = new JList<>(categories);
 
-        tbl_auctions = new JTable();
-        scrl_auctions = new JScrollPane(tbl_auctions);
-        scrl_auctions.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        pnl_tabbed = new JTabbedPane(SwingConstants.BOTTOM, JTabbedPane.SCROLL_TAB_LAYOUT);
+        pnl_auctions = new BrowsePanel();
+        pnl_newAuction = new SellPanel();
+
 
         init();
+        initListeners();
     }
 
     public static MainAuctionScreen initializeScreen(Client client) {
         return new MainAuctionScreen(client);
     }
 
-    private JTable loadAuctions() {
-        //TODO: Implement loading items from method
-        DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
-        String[] columnName = {"Title", "Description", "No. Bidders", "Seller", "Time Remaining", "Price"};
-        JTable table = new JTable(auctionData, columnName);
-
-
-        table.setRowHeight(64);
-        table.getColumnModel().getColumn(1).setMinWidth(300);
-        return table;
-    }
 
     private void init() {
-        Container container = getContentPane();
-        container.setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
-        c.anchor = GridBagConstraints.NORTHWEST;
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.weighty = 0.1;
-        c.weightx = 1;
-        c.gridx = 1;
-        c.gridy = 1;
-        c.gridwidth = 2;
-        c.gridheight = 2;
-        container.add(txt_searchField,c);
-        c.gridx = 3;
-        c.gridy = 1;
-        c.gridwidth = 1;
-        c.gridheight = 2;
-        container.add(cmb_searchCategory, c);
-        c.gridx = 4;
-        c.gridy = 1;
-        c.gridwidth = 1;
-        c.gridheight = 2;
-        container.add(btn_submitSearch, c);
-        c.gridx = 5;
-        c.gridy = 1;
-        c.gridwidth = 1;
-        c.gridheight = 1;
-        container.add(lbl_user, c);
-        c.fill = GridBagConstraints.BOTH;
-        c.weighty = 0.9;
-        c.weightx = 0.3;
-        c.gridx = 1;
-        c.gridy = 2;
-        c.gridwidth = 1;
-        container.add(lst_categories, c);
-        c.fill = GridBagConstraints.BOTH;
-        c.weighty = 0.9;
-        c.weightx = 0.7;
-        c.gridx = 2;
-        c.gridy = 2;
-        c.gridwidth = 5;
-        container.add(scrl_auctions, c);
 
+        pnl_tabbed.addTab("Browse", pnl_auctions);
+        pnl_tabbed.addTab("Sell", pnl_newAuction);
 
-
+        setContentPane(pnl_tabbed);
         setSize(WIDTH, HEIGHT);
         setTitle(TITLE);
         setResizable(false);
@@ -132,86 +70,178 @@ public class MainAuctionScreen extends JFrame {
     private void initListeners() {
         client.addAuctionDataReceivedListener((data) -> {
             auctionData = data;
-            tbl_auctions = loadAuctions();
+            pnl_auctions.loadAuctions();
         });
     }
 
-    class AuctionListDisplay extends JPanel{
+    class BrowsePanel extends JPanel {
 
-        //TODO: Do I still need this?
-        private JLabel lbl_thumbnail;
+        private JTextField txt_searchField;
+        private JComboBox<String> cmb_searchCategory;
+        private JButton btn_submitSearch;
+        private JLabel lbl_user;
+        private JLabel lbl_categories;
+        private JList<String> lst_categories;
+        private JTable tbl_auctions;
+        private JScrollPane scrl_auctions;
+
+        public BrowsePanel() {
+            String[] categories = CATEGORIES.keySet().toArray(new String[CATEGORIES.size()]);
+
+            txt_searchField = new JTextField("Search", 20);
+
+            cmb_searchCategory = new JComboBox<>(categories);
+
+            btn_submitSearch = new JButton("Search");
+
+            lbl_user = new JLabel(client.getCurrentUsername());
+            lbl_categories = new JLabel("Categories");
+
+            lst_categories = new JList<>(categories);
+
+            tbl_auctions = new JTable();
+
+            scrl_auctions = new JScrollPane(tbl_auctions);
+            scrl_auctions.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+            init();
+        }
+
+        void init() {
+
+            setLayout(new GridBagLayout());
+            GridBagConstraints c = new GridBagConstraints();
+            c.anchor = GridBagConstraints.NORTHWEST;
+            c.fill = GridBagConstraints.HORIZONTAL;
+            c.weighty = 0.1;
+            c.weightx = 1;
+            c.gridx = 1;
+            c.gridy = 1;
+            c.gridwidth = 2;
+            c.gridheight = 2;
+            add(txt_searchField,c);
+            c.gridx = 3;
+            c.gridy = 1;
+            c.gridwidth = 1;
+            c.gridheight = 2;
+            add(cmb_searchCategory, c);
+            c.gridx = 4;
+            c.gridy = 1;
+            c.gridwidth = 1;
+            c.gridheight = 2;
+            add(btn_submitSearch, c);
+            c.gridx = 5;
+            c.gridy = 1;
+            c.gridwidth = 1;
+            c.gridheight = 1;
+            add(lbl_user, c);
+            c.fill = GridBagConstraints.BOTH;
+            c.weighty = 0.9;
+            c.weightx = 0.3;
+            c.gridx = 1;
+            c.gridy = 2;
+            c.gridwidth = 1;
+            add(lst_categories, c);
+            c.fill = GridBagConstraints.BOTH;
+            c.weighty = 0.9;
+            c.weightx = 0.7;
+            c.gridx = 2;
+            c.gridy = 2;
+            c.gridwidth = 5;
+            add(scrl_auctions, c);
+        }
+
+        public void loadAuctions() {
+            //TODO: Implement loading items from method
+            DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
+            String[] columnName = {"Title", "Description", "No. Bidders", "Seller", "Time Remaining", "Price"};
+            DefaultTableModel model = new DefaultTableModel(auctionData, columnName);
+            tbl_auctions.setModel(model);
+            tbl_auctions.setRowHeight(64);
+            tbl_auctions.getColumnModel().getColumn(1).setMinWidth(300);
+        }
+    }
+
+    class SellPanel extends JPanel {
+
         private JLabel lbl_title;
-        private JLabel lbl_noBidders;
-        private JLabel lbl_timeRemaining;
-        private JLabel lbl_seller;
-        private JLabel lbl_currentPrice;
-        private static final int HEIGHT = 100;
+        private JLabel lbl_description;
+        private JLabel lbl_category;
+        private JLabel lbl_vendor;
+        private JLabel lbl_expiryTime;
+        private JLabel lbl_reservePrice;
+        private JLabel lbl_itemImage;
 
-        public AuctionListDisplay(Item auction) {
-            lbl_title = new JLabel();
-            lbl_noBidders = new JLabel();
-            lbl_timeRemaining = new JLabel();
-            lbl_seller = new JLabel();
-            lbl_currentPrice = new JLabel();
+        private JTextField txt_title;
+        private JTextField txt_vendor;
+        private JTextField txt_reservePrice;
 
-            lbl_thumbnail = new JLabel(new ImageIcon(auction.getItemImage()));
-            lbl_title.setText(auction.getTitle());
-            lbl_noBidders.setText(Integer.toString(auction.getBids().size()));
+        private JTextArea txt_description;
 
-            Date timeRemaining = new Date((auction.getExpiryTime() - auction.getStartTime() * 1000));
-            lbl_timeRemaining.setText("Time: " + timeRemaining.toString());
-            lbl_seller.setText(Integer.toString(auction.getVendorID()));
+        private JList<String> lst_categories;
 
-            Double price = (auction.getBids().size() == 0) ? auction.getReservePrice() : auction.getBids().poll().getBidAmmount();
-            lbl_currentPrice.setText("Bid: " + price.toString());
+        private JButton btn_submit;
+
+        public SellPanel() {
+            lbl_title = new JLabel("Title");
+            lbl_description = new JLabel("Description");
+            lbl_category = new JLabel("Category");
+            lbl_vendor = new JLabel("Vendor");
+            lbl_expiryTime = new JLabel("Close date");
+            lbl_reservePrice = new JLabel("Reserve Price");
+            lbl_itemImage = new JLabel("Image");
+
+            txt_title = new JTextField(20);
+            txt_description = new JTextArea(6,20);
+            txt_vendor = new JTextField(20);
+            txt_reservePrice = new JTextField(20);
+
+            lst_categories = new JList<>();
+
+            btn_submit = new JButton("Submit");
 
             init();
         }
 
         private void init() {
-            GridLayout gridLayout = new GridLayout(1,6);
-            setLayout(gridLayout);
-            add(lbl_thumbnail);
-            add(lbl_title);
-            add(lbl_noBidders);
-            add(lbl_seller);
-            add(lbl_timeRemaining);
-            add(lbl_currentPrice);
-            pack();
 
-            setSize(300, HEIGHT);
-        }
+            setLayout(new GridBagLayout());
+            GridBagConstraints c = new GridBagConstraints();
+            c.gridx = 1;
+            c.gridy = 1;
+            c.gridwidth = 1;
+            c.gridheight = 1;
+            add(lbl_title, c);
 
-        class AuctionDisplayTable extends JTable {
-            //TODO: Implement adding Images in Auction Table
-            public void init() {
-                DefaultTableModel model;
-                model = new DefaultTableModel() {
-                    @Override
-                    public Class<?> getColumnClass(int index) {
-                        return BufferedImage.class;
-                    }
-                };
-            }
+            c.gridx = 1;
+            c.gridy = 2;
+            c.gridwidth = 2;
+            c.gridheight = 1;
+            add(txt_title, c);
 
-            class BufferedImageCellRenderer extends DefaultTableCellRenderer {
-                @Override
-                public Component getTableCellRendererComponent(JTable table, Object value,
-                                                               boolean isSelected, boolean hasFocus,
-                                                               int row, int column) {
+            c.gridx = 1;
+            c.gridy = 2;
+            c.gridwidth = 1;
+            c.gridheight = 1;
+            add(lbl_description, c);
 
-                    super.getTableCellRendererComponent(table, value, isSelected, hasFocus,
-                            row, column);
-                    if (value instanceof BufferedImage) {
-                        setIcon(new ImageIcon((BufferedImage)value));
-                        setText(null);
-                    } else {
-                        setIcon(new ImageIcon());
-                        setText("No Image");
-                    }
-                    return this;
-                }
-            }
+            c.gridx = 1;
+            c.gridy = 3;
+            c.gridwidth = 3;
+            c.gridheight = 3;
+            add(txt_description, c);
+
+            c.gridx = 1;
+            c.gridy = 7;
+            c.gridwidth = 1;
+            c.gridheight = 1;
+            add(lbl_category, c);
+
+            c.gridx = 2;
+            c.gridy = 7;
+            c.gridwidth = 1;
+            c.gridheight = 1;
+            add(lst_categories, c);
         }
     }
 }

@@ -1,9 +1,8 @@
-package org.bogdanbuduroiu.auction.server.controller;
+package org.bogdanbuduroiu.auction.server.server.controller;
 
 
 import org.bogdanbuduroiu.auction.model.comms.ChangeRequest;
 import org.bogdanbuduroiu.auction.model.comms.message.Message;
-import org.bogdanbuduroiu.auction.model.comms.message.PingMessage;
 
 import java.io.*;
 import java.net.InetSocketAddress;
@@ -198,7 +197,6 @@ public class ServerComms implements Runnable {
         }
 
         if (numRead == -1) {
-            System.out.println("[CON]\tClient on " + socket.socket().getInetAddress() + " has closed connection.");
             key.channel().close();
             key.cancel();
             return;

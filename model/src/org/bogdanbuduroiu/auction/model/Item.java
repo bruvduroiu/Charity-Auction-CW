@@ -86,7 +86,7 @@ public class Item implements Serializable {
     }
 
     public Date getTimeRemaining() {
-        return new Date((this.expiryTime - System.currentTimeMillis() * 1000));
+        return new Date((this.expiryTime - System.currentTimeMillis()));
     }
 
     public void startAuction() {
