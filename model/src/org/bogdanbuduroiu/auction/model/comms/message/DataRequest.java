@@ -8,13 +8,18 @@ import org.bogdanbuduroiu.auction.model.User;
 public class DataRequest extends Message {
 
     private final DataRequestType DATA_REQUEST_TYPE;
+    private User user;
 
-    public DataRequest(User sender, DataRequestType dataRequestType) {
+    public DataRequest(User sender, DataRequestType DATA_REQUEST_TYPE) {
         super(sender, MessageType.DATA_REQUEST);
-        this.DATA_REQUEST_TYPE = dataRequestType;
+        this.DATA_REQUEST_TYPE = DATA_REQUEST_TYPE;
     }
 
     public DataRequestType data_req_type() {
         return DATA_REQUEST_TYPE;
+    }
+
+    public User getUser() {
+        return this.user;
     }
 }

@@ -10,7 +10,7 @@ import java.util.*;
  */
 public class Item implements Serializable {
 
-    private long itemID;
+    private transient long itemID;
     private String title;
     private String description;
     private Category category;
@@ -20,13 +20,12 @@ public class Item implements Serializable {
     private long expiryTime;
     private boolean closed;
     private Double reservePrice;
-    private BufferedImage itemImage;
 
     private PriorityQueue<Bid> bids = new PriorityQueue<>(
-            (Bid o1, Bid o2) -> o2.getBidAmmount().compareTo(o1.getBidAmmount())
+            (Comparator<Bid> & Serializable)(Bid o1, Bid o2) -> o2.getBidAmmount().compareTo(o1.getBidAmmount())
     );
 
-    public Item(String title, String description, Category category, int vendorID, long expiryTime, Double reservePrice, BufferedImage itemImage) {
+    public Item(String title, String description, Category category, int vendorID, long expiryTime, Double reservePrice) {
         this.itemID = this.hashCode();
         this.title = title;
         this.description = description;
@@ -34,7 +33,10 @@ public class Item implements Serializable {
         this.vendorID = vendorID;
         this.expiryTime = expiryTime;
         this.reservePrice = reservePrice;
-        this.itemImage = itemImage;
+    }
+
+    public void setVendorID(int vendorID) {
+        this.vendorID = vendorID;
     }
 
     public long getItemID() {
@@ -75,10 +77,6 @@ public class Item implements Serializable {
 
     public Double getReservePrice() {
         return reservePrice;
-    }
-
-    public BufferedImage getItemImage() {
-        return itemImage;
     }
 
     public PriorityQueue<Bid> getBids() {

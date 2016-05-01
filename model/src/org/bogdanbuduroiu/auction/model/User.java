@@ -12,7 +12,7 @@ public class User implements Serializable{
     private String firstName;
     private String lastName;
     private String username;
-    private transient int userID;
+    private int userID;
 
     public User(String username) {
         this(null, null, username);

@@ -1,5 +1,6 @@
 package org.bogdanbuduroiu.auction.model.comms.message;
 
+import org.bogdanbuduroiu.auction.model.Item;
 import org.bogdanbuduroiu.auction.model.User;
 
 import java.io.Serializable;
@@ -9,7 +10,14 @@ import java.io.Serializable;
  */
 public class CreateAuctionRequest extends Message implements Serializable {
 
-    public CreateAuctionRequest(User sender) {
+    private Item auction;
+
+    public CreateAuctionRequest(User sender, Item auction) {
         super(sender, MessageType.CREATE_AUCTION_REQUEST);
+        this.auction = auction;
+    }
+
+    public Item getAuction() {
+        return auction;
     }
 }

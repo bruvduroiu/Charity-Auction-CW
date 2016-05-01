@@ -1,6 +1,7 @@
 package org.bogdanbuduroiu.auction.server.server.controller;
 
 
+import com.sun.istack.internal.Nullable;
 import org.bogdanbuduroiu.auction.model.Category;
 import org.bogdanbuduroiu.auction.model.Item;
 import org.bogdanbuduroiu.auction.model.User;
@@ -12,10 +13,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.ZonedDateTime;
 import java.util.*;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
  * Created by bogdanbuduroiu on 21.04.16.
@@ -41,14 +39,6 @@ public class Server {
         responseWorker = new ResponseWorker();
         System.out.println("[SRV]\tStarting server...");
         configureServer();
-
-        //TODO: REMOVE ASAP
-        auctions.add(new Item("Test1", "Test descript1", Category.AUTO, 1232134, System.currentTimeMillis() + 100000, 102.12, null));
-        auctions.add(new Item("Test2", "Test descript2", Category.AUTO, 1232134, System.currentTimeMillis() + 100000, 102.12, null));
-        auctions.add(new Item("Test3", "Test descript3", Category.AUTO, 1232134, System.currentTimeMillis() + 100000, 102.12, null));
-        auctions.add(new Item("Test4", "Test descript4", Category.AUTO, 1232134, System.currentTimeMillis() + 100000, 102.12, null));
-        auctions.add(new Item("Test5", "Test descript5", Category.AUTO, 1232134, System.currentTimeMillis() + 100000, 102.12, null));
-        auctions.add(new Item("Test6", "Test descript6", Category.AUTO, 1232134, System.currentTimeMillis() + 100000, 102.12, null));
 
         new Thread(commsWorker).start();
         new Thread(responseWorker).start();
@@ -94,38 +84,37 @@ public class Server {
                 DataRequest dataRequest = (DataRequest) message;
 
                 if (dataRequest.data_req_type() == DataRequestType.AUCTIONS_REQ) {
-                    responseWorker.queueResponse(this, socket, new DataReceivedMessage(null, DataRequestType.AUCTIONS_RECV, processAuctionData()));
+                    responseWorker.queueResponse(this, socket, new DataReceivedMessage(null, DataRequestType.AUCTIONS_RECV, auctions));
                 }
 
                 else if (dataRequest.data_req_type() == DataRequestType.BIDS_REQ) {
 
                 }
             }
+            else if (message.type() == MessageType.CREATE_AUCTION_REQUEST) {
+                CreateAuctionRequest auctionRequest = (CreateAuctionRequest) message;
+
+                if (!this.newAuction(auctionRequest.getAuction())) {
+                    System.out.println("[ERR]\tError adding new auction:");
+                    return;
+                }
+                responseWorker.queueResponse(this, socket, new DataReceivedMessage(null, DataRequestType.AUCTIONS_RECV, auctions));
+                System.out.println("[AUC]\tNew auction: " + auctionRequest.getAuction().getTitle()
+                        + ". Price: " + auctionRequest.getAuction().getReservePrice());
+            }
     }
 
-    void announceClockTick() {
+
+    private boolean newAuction(Item auction) {
         try {
-
-            if (clients.isEmpty()) return;
-
-            for (SocketChannel socket : clients.values())
-                commsWorker.sendMessage(socket, new DataReceivedMessage(null, DataRequestType.AUCTIONS_RECV, processAuctionData()));
+            auction.startAuction();
+            auctions.add(auction);
+            return true;
         }
-        catch(IOException e) {
-            System.out.println("[ERR]\tError clock ticking. err_msg:" + e.getMessage());
+        catch (Exception e) {
+            System.out.println("[ERR]\tError adding new auction: " + e.getMessage());
         }
-    }
-
-    private Object[][] processAuctionData() {
-        Object[][] result = new Object[auctions.size()][];
-
-        int i = 0;
-        for (Item item : auctions) {
-            DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
-            result[i++] = new Object[]{item.getTitle(), item.getDescription(), item.getBids().size(), item.getVendorID(), dateFormat.format(item.getTimeRemaining()), item.getReservePrice()};
-        }
-
-        return result;
+        return false;
     }
 
     protected boolean validCredentials(User user, char[] password) {
@@ -149,12 +138,6 @@ public class Server {
             System.out.println("[ERR]\tStored user data could not be loaded.");
         }
 
-//        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-//
-//        final Runnable ticker = () -> announceClockTick();
-//
-//        final ScheduledFuture<?> tickerHandler = scheduler.scheduleAtFixedRate(ticker, 1, 1, TimeUnit.SECONDS);
-
         Runtime.getRuntime().addShutdownHook(new Thread(() ->{
             try {
                 System.out.println("[SRV]\tServer shutting down...");
@@ -173,18 +156,33 @@ public class Server {
         ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
         passwords = (HashMap<User, char[]>) ois.readObject();
         ois.close();
+
+        file = new File(DIR_PATH, AUCTIONS_REL_PATH);
+        ois = new ObjectInputStream(new FileInputStream(file));
+        auctions = (Set<Item>) ois.readObject();
+        ois.close();
     }
 
     private void storeData() throws IOException {
         File file = new File(DIR_PATH, USERS_REL_PATH);
-        if (!(new File(DIR_PATH, USERS_REL_PATH).exists())) {
-            File dir = new File(DIR_PATH);
-            dir.mkdir();
-            file = new File(dir, USERS_REL_PATH);
+        if (!(new File(DIR_PATH)).exists())
+            new File(DIR_PATH).mkdir();
+        if (!(file.exists())) {
+            file = new File(DIR_PATH, USERS_REL_PATH);
             file.createNewFile();
         }
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
         oos.writeObject(passwords);
+        oos.close();
+
+        file = new File(DIR_PATH, AUCTIONS_REL_PATH);
+        if (!file.exists()) {
+            file = new File(DIR_PATH, AUCTIONS_REL_PATH);
+            file.createNewFile();
+        }
+
+        oos = new ObjectOutputStream(new FileOutputStream(file));
+        oos.writeObject(auctions);
         oos.close();
     }
 
