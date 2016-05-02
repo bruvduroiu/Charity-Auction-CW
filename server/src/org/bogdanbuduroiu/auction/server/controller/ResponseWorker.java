@@ -1,7 +1,7 @@
-package org.bogdanbuduroiu.auction.server.server.controller;
+package org.bogdanbuduroiu.auction.server.controller;
 
 import org.bogdanbuduroiu.auction.model.comms.message.*;
-import org.bogdanbuduroiu.auction.server.server.model.ServerMessageEvent;
+import org.bogdanbuduroiu.auction.server.model.ServerMessageEvent;
 
 import java.io.IOException;
 import java.nio.channels.SocketChannel;

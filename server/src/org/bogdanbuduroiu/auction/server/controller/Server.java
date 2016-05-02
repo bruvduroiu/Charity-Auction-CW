@@ -1,19 +1,14 @@
-package org.bogdanbuduroiu.auction.server.server.controller;
+package org.bogdanbuduroiu.auction.server.controller;
 
 
-import com.sun.istack.internal.Nullable;
-import org.bogdanbuduroiu.auction.model.Category;
 import org.bogdanbuduroiu.auction.model.Item;
 import org.bogdanbuduroiu.auction.model.User;
 import org.bogdanbuduroiu.auction.model.comms.message.*;
 
 import java.io.*;
 import java.nio.channels.SocketChannel;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.ZonedDateTime;
 import java.util.*;
-import java.util.concurrent.*;
 
 /**
  * Created by bogdanbuduroiu on 21.04.16.
@@ -28,7 +23,7 @@ public class Server {
     Map<User, char[]> passwords = new HashMap<>();
     Map<User, SocketChannel> clients = new HashMap<>();
     Set<User> activeUsers = new HashSet<>();
-    Set<Item> auctions = new HashSet<>();
+    Map<Integer, Item> auctions = new HashMap<>();
     private static final String DIR_PATH = "../server/data";
     private static final String USERS_REL_PATH = "users.dat";
     private static final String AUCTIONS_REL_PATH = "auctions.dat";
@@ -52,7 +47,8 @@ public class Server {
 
                 if (!validCredentials(tmpUser, lr.getPassword())) {
                     responseWorker.queueResponse(this, socket, new ErrMessage(tmpUser, ErrType.INVALID_LOGIN_ERR));
-                    System.out.println("[USR]\tFailed login attempt. User: " + tmpUser.getUsername());
+                    System.out.println("[USR]\tFailed login attempt at " + Date.from(ZonedDateTime.now().toInstant())
+                            + ". User: " + tmpUser.getUsername() + ". Host: " + socket.socket().getInetAddress());
                     return;
                 }
 
@@ -61,7 +57,8 @@ public class Server {
 
                 responseWorker.queueResponse(this, socket, new AcknowledgedMessage(tmpUser, AckType.ACK_LOGIN));
 
-                System.out.println("[USR]\tNew login from user " + tmpUser.getUsername() + " at " + Date.from(ZonedDateTime.now().toInstant()) + ".");
+                System.out.println("[USR]\tNew login from user " + tmpUser.getUsername() + " at "
+                        + Date.from(ZonedDateTime.now().toInstant()) + ". Host: " + socket.socket().getInetAddress());
             }
 
             else if (message.type() == MessageType.REGISTRATION_REQUEST) {
@@ -77,7 +74,8 @@ public class Server {
                 this.passwords.put(tmpUser, password);
                 this.responseWorker.queueResponse(this, socket, new AcknowledgedMessage(tmpUser, AckType.ACK_REGISTRATION));
 
-                System.out.println("[USR]\tNew registration. Username: " + tmpUser.getUsername() + " at " + Date.from(ZonedDateTime.now().toInstant()) + ".");
+                System.out.println("[USR]\tNew registration. Username: " + tmpUser.getUsername()
+                        + " at " + Date.from(ZonedDateTime.now().toInstant()) + ". Host: " + socket.socket().getInetAddress());
             }
 
             else if (message.type() == MessageType.DATA_REQUEST) {
@@ -108,7 +106,7 @@ public class Server {
     private boolean newAuction(Item auction) {
         try {
             auction.startAuction();
-            auctions.add(auction);
+            auctions.put(auction.getItemID(), auction);
             return true;
         }
         catch (Exception e) {
@@ -159,7 +157,7 @@ public class Server {
 
         file = new File(DIR_PATH, AUCTIONS_REL_PATH);
         ois = new ObjectInputStream(new FileInputStream(file));
-        auctions = (Set<Item>) ois.readObject();
+        auctions = (HashMap<Integer, Item>) ois.readObject();
         ois.close();
     }
 

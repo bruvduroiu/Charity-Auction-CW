@@ -1,7 +1,7 @@
 package org.bogdanbuduroiu.auction.model;
 
 
-import java.awt.image.BufferedImage;
+
 import java.io.Serializable;
 import java.util.*;
 
@@ -10,7 +10,7 @@ import java.util.*;
  */
 public class Item implements Serializable {
 
-    private transient long itemID;
+    private int itemID;
     private String title;
     private String description;
     private Category category;
@@ -19,7 +19,7 @@ public class Item implements Serializable {
     private long endTime;
     private long expiryTime;
     private boolean closed;
-    private Double reservePrice;
+    private final Double RESERVE_PRICE;
 
     private PriorityQueue<Bid> bids = new PriorityQueue<>(
             (Comparator<Bid> & Serializable)(Bid o1, Bid o2) -> o2.getBidAmmount().compareTo(o1.getBidAmmount())
@@ -32,14 +32,14 @@ public class Item implements Serializable {
         this.category = category;
         this.vendorID = vendorID;
         this.expiryTime = expiryTime;
-        this.reservePrice = reservePrice;
+        this.RESERVE_PRICE = reservePrice;
     }
 
     public void setVendorID(int vendorID) {
         this.vendorID = vendorID;
     }
 
-    public long getItemID() {
+    public int getItemID() {
         return itemID;
     }
 
@@ -76,7 +76,7 @@ public class Item implements Serializable {
     }
 
     public Double getReservePrice() {
-        return reservePrice;
+        return RESERVE_PRICE;
     }
 
     public PriorityQueue<Bid> getBids() {

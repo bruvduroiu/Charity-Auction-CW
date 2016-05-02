@@ -1,4 +1,4 @@
-package org.bogdanbuduroiu.auction.server.server.controller;
+package org.bogdanbuduroiu.auction.server.controller;
 
 
 import org.bogdanbuduroiu.auction.model.comms.ChangeRequest;
@@ -136,13 +136,9 @@ public class ServerComms implements Runnable {
         ServerSocketChannel serverSocketChannel = (ServerSocketChannel) key.channel();
 
         SocketChannel socketChannel = serverSocketChannel.accept();
-        System.out.println("[CON]\tNew connection from: " + socketChannel.socket().getInetAddress());
         socketChannel.configureBlocking(false);
 
         socketChannel.register(this.selector, SelectionKey.OP_READ);
-        System.out.println("[CON]\tConnection from: " + socketChannel.socket().getInetAddress() + " accepted.");
-
-
     }
 
     /**

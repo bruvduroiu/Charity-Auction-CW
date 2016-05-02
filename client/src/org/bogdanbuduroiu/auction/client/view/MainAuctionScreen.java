@@ -14,13 +14,12 @@ import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Properties;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by bogdanbuduroiu on 29.04.16.
@@ -33,7 +32,7 @@ public class MainAuctionScreen extends JFrame {
     private JTabbedPane pnl_tabbed;
     private BrowsePanel pnl_auctions;
     private SellPanel pnl_newAuction;
-    private Object[][] auctionData;
+    private Map<Integer, Item> auctionData;
 
     private final HashMap<String, Category> CATEGORIES = new HashMap<String, Category>() {{
         put("Audio & Video", Category.AUDIO_VIDEO);
@@ -77,19 +76,38 @@ public class MainAuctionScreen extends JFrame {
 
     private void initListeners() {
         client.addAuctionDataReceivedListener((data) -> {
-            auctionData = processAuctionData(data, null);
-            pnl_auctions.loadAuctions();
+            this.auctionData = data;
+            pnl_auctions.loadAuctions(processAuctionData(data, null));
         });
     }
 
-    private Object[][] processAuctionData(Set<Item> auctions, User user) {
+    private Object[][] processAuctionData(Map<Integer, Item> auctions, User user) {
         Object[][] result = new Object[auctions.size()][];
+        DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
 
         int i = 0;
-        for (Item item : auctions) {
+        for (Item item : auctions.values()) {
             if (user == null || user.getUserID() == item.getVendorID()) {
-                DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
-                result[i++] = new Object[]{item.getTitle(), item.getDescription(), item.getBids().size(), item.getVendorID(), dateFormat.format(item.getTimeRemaining()), item.getReservePrice()};
+                result[i++] = new Object[]{
+                        item.getItemID(),
+                        item.getTitle(),
+                        item.getDescription(),
+                        item.getBids().size(),
+                        item.getVendorID(),
+                        dateFormat.format(item.getTimeRemaining()),
+                        item.getReservePrice()};
+            }
+            else if (user.getUserID() == item.getVendorID()) {
+                String[] columnName = {"ID", "Title", "No. Bidders", "Time Remaining", "Highest Bid", "Cancel"};
+                result[i++] = new Object[] {
+                        item.getItemID(),
+                        item.getTitle(),
+                        item.getBids().size(),
+                        dateFormat.format(item.getTimeRemaining()),
+                        (item.getBids().isEmpty())
+                                ? item.getReservePrice()
+                                : item.getBids().peek().getBidAmmount(),
+                        new JButton("Cancel")};
             }
         }
 
@@ -133,6 +151,7 @@ public class MainAuctionScreen extends JFrame {
 
             setLayout(new GridBagLayout());
             GridBagConstraints c = new GridBagConstraints();
+
             c.anchor = GridBagConstraints.NORTHWEST;
             c.fill = GridBagConstraints.HORIZONTAL;
             c.weighty = 0.1;
@@ -142,21 +161,25 @@ public class MainAuctionScreen extends JFrame {
             c.gridwidth = 2;
             c.gridheight = 2;
             add(txt_searchField,c);
+
             c.gridx = 3;
             c.gridy = 1;
             c.gridwidth = 1;
             c.gridheight = 2;
             add(cmb_searchCategory, c);
+
             c.gridx = 4;
             c.gridy = 1;
             c.gridwidth = 1;
             c.gridheight = 2;
             add(btn_submitSearch, c);
+
             c.gridx = 5;
             c.gridy = 1;
             c.gridwidth = 1;
             c.gridheight = 1;
             add(lbl_user, c);
+
             c.fill = GridBagConstraints.BOTH;
             c.weighty = 0.9;
             c.weightx = 0.3;
@@ -164,6 +187,7 @@ public class MainAuctionScreen extends JFrame {
             c.gridy = 2;
             c.gridwidth = 1;
             add(lst_categories, c);
+
             c.fill = GridBagConstraints.BOTH;
             c.weighty = 0.9;
             c.weightx = 0.7;
@@ -171,16 +195,31 @@ public class MainAuctionScreen extends JFrame {
             c.gridy = 2;
             c.gridwidth = 5;
             add(scrl_auctions, c);
+
+            tbl_auctions.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    JTable table = (JTable) e.getSource();
+                    Point p = e.getPoint();
+                    int row = table.rowAtPoint(p);
+                    if (e.getClickCount() == 2) {
+                        Object[] rowData = new Object[table.getModel().getColumnCount()];
+                        for (int i = 0; i < auctionData.size(); i++)
+                            rowData[i] = table.getModel().getValueAt(row, i);
+                        new AuctionBidScreen(client, auctionData.get(rowData[0]));
+                    }
+                }
+            });
         }
 
-        public void loadAuctions() {
+        public void loadAuctions(Object[][] auctionData) {
             //TODO: Implement loading items from method
-            DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
-            String[] columnName = {"Title", "Description", "No. Bidders", "Seller", "Time Remaining", "Price"};
+            String[] columnName = {"ID", "Title", "Description", "No. Bidders", "Seller", "Time Remaining", "Price"};
             DefaultTableModel model = new DefaultTableModel(auctionData, columnName);
             tbl_auctions.setModel(model);
             tbl_auctions.setRowHeight(64);
-            tbl_auctions.getColumnModel().getColumn(1).setMinWidth(300);
+            tbl_auctions.getColumnModel().getColumn(1).setMinWidth(100);
+            tbl_auctions.getColumnModel().getColumn(2).setMinWidth(200);
         }
     }
 
@@ -339,10 +378,7 @@ public class MainAuctionScreen extends JFrame {
 
         private void initAuctionsPanel() {
 
-            client.addAuctionDataReceivedListener((data) -> {
-                usr_auctions = processAuctionData(data, client.getCurrentUser());
-                loadUsrAuctions();
-            });
+            client.addAuctionDataReceivedListener((data) -> loadUsrAuctions(processAuctionData(data, client.getCurrentUser())));
 
             pnl_myAuctions.setBorder(BorderFactory.createTitledBorder(
                     BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), "My Auctions"
@@ -354,9 +390,8 @@ public class MainAuctionScreen extends JFrame {
 
 
 
-        private void loadUsrAuctions() {
+        private void loadUsrAuctions(Object[][] usr_auctions) {
 
-            DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
             String[] columnName = {"ID", "Title", "No. Bidders", "Time Remaining", "Highest Bid", "Cancel"};
             DefaultTableModel model = new DefaultTableModel(usr_auctions, columnName);
             tbl_myAuctions.setModel(model);

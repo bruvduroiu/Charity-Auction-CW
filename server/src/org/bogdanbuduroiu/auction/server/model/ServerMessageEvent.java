@@ -1,4 +1,4 @@
-package org.bogdanbuduroiu.auction.server.server.model;
+package org.bogdanbuduroiu.auction.server.model;
 
 import org.bogdanbuduroiu.auction.model.comms.message.Message;
 
