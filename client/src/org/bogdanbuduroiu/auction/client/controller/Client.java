@@ -3,10 +3,12 @@ package org.bogdanbuduroiu.auction.client.controller;
 import org.bogdanbuduroiu.auction.client.model.event.AuctionsReceivedListener;
 import org.bogdanbuduroiu.auction.client.view.ClientLoginScreen;
 import org.bogdanbuduroiu.auction.client.view.MainAuctionScreen;
+import org.bogdanbuduroiu.auction.model.Bid;
 import org.bogdanbuduroiu.auction.model.Item;
 import org.bogdanbuduroiu.auction.model.comms.message.*;
 import org.bogdanbuduroiu.auction.model.User;
 
+import javax.swing.*;
 import javax.xml.crypto.Data;
 import java.io.*;
 import java.text.DateFormat;
@@ -64,26 +66,40 @@ public class Client {
 
     public void newAuction(Item auction) throws IOException {
         ResponseHandler rspHandler = new ResponseHandler();
-        auction.setVendorID(currentUser.getUserID());
+        auction.setVendor(currentUser);
         worker.sendMessage(new CreateAuctionRequest(currentUser, auction), rspHandler);
+        rspHandler.waitForResponse(this);
+    }
+
+    public void newBid(Item item, double bidAmmount) throws IOException {
+        ResponseHandler rspHandler = new ResponseHandler();
+        worker.sendMessage(new NewBidRequest(item, new Bid(currentUser, bidAmmount)), rspHandler);
         rspHandler.waitForResponse(this);
     }
 
     public void processMessage(Message message) {
         if (message.type() == MessageType.ACK) {
-            if (((AcknowledgedMessage) message).ack_type() == AckType.ACK_LOGIN) {
+            AcknowledgedMessage ack_message = (AcknowledgedMessage) message;
+            if (ack_message.ack_type() == AckType.ACK_LOGIN) {
                 clientLoginScreen.dispose();
                 currentUser = message.getSender();
                 mainAuctionScreen = MainAuctionScreen.initializeScreen(this);
                 requestData(DataRequestType.AUCTIONS_REQ);
             }
-            else if (((AcknowledgedMessage) message).ack_type() == AckType.ACK_REGISTRATION) {
+            else if (ack_message.ack_type() == AckType.ACK_REGISTRATION)
                 clientLoginScreen.registrationSuccessful();
-            }
+
+            else if (ack_message.ack_type() == AckType.ACK_NEW_BID)
+                mainAuctionScreen.bidSuccess(((BidAcknowledgedMessage) ack_message).getItem());
         }
         else if(message.type() == MessageType.ERR) {
-            if (((ErrMessage) message).err_type() == ErrType.INVALID_LOGIN_ERR) {
+            ErrMessage errMessage = (ErrMessage) message;
+            if (errMessage.err_type() == ErrType.INVALID_LOGIN_ERR) {
                 clientLoginScreen.invalidLogin();
+            }
+
+            else if (errMessage.err_type() == ErrType.INVALID_BID_ERR) {
+                mainAuctionScreen.bidFail(((BidFailedMessage) message).getItem());
             }
             //TODO: Error Handling for Registration
         }

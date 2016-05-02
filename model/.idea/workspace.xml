@@ -6,38 +6,37 @@
     </artifacts-to-build>
   </component>
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen.java" line="293" mnemonic="0" />
+    <bookmark url="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen.java" line="303" mnemonic="0" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="388f8a5b-f18b-4d5c-9b7f-2f8195c9d13c" name="Default" comment="Added more .gitignore">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../client/src/ClientMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/AuctionBidScreen.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../server/src/ServerMain.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../server/data/auctions.dat" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../server/target/classes/org/bogdanbuduroiu/auction/server/server/controller/ResponseWorker.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../server/target/classes/org/bogdanbuduroiu/auction/server/server/controller/Server.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../server/target/classes/org/bogdanbuduroiu/auction/server/server/controller/ServerComms.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../server/target/classes/org/bogdanbuduroiu/auction/server/server/model/ServerMessageEvent.class" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/server/controller/ResponseWorker.java" afterPath="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/ResponseWorker.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/server/controller/Server.java" afterPath="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/Server.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/server/controller/ServerComms.java" afterPath="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/ServerComms.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/server/model/ServerMessageEvent.java" afterPath="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/model/ServerMessageEvent.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/BidAcknowledgedMessage.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/BidFailedMessage.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/exception/InvalidBidException.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/controller/Client.class" afterPath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/controller/Client.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/model/event/AuctionsReceivedListener.class" afterPath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/model/event/AuctionsReceivedListener.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/AuctionBidScreen.class" afterPath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/AuctionBidScreen.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/ClientLoginPanel.class" afterPath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/ClientLoginPanel.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/ClientRegistrationPanel.class" afterPath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/ClientRegistrationPanel.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen$1.class" afterPath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen$BrowsePanel$1.class" afterPath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen$BrowsePanel$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen$BrowsePanel.class" afterPath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen$BrowsePanel.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen$SellPanel.class" afterPath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen$SellPanel.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen.class" afterPath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/model_jar/model.jar" afterPath="$PROJECT_DIR$/out/artifacts/model_jar/model.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/Bid.class" afterPath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/Bid.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/Item.class" afterPath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/Item.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/DataReceivedMessage.class" afterPath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/DataReceivedMessage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/model/event/AuctionsReceivedListener.java" afterPath="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/model/event/AuctionsReceivedListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/ErrType.class" afterPath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/ErrType.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/NewBidRequest.class" afterPath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/NewBidRequest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/Client.java" afterPath="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/Client.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/AuctionBidScreen.java" afterPath="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/AuctionBidScreen.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen.java" afterPath="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/Bid.java" afterPath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/Bid.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/Item.java" afterPath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/Item.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/DataReceivedMessage.java" afterPath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/DataReceivedMessage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/ErrType.java" afterPath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/ErrType.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/NewBidRequest.java" afterPath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/NewBidRequest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../server/data/auctions.dat" afterPath="$PROJECT_DIR$/../server/data/auctions.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/Server.java" afterPath="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/Server.java" />
     </list>
     <ignored path="model.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -70,81 +69,22 @@
       <file leaf-file-name="Client.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="518">
-              <caret line="64" column="16" selection-start-line="64" selection-start-column="16" selection-end-line="64" selection-end-column="16" />
+            <state relative-caret-position="870">
+              <caret line="101" column="80" selection-start-line="101" selection-start-column="80" selection-end-line="101" selection-end-column="80" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClientLoginPanel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/ClientLoginPanel.java">
+      <file leaf-file-name="BidFailedMessage.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/BidFailedMessage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="669">
-              <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ResponseHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/ResponseHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AuctionsReceivedListener.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/model/event/AuctionsReceivedListener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="11" column="30" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainAuctionScreen.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="367">
-              <caret line="220" column="69" selection-start-line="220" selection-start-column="69" selection-end-line="220" selection-end-column="69" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ServerComms.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/ServerComms.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="975">
-              <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AuctionBidScreen.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/AuctionBidScreen.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="487">
-              <caret line="49" column="33" selection-start-line="49" selection-start-column="33" selection-end-line="49" selection-end-column="33" />
+            <state relative-caret-position="255">
+              <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#455#456#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/Server.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="840">
-              <caret line="108" column="17" selection-start-line="108" selection-start-column="17" selection-end-line="108" selection-end-column="17" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -152,10 +92,95 @@
       <file leaf-file-name="Item.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/Item.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+            <state relative-caret-position="412">
+              <caret line="43" column="59" selection-start-line="43" selection-start-column="59" selection-end-line="43" selection-end-column="59" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1152#1153#0" expanded="true" />
+                <element signature="e#1188#1189#0" expanded="true" />
+                <element signature="e#2147#2148#0" expanded="true" />
+                <element signature="e#2226#2227#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Server.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/Server.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="780">
+              <caret line="95" column="92" selection-start-line="95" selection-start-column="92" selection-end-line="95" selection-end-column="92" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ErrMessage.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/ErrMessage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ErrType.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/ErrType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="78" selection-start-line="6" selection-start-column="78" selection-end-line="6" selection-end-column="78" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InvalidBidException.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/exception/InvalidBidException.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+              <folding>
+                <element signature="e#256#257#0" expanded="true" />
+                <element signature="e#286#287#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NewBidRequest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/NewBidRequest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="26" column="27" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
+              <folding>
+                <element signature="e#577#578#0" expanded="true" />
+                <element signature="e#603#604#0" expanded="true" />
+                <element signature="e#659#660#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainAuctionScreen.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="810">
+              <caret line="123" column="17" selection-start-line="123" selection-start-column="17" selection-end-line="123" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AuctionBidScreen.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/AuctionBidScreen.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1537">
+              <caret line="155" column="31" selection-start-line="155" selection-start-column="31" selection-end-line="155" selection-end-column="31" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#4443#4444#0" expanded="true" />
+                <element signature="e#4483#4484#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -182,18 +207,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/events/MessageReceivedListener.java" />
-        <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/AcknowledgedMessage.java" />
-        <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/Comms.java" />
-        <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/ServerComms.java" />
-        <option value="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/model/ServerMessageEvent.java" />
-        <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/ErrType.java" />
         <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/ErrMessage.java" />
         <option value="$PROJECT_DIR$/../client/src/main/java/org/bogdanbuduroiu/auction/client/view/ClientLoginScreen.java" />
         <option value="$PROJECT_DIR$/../client/src/main/java/org/bogdanbuduroiu/auction/client/view/ClientLoginPanel.java" />
         <option value="$PROJECT_DIR$/../client/src/main/java/org/bogdanbuduroiu/auction/client/view/ClientRegistrationPanel.java" />
         <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/PingMessage.java" />
-        <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/AckType.java" />
         <option value="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/ServerComms.java" />
         <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/ResponseWorker.java" />
         <option value="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/ResponseWorker.java" />
@@ -219,7 +237,6 @@
         <option value="$PROJECT_DIR$/../client/pom.xml" />
         <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/CreateAuctionRequest.java" />
         <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/DataRequest.java" />
-        <option value="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/Client.java" />
         <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/User.java" />
         <option value="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/server/controller/ServerComms.java" />
         <option value="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/server/controller/Server.java" />
@@ -228,10 +245,19 @@
         <option value="$PROJECT_DIR$/../client/src/ClientMain.java" />
         <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/DataReceivedMessage.java" />
         <option value="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/model/event/AuctionsReceivedListener.java" />
-        <option value="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/Server.java" />
+        <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/Bid.java" />
+        <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/AckType.java" />
+        <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/BidAcknowledgedMessage.java" />
+        <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/exceptions/InvalidBid.java" />
+        <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/exception/InvalidBidException.java" />
         <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/Item.java" />
+        <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/NewBidRequest.java" />
+        <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/ErrType.java" />
         <option value="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen.java" />
         <option value="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/AuctionBidScreen.java" />
+        <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/BidFailedMessage.java" />
+        <option value="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/Client.java" />
+        <option value="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/Server.java" />
       </list>
     </option>
   </component>
@@ -256,9 +282,9 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1999" />
-    <option name="y" value="-1116" />
-    <option name="width" value="1841" />
+    <option name="x" value="2115" />
+    <option name="y" value="-919" />
+    <option name="width" value="1725" />
     <option name="height" value="1440" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -349,6 +375,7 @@
     </navigator>
     <panes>
       <pane id="Scope">
+        <subPane subId="Problems" />
         <subPane subId="Production">
           <PATH>
             <PATH_ELEMENT USER_OBJECT="Root">
@@ -467,6 +494,10 @@
               <option name="myItemId" value="model" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -507,6 +538,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -543,6 +578,82 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="comms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="comms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="message" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1206,12 +1317,12 @@
       <workItem from="1462089143944" duration="3000" />
       <workItem from="1462089322443" duration="6758000" />
       <workItem from="1462098363878" duration="9638000" />
-      <workItem from="1462108370847" duration="10997000" />
+      <workItem from="1462108370847" duration="17548000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63113000" />
+    <option name="totallyTimeSpent" value="69664000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1223,8 +1334,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1999" y="-1116" width="1841" height="1440" extended-state="6" />
-    <editor active="true" />
+    <frame x="2115" y="-919" width="1725" height="1440" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1234,11 +1345,11 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17518248" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329235" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17518248" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919708" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34130073" sideWeight="0.4964789" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3648247" sideWeight="0.4964789" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32846716" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2495831" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1267,22 +1378,22 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/Server.java</url>
-          <line>107</line>
+          <url>file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen.java</url>
+          <line>369</line>
           <properties />
-          <option name="timeStamp" value="52" />
+          <option name="timeStamp" value="54" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen.java</url>
-          <line>208</line>
+          <url>file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/Item.java</url>
+          <line>94</line>
           <properties />
-          <option name="timeStamp" value="53" />
+          <option name="timeStamp" value="55" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="54" />
+      <option name="time" value="56" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1291,90 +1402,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/ErrMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/AckType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="6" column="54" selection-start-line="6" selection-start-column="54" selection-end-line="6" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/PingMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/model/ServerMessageEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_71.jdk/Contents/Home/jre/lib/rt.jar!/sun/nio/ch/SelectionKeyImpl.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/LoginRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/Message.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/MessageType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="6" column="147" selection-start-line="6" selection-start-column="147" selection-end-line="6" selection-end-column="147" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/DataRequestType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="6" column="52" selection-start-line="6" selection-start-column="52" selection-end-line="6" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/ClientLoginScreen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="58" column="62" selection-start-line="58" selection-start-column="62" selection-end-line="58" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/ClientRegistrationPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="38" column="42" selection-start-line="38" selection-start-column="42" selection-end-line="38" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../server/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1458,14 +1485,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="48" column="19" selection-start-line="48" selection-start-column="19" selection-end-line="48" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/Bid.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -1582,9 +1601,9 @@
         <state relative-caret-position="315">
           <caret line="21" column="24" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#650#651#0" expanded="true" />
-            <element signature="e#682#683#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#650#651#0" expanded="false" />
+            <element signature="e#682#683#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1615,7 +1634,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/ClientLoginPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="669">
+        <state relative-caret-position="847">
           <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
           <folding />
         </state>
@@ -1625,40 +1644,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/Client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="518">
-          <caret line="64" column="16" selection-start-line="64" selection-start-column="16" selection-end-line="64" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/ServerComms.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="975">
-          <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/Item.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="108" column="17" selection-start-line="108" selection-start-column="17" selection-end-line="108" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -1679,21 +1664,185 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen.java">
+    <entry file="jar://$PROJECT_DIR$/out/artifacts/model_jar/model.jar!/org/bogdanbuduroiu/auction/model/Bid.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="220" column="69" selection-start-line="220" selection-start-column="69" selection-end-line="220" selection-end-column="69" />
+        <state relative-caret-position="90">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/Bid.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="45" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
+          <folding>
+            <element signature="e#366#367#0" expanded="true" />
+            <element signature="e#393#394#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/out/artifacts/model_jar/model.jar!/org/bogdanbuduroiu/auction/model/comms/message/Message.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="20" column="16" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
+          <folding>
+            <element signature="e#567#568#0" expanded="true" />
+            <element signature="e#601#602#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/ServerComms.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-232">
+          <caret line="82" column="0" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/AckType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="54" selection-start-line="6" selection-start-column="54" selection-end-line="6" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/AcknowledgedMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/BidAcknowledgedMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#445#446#0" expanded="true" />
+            <element signature="e#472#473#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/exceptions/InvalidBid.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="35" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/exception/BidInvalidException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="32" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/exception/InvalidBidException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+          <folding>
+            <element signature="e#256#257#0" expanded="true" />
+            <element signature="e#286#287#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/Item.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="412">
+          <caret line="43" column="59" selection-start-line="43" selection-start-column="59" selection-end-line="43" selection-end-column="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1152#1153#0" expanded="true" />
+            <element signature="e#1188#1189#0" expanded="true" />
+            <element signature="e#2147#2148#0" expanded="true" />
+            <element signature="e#2226#2227#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/NewBidRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="26" column="27" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
+          <folding>
+            <element signature="e#577#578#0" expanded="true" />
+            <element signature="e#603#604#0" expanded="true" />
+            <element signature="e#659#660#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/ErrMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/ErrType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="78" selection-start-line="6" selection-start-column="78" selection-end-line="6" selection-end-column="78" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/AuctionBidScreen.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
-          <caret line="49" column="33" selection-start-line="49" selection-start-column="33" selection-end-line="49" selection-end-column="33" />
+        <state relative-caret-position="1537">
+          <caret line="155" column="31" selection-start-line="155" selection-start-column="31" selection-end-line="155" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#4443#4444#0" expanded="true" />
+            <element signature="e#4483#4484#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="810">
+          <caret line="123" column="17" selection-start-line="123" selection-start-column="17" selection-end-line="123" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/BidFailedMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#455#456#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="870">
+          <caret line="101" column="80" selection-start-line="101" selection-start-column="80" selection-end-line="101" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="780">
+          <caret line="95" column="92" selection-start-line="95" selection-start-column="92" selection-end-line="95" selection-end-column="92" />
+          <folding />
         </state>
       </provider>
     </entry>

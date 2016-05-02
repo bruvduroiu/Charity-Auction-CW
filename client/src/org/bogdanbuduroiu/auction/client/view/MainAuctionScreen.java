@@ -33,6 +33,7 @@ public class MainAuctionScreen extends JFrame {
     private BrowsePanel pnl_auctions;
     private SellPanel pnl_newAuction;
     private Map<Integer, Item> auctionData;
+    private Map<Item, AuctionBidScreen> bidScreensActive = new HashMap<>();
 
     private final HashMap<String, Category> CATEGORIES = new HashMap<String, Category>() {{
         put("Audio & Video", Category.AUDIO_VIDEO);
@@ -87,17 +88,17 @@ public class MainAuctionScreen extends JFrame {
 
         int i = 0;
         for (Item item : auctions.values()) {
-            if (user == null || user.getUserID() == item.getVendorID()) {
+            if (user == null) {
                 result[i++] = new Object[]{
                         item.getItemID(),
                         item.getTitle(),
                         item.getDescription(),
                         item.getBids().size(),
-                        item.getVendorID(),
+                        item.getVendor().getUsername(),
                         dateFormat.format(item.getTimeRemaining()),
                         item.getReservePrice()};
             }
-            else if (user.getUserID() == item.getVendorID()) {
+            else if (user.getUserID() == item.getVendor().getUserID()) {
                 String[] columnName = {"ID", "Title", "No. Bidders", "Time Remaining", "Highest Bid", "Cancel"};
                 result[i++] = new Object[] {
                         item.getItemID(),
@@ -112,6 +113,16 @@ public class MainAuctionScreen extends JFrame {
         }
 
         return result;
+    }
+
+    public void bidSuccess(Item item) {
+        JOptionPane.showMessageDialog(null, "Bid on item " + item.getTitle() + " was successful.");
+        bidScreensActive.get(item).dispose();
+    }
+
+    public void bidFail(Item item) {
+        AuctionBidScreen bidScreen = bidScreensActive.get(item);
+        bidScreen.setErrorMessage("Error: Your bid must be higher than the current highest bid.");
     }
 
     class BrowsePanel extends JPanel {
@@ -206,7 +217,8 @@ public class MainAuctionScreen extends JFrame {
                         Object[] rowData = new Object[table.getModel().getColumnCount()];
                         for (int i = 0; i < auctionData.size(); i++)
                             rowData[i] = table.getModel().getValueAt(row, i);
-                        new AuctionBidScreen(client, auctionData.get(rowData[0]));
+                        Item item = auctionData.get(rowData[0]);
+                        bidScreensActive.put(item, new AuctionBidScreen(client, item));
                     }
                 }
             });
@@ -250,14 +262,12 @@ public class MainAuctionScreen extends JFrame {
             JLabel lbl_title = new JLabel("Title");
             JLabel lbl_description = new JLabel("Description");
             JLabel lbl_category = new JLabel("Category");
-            JLabel lbl_vendor = new JLabel("Vendor");
             JLabel lbl_expiryTime = new JLabel("Close date");
             JLabel lbl_reservePrice = new JLabel("Reserve Price");
             JLabel lbl_itemImage = new JLabel("Image");
             JLabel lbl_err = new JLabel();
 
             JTextField txt_title = new JTextField(20);
-            JTextField txt_vendor = new JTextField(20);
             JTextField txt_reservePrice = new JTextField(20);
 
             Properties p = new Properties();
@@ -361,7 +371,7 @@ public class MainAuctionScreen extends JFrame {
                             txt_title.getText(),
                             txt_description.getText(),
                             CATEGORIES.get(lst_categories.getSelectedValue()),
-                            client.getCurrentUser().getUserID(),
+                            client.getCurrentUser(),
                             ((Date) pck_datePicker.getModel().getValue()).toInstant().toEpochMilli(),
                             Double.parseDouble(txt_reservePrice.getText())
                     );

@@ -1,14 +1,17 @@
 package org.bogdanbuduroiu.auction.server.controller;
 
 
+import org.bogdanbuduroiu.auction.model.Bid;
 import org.bogdanbuduroiu.auction.model.Item;
 import org.bogdanbuduroiu.auction.model.User;
 import org.bogdanbuduroiu.auction.model.comms.message.*;
+import org.bogdanbuduroiu.auction.model.exception.InvalidBidException;
 
 import java.io.*;
 import java.nio.channels.SocketChannel;
 import java.time.ZonedDateTime;
 import java.util.*;
+import java.util.concurrent.SynchronousQueue;
 
 /**
  * Created by bogdanbuduroiu on 21.04.16.
@@ -76,6 +79,22 @@ public class Server {
 
                 System.out.println("[USR]\tNew registration. Username: " + tmpUser.getUsername()
                         + " at " + Date.from(ZonedDateTime.now().toInstant()) + ". Host: " + socket.socket().getInetAddress());
+            }
+
+            else if (message.type() == MessageType.NEW_BID_REQUEST) {
+                NewBidRequest newBidRequest = (NewBidRequest) message;
+                Bid bid = newBidRequest.getBid();
+                Item item = newBidRequest.getItem();
+                try {
+                    item.addBid(bid);
+                    this.responseWorker.queueResponse(this, socket, new BidAcknowledgedMessage(item));
+                    System.out.println("[BID]\tNew bid on item "
+                            + item.getTitle() + " at " + Date.from(ZonedDateTime.now().toInstant())
+                            + ". Value: " + newBidRequest.getBid().getBidAmmount());
+                }
+                catch (InvalidBidException e) {
+                    this.responseWorker.queueResponse(this, socket, new BidFailedMessage(item));
+                }
             }
 
             else if (message.type() == MessageType.DATA_REQUEST) {

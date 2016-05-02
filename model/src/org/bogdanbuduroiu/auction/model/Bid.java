@@ -7,16 +7,16 @@ import java.io.Serializable;
  */
 public class Bid implements Serializable {
 
-    private String username;
+    private User user;
     private Double bidAmmount;
 
-    public Bid(String username, Double bidAmmount) {
-        this.username = username;
+    public Bid(User user, Double bidAmmount) {
+        this.user = user;
         this.bidAmmount = bidAmmount;
     }
 
-    public String getUsername() {
-        return username;
+    public User getUser() {
+        return user;
     }
 
     public Double getBidAmmount() {

@@ -2,6 +2,8 @@ package org.bogdanbuduroiu.auction.model;
 
 
 
+import org.bogdanbuduroiu.auction.model.exception.InvalidBidException;
+
 import java.io.Serializable;
 import java.util.*;
 
@@ -14,7 +16,7 @@ public class Item implements Serializable {
     private String title;
     private String description;
     private Category category;
-    private int vendorID;
+    private User vendor;
     private long startTime;
     private long endTime;
     private long expiryTime;
@@ -25,18 +27,24 @@ public class Item implements Serializable {
             (Comparator<Bid> & Serializable)(Bid o1, Bid o2) -> o2.getBidAmmount().compareTo(o1.getBidAmmount())
     );
 
-    public Item(String title, String description, Category category, int vendorID, long expiryTime, Double reservePrice) {
+    public Item(String title, String description, Category category, User vendor, long expiryTime, Double reservePrice) {
         this.itemID = this.hashCode();
         this.title = title;
         this.description = description;
         this.category = category;
-        this.vendorID = vendorID;
+        this.vendor = vendor;
         this.expiryTime = expiryTime;
         this.RESERVE_PRICE = reservePrice;
     }
 
-    public void setVendorID(int vendorID) {
-        this.vendorID = vendorID;
+    public void setVendor(User vendor) {
+        this.vendor = vendor;
+    }
+
+    public void addBid(Bid bid) throws InvalidBidException {
+        if (bid.getBidAmmount() < bids.peek().getBidAmmount())
+            throw new InvalidBidException();
+        bids.add(bid);
     }
 
     public int getItemID() {
@@ -55,8 +63,8 @@ public class Item implements Serializable {
         return category;
     }
 
-    public int getVendorID() {
-        return vendorID;
+    public User getVendor() {
+        return vendor;
     }
 
     public long getStartTime() {

@@ -5,7 +5,7 @@ import org.bogdanbuduroiu.auction.model.Item;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
@@ -18,6 +18,9 @@ public class AuctionBidScreen extends JFrame {
 
     private static Client client;
 
+    private Item currItem;
+
+    private JLabel lbl_err;
     private JLabel lbl_title;
     private JLabel lbl_description;
     private JLabel lbl_seller;
@@ -34,10 +37,11 @@ public class AuctionBidScreen extends JFrame {
         super(item.getTitle());
 
         this.client = client;
+        this.currItem = item;
 
         lbl_title = new JLabel(item.getTitle());
         lbl_description = new JLabel(item.getDescription());
-        lbl_seller = new JLabel("Seller: " + item.getVendorID());
+        lbl_seller = new JLabel("Seller: " + item.getVendor().getUsername());
         lbl_noBidders = new JLabel("Bidders: " + item.getBids().size());
         lbl_reservePrice = new JLabel("Reserve: " + item.getReservePrice());
         lbl_highestBid = new JLabel("High Bid: " +
@@ -46,6 +50,8 @@ public class AuctionBidScreen extends JFrame {
                         : item.getBids().peek().getBidAmmount()));
 
         lbl_timeRemaining = new JLabel("Remaining: " + DATE_FORMAT.format(item.getTimeRemaining()));
+        lbl_err = new JLabel();
+        lbl_err.setForeground(Color.RED);
 
         txt_bid = new JTextField(7);
         txt_bid.setText(
@@ -56,7 +62,19 @@ public class AuctionBidScreen extends JFrame {
 
         btn_bid = new JButton("Bid");
         btn_bid.addActionListener((event) -> {
-            //TODO: Implement bid action
+            try {
+                double bid = Double.parseDouble(txt_bid.getText());
+
+                client.newBid(currItem, bid);
+
+            }
+            catch (NumberFormatException e) {
+                lbl_err.setText("Please enter a valid bid amount.");
+                txt_bid.setText("");
+            }
+            catch (IOException e) {
+                lbl_err.setText("Error: Unable to place bid. " + e.getMessage());
+            }
         });
 
         init();
@@ -123,8 +141,19 @@ public class AuctionBidScreen extends JFrame {
         c.gridheight = 1;
         container.add(btn_bid, c);
 
+        c.gridx = 2;
+        c.gridy = 6;
+        c.gridwidth = 2;
+        c.gridheight = 1;
+        container.add(lbl_err, c);
+
         setSize(400,600);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
     }
+
+    public void setErrorMessage(String message) {
+        lbl_err.setText(message);
+    }
+
 }
