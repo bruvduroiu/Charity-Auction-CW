@@ -56,7 +56,7 @@ public class Server {
                 }
 
                 this.activeUsers.add(tmpUser);
-                this.clients.put(tmpUser,socket);
+                this.clients.put(tmpUser, socket);
 
                 responseWorker.queueResponse(this, socket, new AcknowledgedMessage(AckType.ACK_LOGIN));
 
@@ -95,7 +95,7 @@ public class Server {
                     User tmpUser = (userIt.hasNext()) ? activeUsers.iterator().next() : null;
                     if (tmpUser == null)
                             return;
-                    this.responseWorker.queueResponse(this, clients.get(activeUsers.iterator().next()), new AcknowledgedMessage(AckType.ACK_TEST));
+                    this.responseWorker.queueResponse(this, clients.get(tmpUser), new AcknowledgedMessage(AckType.ACK_TEST));
                 }
                 catch (InvalidBidException e) {
                     this.responseWorker.queueResponse(this, socket, new BidFailedMessage(item));

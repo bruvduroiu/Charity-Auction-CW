@@ -35,7 +35,6 @@ public class Client {
         try {
             worker = new Comms(this, 8080);
             Thread t = new Thread(worker);
-            configureClient();
             t.start();
             clientLoginScreen = new ClientLoginScreen(this);
         } catch (IOException e) {
@@ -84,6 +83,7 @@ public class Client {
                 clientLoginScreen.dispose();
                 mainAuctionScreen = MainAuctionScreen.initializeScreen(this);
                 requestData(DataRequestType.AUCTIONS_REQ);
+                configureClient();
             }
             else if (ack_message.ack_type() == AckType.ACK_REGISTRATION)
                 clientLoginScreen.registrationSuccessful();

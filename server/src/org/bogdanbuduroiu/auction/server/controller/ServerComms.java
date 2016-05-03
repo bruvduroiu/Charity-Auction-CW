@@ -33,8 +33,8 @@ public class ServerComms implements Runnable {
     public ServerComms(Server server) throws IOException {
         this.server = server;
         System.out.println("[SRV]\tInitiating Communication Channel...");
-        serverSocketChannel = ServerSocketChannel.open();
         selector = this.initSelector();
+
         this.pendingChanges = new LinkedList<>();
         this.pendingData = new HashMap<>();
         this.data = ByteBuffer.allocate(1024);

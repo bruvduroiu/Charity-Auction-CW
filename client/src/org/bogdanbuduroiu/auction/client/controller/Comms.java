@@ -44,7 +44,6 @@ public class Comms implements Runnable {
         this.pendingData = new HashMap<>();
         this.rspHandlers = Collections.synchronizedMap(new HashMap<>());
 
-        socketChannel = this.initiateConnection();
     }
 
     private Selector initSelector() throws IOException {
@@ -98,12 +97,17 @@ public class Comms implements Runnable {
     }
 
     private SocketChannel initiateConnection() throws IOException {
-        SocketChannel socketChannel = SocketChannel.open()
+        if (this.socketChannel != null)
+            return this.socketChannel;
+
+        SocketChannel socketChannel = SocketChannel.open();
         System.out.println("[CON]\tAttempting to connect to server...");
         socketChannel.configureBlocking(false);
         socketChannel.connect(new InetSocketAddress(this.host, this.port));
 
-        while (!socketChannel.finishConnect()) {}
+        while (!socketChannel.finishConnect()) {
+
+        }
 
         synchronized (this.pendingChanges) {
             this.pendingChanges.add(new ChangeRequest(socketChannel, ChangeRequest.REGISTER, SelectionKey.OP_CONNECT));
@@ -131,10 +135,12 @@ public class Comms implements Runnable {
 
     private void send(byte[] data, ResponseHandler handler) throws IOException {
 
-        this.rspHandlers.put(this.socketChannel, handler);
+        SocketChannel socketChannel = this.initiateConnection();
+
+        this.rspHandlers.put(socketChannel, handler);
 
         synchronized (this.pendingData) {
-            List queue = (List) this.pendingData.get(this.socketChannel);
+            List queue = (List) this.pendingData.get(socketChannel);
             if (queue == null) {
                 queue = new ArrayList();
                 this.pendingData.put(socketChannel, queue);
@@ -142,7 +148,7 @@ public class Comms implements Runnable {
             queue.add(ByteBuffer.wrap(data));
         }
         synchronized (this.pendingChanges){
-            pendingChanges.add(new ChangeRequest(this.socketChannel, ChangeRequest.CHANGEOPS, SelectionKey.OP_WRITE));
+            pendingChanges.add(new ChangeRequest(socketChannel, ChangeRequest.CHANGEOPS, SelectionKey.OP_WRITE));
         }
 
         this.selector.wakeup();
@@ -152,7 +158,7 @@ public class Comms implements Runnable {
         SocketChannel socketChannel = (SocketChannel) key.channel();
 
         synchronized (this.pendingData) {
-            List queue = this.pendingData.get(this.socketChannel);
+            List queue = this.pendingData.get(socketChannel);
 
             while (!queue.isEmpty()) {
                 ByteBuffer buffer = (ByteBuffer) queue.get(0);
