@@ -84,7 +84,7 @@ public class Server {
             else if (message.type() == MessageType.NEW_BID_REQUEST) {
                 NewBidRequest newBidRequest = (NewBidRequest) message;
                 Bid bid = newBidRequest.getBid();
-                Item item = newBidRequest.getItem();
+                Item item = auctions.get(newBidRequest.getItem().getItemID());
                 try {
                     item.addBid(bid);
                     this.responseWorker.queueResponse(this, socket, new BidAcknowledgedMessage(item));
@@ -108,6 +108,7 @@ public class Server {
 
                 }
             }
+
             else if (message.type() == MessageType.CREATE_AUCTION_REQUEST) {
                 CreateAuctionRequest auctionRequest = (CreateAuctionRequest) message;
 

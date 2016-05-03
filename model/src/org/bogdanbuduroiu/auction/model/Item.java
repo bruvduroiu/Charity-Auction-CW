@@ -35,6 +35,7 @@ public class Item implements Serializable {
         this.vendor = vendor;
         this.expiryTime = expiryTime;
         this.RESERVE_PRICE = reservePrice;
+        this.bids.add(new Bid(vendor, RESERVE_PRICE));
     }
 
     public void setVendor(User vendor) {
@@ -44,7 +45,8 @@ public class Item implements Serializable {
     public void addBid(Bid bid) throws InvalidBidException {
         if (bid.getBidAmmount() < bids.peek().getBidAmmount())
             throw new InvalidBidException();
-        bids.add(bid);
+
+        bids.offer(bid);
     }
 
     public int getItemID() {

@@ -96,18 +96,15 @@ public class MainAuctionScreen extends JFrame {
                         item.getBids().size(),
                         item.getVendor().getUsername(),
                         dateFormat.format(item.getTimeRemaining()),
-                        item.getReservePrice()};
+                        item.getBids().peek().getBidAmmount()};
             }
             else if (user.getUserID() == item.getVendor().getUserID()) {
-                String[] columnName = {"ID", "Title", "No. Bidders", "Time Remaining", "Highest Bid", "Cancel"};
                 result[i++] = new Object[] {
                         item.getItemID(),
                         item.getTitle(),
                         item.getBids().size(),
                         dateFormat.format(item.getTimeRemaining()),
-                        (item.getBids().isEmpty())
-                                ? item.getReservePrice()
-                                : item.getBids().peek().getBidAmmount(),
+                        item.getBids().peek().getBidAmmount(),
                         new JButton("Cancel")};
             }
         }
@@ -218,6 +215,7 @@ public class MainAuctionScreen extends JFrame {
                         for (int i = 0; i < auctionData.size(); i++)
                             rowData[i] = table.getModel().getValueAt(row, i);
                         Item item = auctionData.get(rowData[0]);
+                        //TODO: Fix this leading to NullPointerException
                         bidScreensActive.put(item, new AuctionBidScreen(client, item));
                     }
                 }
@@ -225,7 +223,6 @@ public class MainAuctionScreen extends JFrame {
         }
 
         public void loadAuctions(Object[][] auctionData) {
-            //TODO: Implement loading items from method
             String[] columnName = {"ID", "Title", "Description", "No. Bidders", "Seller", "Time Remaining", "Price"};
             DefaultTableModel model = new DefaultTableModel(auctionData, columnName);
             tbl_auctions.setModel(model);

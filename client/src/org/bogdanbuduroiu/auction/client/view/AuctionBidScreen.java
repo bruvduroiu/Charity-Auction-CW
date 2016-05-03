@@ -44,20 +44,13 @@ public class AuctionBidScreen extends JFrame {
         lbl_seller = new JLabel("Seller: " + item.getVendor().getUsername());
         lbl_noBidders = new JLabel("Bidders: " + item.getBids().size());
         lbl_reservePrice = new JLabel("Reserve: " + item.getReservePrice());
-        lbl_highestBid = new JLabel("High Bid: " +
-                ((item.getBids().isEmpty())
-                        ? "N/A"
-                        : item.getBids().peek().getBidAmmount()));
+        lbl_highestBid = new JLabel("High Bid: " + item.getBids().peek().getBidAmmount());
 
         lbl_timeRemaining = new JLabel("Remaining: " + DATE_FORMAT.format(item.getTimeRemaining()));
         lbl_err = new JLabel();
         lbl_err.setForeground(Color.RED);
 
-        txt_bid = new JTextField(7);
-        txt_bid.setText(
-                ((item.getBids().isEmpty())
-                        ? Double.toString(item.getReservePrice() + 10)
-                        : Double.toString(item.getBids().peek().getBidAmmount() + 10)));
+        txt_bid = new JTextField(Double.toString(item.getBids().peek().getBidAmmount() + 10));
         txt_bid.setHorizontalAlignment(SwingConstants.RIGHT);
 
         btn_bid = new JButton("Bid");
@@ -131,18 +124,18 @@ public class AuctionBidScreen extends JFrame {
 
         c.gridx = 1;
         c.gridy = 5;
-        c.gridwidth = 2;
+        c.gridwidth = 3;
         c.gridheight = 1;
         container.add(txt_bid, c);
 
-        c.gridx = 3;
-        c.gridy = 5;
+        c.gridx = 2;
+        c.gridy = 6;
         c.gridwidth = 1;
         c.gridheight = 1;
         container.add(btn_bid, c);
 
         c.gridx = 2;
-        c.gridy = 6;
+        c.gridy = 7;
         c.gridwidth = 2;
         c.gridheight = 1;
         container.add(lbl_err, c);
