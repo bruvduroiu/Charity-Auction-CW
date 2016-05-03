@@ -10,8 +10,8 @@ public class ErrMessage extends Message {
     private static final MessageType TYPE = MessageType.ERR;
     private final ErrType ERR_TYPE;
 
-    public ErrMessage(User sender, ErrType ERR_TYPE) {
-        super(sender, TYPE);
+    public ErrMessage(ErrType ERR_TYPE) {
+        super(TYPE);
         this.ERR_TYPE = ERR_TYPE;
     }
 

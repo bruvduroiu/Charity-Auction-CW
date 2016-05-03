@@ -11,7 +11,7 @@ public class BidFailedMessage extends ErrMessage {
     private final Item item;
 
     public BidFailedMessage(Item item) {
-        super(null, ErrType.INVALID_BID_ERR);
+        super(ErrType.INVALID_BID_ERR);
         this.item = item;
     }
 

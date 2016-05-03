@@ -33,7 +33,7 @@ public class Client {
 
     public Client() {
         try {
-            worker = new Comms(8080);
+            worker = new Comms(this, 8080);
             Thread t = new Thread(worker);
             configureClient();
             t.start();
@@ -67,7 +67,7 @@ public class Client {
     public void newAuction(Item auction) throws IOException {
         ResponseHandler rspHandler = new ResponseHandler();
         auction.setVendor(currentUser);
-        worker.sendMessage(new CreateAuctionRequest(currentUser, auction), rspHandler);
+        worker.sendMessage(new CreateAuctionRequest(auction), rspHandler);
         rspHandler.waitForResponse(this);
     }
 
@@ -82,7 +82,6 @@ public class Client {
             AcknowledgedMessage ack_message = (AcknowledgedMessage) message;
             if (ack_message.ack_type() == AckType.ACK_LOGIN) {
                 clientLoginScreen.dispose();
-                currentUser = message.getSender();
                 mainAuctionScreen = MainAuctionScreen.initializeScreen(this);
                 requestData(DataRequestType.AUCTIONS_REQ);
             }
@@ -91,6 +90,9 @@ public class Client {
 
             else if (ack_message.ack_type() == AckType.ACK_NEW_BID)
                 mainAuctionScreen.bidSuccess(((BidAcknowledgedMessage) ack_message).getItem());
+
+            else if (ack_message.ack_type() == AckType.ACK_TEST)
+                System.out.println("Test Succeeded.\nCurrUser: " + currentUser.getUsername() + "\tMsgUser: ");
         }
         else if(message.type() == MessageType.ERR) {
             ErrMessage errMessage = (ErrMessage) message;
@@ -119,7 +121,7 @@ public class Client {
         try {
             System.out.println("[REQ]\tRequesting data from server...");
             ResponseHandler rspHandler = new ResponseHandler();
-            worker.sendMessage(new DataRequest(null, dataRequestType), rspHandler);
+            worker.sendMessage(new DataRequest(dataRequestType), rspHandler);
             rspHandler.waitForResponse(this);
         } catch (IOException e) {
             System.out.println("[ERR]\tError occurred while requesting data. " + e.getMessage());
@@ -137,6 +139,10 @@ public class Client {
 
     public User getCurrentUser() {
         return currentUser;
+    }
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
     }
 
     public void addAuctionDataReceivedListener(AuctionsReceivedListener li) {

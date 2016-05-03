@@ -14,8 +14,7 @@ public class LoginRequest extends Message implements Serializable {
 
     public LoginRequest(User user, char[] password) {
         //TODO: Add encryption to the username & password
-        //TODO: Fix this band aid "null"
-        super(null, MessageType.LOGIN_REQUEST);
+        super(MessageType.LOGIN_REQUEST);
         this.user = user;
         this.password = password;
     }

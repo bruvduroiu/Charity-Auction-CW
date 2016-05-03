@@ -13,8 +13,8 @@ public class DataReceivedMessage extends Message{
     private final DataRequestType DATA_RECEIVED_TYPE;
     private Map<Integer, Item> data;
 
-    public DataReceivedMessage(User sender, DataRequestType DATA_RECEIVED_TYPE, Map<Integer, Item> data) {
-        super(sender, MessageType.DATA_RECEIVED);
+    public DataReceivedMessage(DataRequestType DATA_RECEIVED_TYPE, Map<Integer, Item> data) {
+        super(MessageType.DATA_RECEIVED);
         this.DATA_RECEIVED_TYPE = DATA_RECEIVED_TYPE;
         this.data = data;
     }

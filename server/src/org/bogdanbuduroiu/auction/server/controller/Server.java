@@ -24,7 +24,7 @@ public class Server {
     ResponseWorker responseWorker;
     private int port;
     Map<User, char[]> passwords = new HashMap<>();
-    Map<User, SocketChannel> clients = new HashMap<>();
+    private Map<User, SocketChannel> clients = new HashMap<>();
     Set<User> activeUsers = new HashSet<>();
     Map<Integer, Item> auctions = new HashMap<>();
     private static final String DIR_PATH = "../server/data";
@@ -49,7 +49,7 @@ public class Server {
                 User tmpUser = lr.getUser();
 
                 if (!validCredentials(tmpUser, lr.getPassword())) {
-                    responseWorker.queueResponse(this, socket, new ErrMessage(tmpUser, ErrType.INVALID_LOGIN_ERR));
+                    responseWorker.queueResponse(this, socket, new ErrMessage(ErrType.INVALID_LOGIN_ERR));
                     System.out.println("[USR]\tFailed login attempt at " + Date.from(ZonedDateTime.now().toInstant())
                             + ". User: " + tmpUser.getUsername() + ". Host: " + socket.socket().getInetAddress());
                     return;
@@ -58,7 +58,7 @@ public class Server {
                 this.activeUsers.add(tmpUser);
                 this.clients.put(tmpUser,socket);
 
-                responseWorker.queueResponse(this, socket, new AcknowledgedMessage(tmpUser, AckType.ACK_LOGIN));
+                responseWorker.queueResponse(this, socket, new AcknowledgedMessage(AckType.ACK_LOGIN));
 
                 System.out.println("[USR]\tNew login from user " + tmpUser.getUsername() + " at "
                         + Date.from(ZonedDateTime.now().toInstant()) + ". Host: " + socket.socket().getInetAddress());
@@ -70,12 +70,12 @@ public class Server {
                 char[] password = registrationRequest.getPassword();
 
                 if (passwords.keySet().contains(tmpUser)) {
-                    responseWorker.queueResponse(this, socket, new ErrMessage(tmpUser, ErrType.USER_EXISTS_ERR));
+                    responseWorker.queueResponse(this, socket, new ErrMessage(ErrType.USER_EXISTS_ERR));
                     return;
                 }
 
                 this.passwords.put(tmpUser, password);
-                this.responseWorker.queueResponse(this, socket, new AcknowledgedMessage(tmpUser, AckType.ACK_REGISTRATION));
+                this.responseWorker.queueResponse(this, socket, new AcknowledgedMessage(AckType.ACK_REGISTRATION));
 
                 System.out.println("[USR]\tNew registration. Username: " + tmpUser.getUsername()
                         + " at " + Date.from(ZonedDateTime.now().toInstant()) + ". Host: " + socket.socket().getInetAddress());
@@ -91,6 +91,11 @@ public class Server {
                     System.out.println("[BID]\tNew bid on item "
                             + item.getTitle() + " at " + Date.from(ZonedDateTime.now().toInstant())
                             + ". Value: " + newBidRequest.getBid().getBidAmmount());
+                    Iterator userIt = activeUsers.iterator();
+                    User tmpUser = (userIt.hasNext()) ? activeUsers.iterator().next() : null;
+                    if (tmpUser == null)
+                            return;
+                    this.responseWorker.queueResponse(this, clients.get(activeUsers.iterator().next()), new AcknowledgedMessage(AckType.ACK_TEST));
                 }
                 catch (InvalidBidException e) {
                     this.responseWorker.queueResponse(this, socket, new BidFailedMessage(item));
@@ -101,7 +106,7 @@ public class Server {
                 DataRequest dataRequest = (DataRequest) message;
 
                 if (dataRequest.data_req_type() == DataRequestType.AUCTIONS_REQ) {
-                    responseWorker.queueResponse(this, socket, new DataReceivedMessage(null, DataRequestType.AUCTIONS_RECV, auctions));
+                    responseWorker.queueResponse(this, socket, new DataReceivedMessage(DataRequestType.AUCTIONS_RECV, auctions));
                 }
 
                 else if (dataRequest.data_req_type() == DataRequestType.BIDS_REQ) {
@@ -116,7 +121,7 @@ public class Server {
                     System.out.println("[ERR]\tError adding new auction:");
                     return;
                 }
-                responseWorker.queueResponse(this, socket, new DataReceivedMessage(null, DataRequestType.AUCTIONS_RECV, auctions));
+                responseWorker.queueResponse(this, socket, new DataReceivedMessage(DataRequestType.AUCTIONS_RECV, auctions));
                 System.out.println("[AUC]\tNew auction: " + auctionRequest.getAuction().getTitle()
                         + ". Price: " + auctionRequest.getAuction().getReservePrice());
             }
@@ -143,6 +148,10 @@ public class Server {
         if (passwd.equals(new String(passwords.get(user)))) return true;
 
         return false;
+    }
+
+    void newClient(Object user, SocketChannel socketChannel) {
+        this.clients.put((User) user, socketChannel);
     }
 
     private void configureServer() {

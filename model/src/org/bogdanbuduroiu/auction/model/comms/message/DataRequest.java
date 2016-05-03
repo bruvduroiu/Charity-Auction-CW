@@ -10,8 +10,8 @@ public class DataRequest extends Message {
     private final DataRequestType DATA_REQUEST_TYPE;
     private User user;
 
-    public DataRequest(User sender, DataRequestType DATA_REQUEST_TYPE) {
-        super(sender, MessageType.DATA_REQUEST);
+    public DataRequest(DataRequestType DATA_REQUEST_TYPE) {
+        super(MessageType.DATA_REQUEST);
         this.DATA_REQUEST_TYPE = DATA_REQUEST_TYPE;
     }
 

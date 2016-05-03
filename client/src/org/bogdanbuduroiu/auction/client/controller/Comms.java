@@ -20,19 +20,22 @@ import java.util.*;
  */
 public class Comms implements Runnable {
 
+    private Client client;
     private InetAddress host;
     private int port;
     private Selector selector;
     private ByteBuffer data;
+    private SocketChannel socketChannel;
     private List<ChangeRequest> pendingChanges;
     private Map<SocketChannel, List<byte[]>> pendingData;
     private Map<SocketChannel, ResponseHandler> rspHandlers;
 
-    public Comms(int port) throws IOException {
-        this(InetAddress.getLocalHost(), port);
+    public Comms(Client client, int port) throws IOException {
+        this(client, InetAddress.getLocalHost(), port);
     }
 
-    public Comms(InetAddress host, int port) throws IOException {
+    public Comms(Client client, InetAddress host, int port) throws IOException {
+        this.client = client;
         this.host = host;
         this.port = port;
         this.selector = this.initSelector();
@@ -40,6 +43,8 @@ public class Comms implements Runnable {
         this.pendingChanges = new LinkedList<>();
         this.pendingData = new HashMap<>();
         this.rspHandlers = Collections.synchronizedMap(new HashMap<>());
+
+        socketChannel = this.initiateConnection();
     }
 
     private Selector initSelector() throws IOException {
@@ -62,7 +67,7 @@ public class Comms implements Runnable {
                             key.interestOps(changeRequest.ops);
                         }
                         else if (changeRequest.type == ChangeRequest.REGISTER)
-                            changeRequest.socket.register(this.selector, changeRequest.ops);
+                            changeRequest.socket.register(this.selector, changeRequest.ops, client.getCurrentUser());
                     }
                     this.pendingChanges.clear();
                 }
@@ -93,9 +98,8 @@ public class Comms implements Runnable {
     }
 
     private SocketChannel initiateConnection() throws IOException {
-        SocketChannel socketChannel = SocketChannel.open();
+        SocketChannel socketChannel = SocketChannel.open()
         System.out.println("[CON]\tAttempting to connect to server...");
-        socketChannel = SocketChannel.open();
         socketChannel.configureBlocking(false);
         socketChannel.connect(new InetSocketAddress(this.host, this.port));
 
@@ -113,6 +117,7 @@ public class Comms implements Runnable {
         SocketChannel socketChannel = (SocketChannel) key.channel();
 
         try {
+            key.attach(client.getCurrentUser());
             socketChannel.finishConnect();
         }
         catch (IOException e) {
@@ -125,20 +130,19 @@ public class Comms implements Runnable {
     }
 
     private void send(byte[] data, ResponseHandler handler) throws IOException {
-        SocketChannel socket = this.initiateConnection();
 
-        this.rspHandlers.put(socket, handler);
+        this.rspHandlers.put(this.socketChannel, handler);
 
         synchronized (this.pendingData) {
-            List queue = (List) this.pendingData.get(socket);
+            List queue = (List) this.pendingData.get(this.socketChannel);
             if (queue == null) {
                 queue = new ArrayList();
-                this.pendingData.put(socket, queue);
+                this.pendingData.put(socketChannel, queue);
             }
             queue.add(ByteBuffer.wrap(data));
         }
         synchronized (this.pendingChanges){
-            pendingChanges.add(new ChangeRequest(socket, ChangeRequest.CHANGEOPS, SelectionKey.OP_WRITE));
+            pendingChanges.add(new ChangeRequest(this.socketChannel, ChangeRequest.CHANGEOPS, SelectionKey.OP_WRITE));
         }
 
         this.selector.wakeup();
@@ -148,7 +152,7 @@ public class Comms implements Runnable {
         SocketChannel socketChannel = (SocketChannel) key.channel();
 
         synchronized (this.pendingData) {
-            List queue = (List) this.pendingData.get(socketChannel);
+            List queue = this.pendingData.get(this.socketChannel);
 
             while (!queue.isEmpty()) {
                 ByteBuffer buffer = (ByteBuffer) queue.get(0);

@@ -13,7 +13,7 @@ public class RegistrationRequest extends Message implements Serializable {
     private char[] password;
 
     public RegistrationRequest(User user, char[] password) {
-        super(null, MessageType.REGISTRATION_REQUEST);
+        super(MessageType.REGISTRATION_REQUEST);
         this.user = user;
         this.password = password;
     }

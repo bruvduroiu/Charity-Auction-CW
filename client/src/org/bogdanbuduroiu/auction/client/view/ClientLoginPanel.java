@@ -83,6 +83,7 @@ class ClientLoginPanel extends JPanel {
 
         btn_submit.addActionListener((e) -> {
             User tmpUser = new User(txt_username.getText());
+            clientLoginScreen.client.setCurrentUser(tmpUser);
             clientLoginScreen.client.validateDetails(tmpUser, txt_password.getPassword());
         });
 

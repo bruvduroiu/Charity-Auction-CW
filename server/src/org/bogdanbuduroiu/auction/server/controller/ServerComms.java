@@ -26,6 +26,7 @@ public class ServerComms implements Runnable {
     private Selector selector;
     private final int PORT = 8080;
     private List<ChangeRequest> pendingChanges;
+    private Map<Integer, SelectionKey> clients;
     private Map<SocketChannel, List<byte[]>> pendingData;
     private ByteBuffer data;
 
@@ -139,6 +140,9 @@ public class ServerComms implements Runnable {
         socketChannel.configureBlocking(false);
 
         socketChannel.register(this.selector, SelectionKey.OP_READ);
+
+        if (socketChannel.keyFor(this.selector).attachment() != null)
+            server.newClient(socketChannel.keyFor(this.selector).attachment(), socketChannel);
     }
 
     /**
@@ -192,10 +196,10 @@ public class ServerComms implements Runnable {
             return;
         }
 
-        if (numRead == -1) {
-            key.channel().close();
-            key.cancel();
-            return;
-        }
+//        if (numRead == -1) {
+//            key.channel().close();
+//            key.cancel();
+//            return;
+//        }
     }
 }

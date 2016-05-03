@@ -33,7 +33,7 @@ public class MainAuctionScreen extends JFrame {
     private BrowsePanel pnl_auctions;
     private SellPanel pnl_newAuction;
     private Map<Integer, Item> auctionData;
-    private Map<Item, AuctionBidScreen> bidScreensActive = new HashMap<>();
+    private Map<Integer, AuctionBidScreen> bidScreensActive = new HashMap<>();
 
     private final HashMap<String, Category> CATEGORIES = new HashMap<String, Category>() {{
         put("Audio & Video", Category.AUDIO_VIDEO);
@@ -114,7 +114,7 @@ public class MainAuctionScreen extends JFrame {
 
     public void bidSuccess(Item item) {
         JOptionPane.showMessageDialog(null, "Bid on item " + item.getTitle() + " was successful.");
-        bidScreensActive.get(item).dispose();
+        bidScreensActive.get(item.getItemID()).dispose();
     }
 
     public void bidFail(Item item) {
@@ -216,7 +216,7 @@ public class MainAuctionScreen extends JFrame {
                             rowData[i] = table.getModel().getValueAt(row, i);
                         Item item = auctionData.get(rowData[0]);
                         //TODO: Fix this leading to NullPointerException
-                        bidScreensActive.put(item, new AuctionBidScreen(client, item));
+                        bidScreensActive.put(item.getItemID(), new AuctionBidScreen(client, item));
                     }
                 }
             });

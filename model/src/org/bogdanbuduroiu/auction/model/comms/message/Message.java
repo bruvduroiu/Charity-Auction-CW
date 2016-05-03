@@ -9,16 +9,10 @@ import java.io.Serializable;
  */
 public abstract class Message implements Serializable {
 
-    private User sender;
     private final MessageType TYPE;
 
-    public Message(User sender, MessageType TYPE) {
-        this.sender = sender;
+    public Message(MessageType TYPE) {
         this.TYPE = TYPE;
-    }
-
-    public User getSender() {
-        return sender;
     }
 
     public MessageType type() {
