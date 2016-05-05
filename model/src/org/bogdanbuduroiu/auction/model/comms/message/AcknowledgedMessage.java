@@ -9,8 +9,8 @@ public class AcknowledgedMessage extends Message{
 
     private final AckType ACK_TYPE;
 
-    public AcknowledgedMessage(AckType ackType) {
-        super(MessageType.ACK);
+    public AcknowledgedMessage(User sender, AckType ackType) {
+        super(sender, MessageType.ACK);
         this.ACK_TYPE = ackType;
     }
 

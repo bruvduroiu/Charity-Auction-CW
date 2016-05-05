@@ -14,8 +14,8 @@ public class NewBidRequest extends Message implements Serializable {
     private Bid bid;
     private Item item;
 
-    public NewBidRequest(Item item, Bid bid) {
-        super(MessageType.NEW_BID_REQUEST);
+    public NewBidRequest(User sender,Item item, Bid bid) {
+        super(sender, MessageType.NEW_BID_REQUEST);
         this.bid = bid;
         this.item = item;
     }

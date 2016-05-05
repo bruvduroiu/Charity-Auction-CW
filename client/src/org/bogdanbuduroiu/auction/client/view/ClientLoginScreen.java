@@ -43,6 +43,8 @@ public class ClientLoginScreen extends JFrame {
 
         add(cards, BorderLayout.CENTER);
 
+        this.getRootPane().setDefaultButton(clientLoginPanel.btn_submit);
+
         setSize(WIDTH, HEIGHT);
         setTitle(TITLE);
         setResizable(false);

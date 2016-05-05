@@ -10,8 +10,8 @@ public class BidFailedMessage extends ErrMessage {
 
     private final Item item;
 
-    public BidFailedMessage(Item item) {
-        super(ErrType.INVALID_BID_ERR);
+    public BidFailedMessage(User sender, Item item) {
+        super(sender, ErrType.INVALID_BID_ERR);
         this.item = item;
     }
 

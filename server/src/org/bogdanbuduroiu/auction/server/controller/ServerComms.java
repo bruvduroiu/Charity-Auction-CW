@@ -12,6 +12,7 @@ import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.nio.channels.spi.SelectorProvider;
+import java.time.ZonedDateTime;
 import java.util.*;
 
 /**
@@ -32,13 +33,13 @@ public class ServerComms implements Runnable {
 
     public ServerComms(Server server) throws IOException {
         this.server = server;
-        System.out.println("[SRV]\tInitiating Communication Channel...");
+        System.out.println("[" + Date.from(ZonedDateTime.now().toInstant()) + "][SRV]\tInitiating Communication Channel...");
         selector = this.initSelector();
 
         this.pendingChanges = new LinkedList<>();
         this.pendingData = new HashMap<>();
         this.data = ByteBuffer.allocate(1024);
-        System.out.println("[SRV]\tServerComms channel initiated.");
+        System.out.println("[" + Date.from(ZonedDateTime.now().toInstant()) + "][SRV]\tServerComms channel initiated.");
     }
 
     private Selector initSelector() throws IOException{

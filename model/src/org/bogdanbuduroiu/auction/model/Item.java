@@ -94,7 +94,11 @@ public class Item implements Serializable {
     }
 
     public Date getTimeRemaining() {
-        return new Date((this.expiryTime - System.currentTimeMillis()));
+        return new Date((System.currentTimeMillis() - this.expiryTime)/1000);
+    }
+
+    public boolean isExpired() {
+        return ((this.expiryTime - System.currentTimeMillis()) >= 0);
     }
 
     public void startAuction() {
@@ -105,5 +109,11 @@ public class Item implements Serializable {
     public void closeAuction() {
         endTime = System.currentTimeMillis();
         closed = true;
+    }
+
+    public User getAuctionWinner() {
+        if (bids.size() > 1)
+            return this.bids.peek().getUser();
+        return null;
     }
 }

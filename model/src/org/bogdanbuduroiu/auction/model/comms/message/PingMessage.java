@@ -9,7 +9,7 @@ public class PingMessage extends Message {
 
     private static final MessageType TYPE = MessageType.PING;
 
-    public PingMessage() {
-        super(TYPE);
+    public PingMessage(User sender) {
+        super(sender, TYPE);
     }
 }

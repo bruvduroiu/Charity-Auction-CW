@@ -66,13 +66,13 @@ public class Client {
     public void newAuction(Item auction) throws IOException {
         ResponseHandler rspHandler = new ResponseHandler();
         auction.setVendor(currentUser);
-        worker.sendMessage(new CreateAuctionRequest(auction), rspHandler);
+        worker.sendMessage(new CreateAuctionRequest(currentUser, auction), rspHandler);
         rspHandler.waitForResponse(this);
     }
 
     public void newBid(Item item, double bidAmmount) throws IOException {
         ResponseHandler rspHandler = new ResponseHandler();
-        worker.sendMessage(new NewBidRequest(item, new Bid(currentUser, bidAmmount)), rspHandler);
+        worker.sendMessage(new NewBidRequest(currentUser, item, new Bid(currentUser, bidAmmount)), rspHandler);
         rspHandler.waitForResponse(this);
     }
 
@@ -121,7 +121,7 @@ public class Client {
         try {
             System.out.println("[REQ]\tRequesting data from server...");
             ResponseHandler rspHandler = new ResponseHandler();
-            worker.sendMessage(new DataRequest(dataRequestType), rspHandler);
+            worker.sendMessage(new DataRequest(currentUser, dataRequestType), rspHandler);
             rspHandler.waitForResponse(this);
         } catch (IOException e) {
             System.out.println("[ERR]\tError occurred while requesting data. " + e.getMessage());

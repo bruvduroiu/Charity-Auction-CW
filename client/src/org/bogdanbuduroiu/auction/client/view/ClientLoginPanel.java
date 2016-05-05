@@ -17,8 +17,8 @@ class ClientLoginPanel extends JPanel {
     private JLabel lbl_err;
     private JTextField txt_username;
     private JPasswordField txt_password;
-    private JButton btn_submit;
     private JButton btn_register;
+    JButton btn_submit;
 
     public ClientLoginPanel(ClientLoginScreen cls) {
         this.clientLoginScreen = cls;

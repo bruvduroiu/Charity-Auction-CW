@@ -88,25 +88,26 @@ public class MainAuctionScreen extends JFrame {
 
         int i = 0;
         for (Item item : auctions.values()) {
-            if (user == null) {
-                result[i++] = new Object[]{
-                        item.getItemID(),
-                        item.getTitle(),
-                        item.getDescription(),
-                        item.getBids().size(),
-                        item.getVendor().getUsername(),
-                        dateFormat.format(item.getTimeRemaining()),
-                        item.getBids().peek().getBidAmmount()};
-            }
-            else if (user.getUserID() == item.getVendor().getUserID()) {
-                result[i++] = new Object[] {
-                        item.getItemID(),
-                        item.getTitle(),
-                        item.getBids().size(),
-                        dateFormat.format(item.getTimeRemaining()),
-                        item.getBids().peek().getBidAmmount(),
-                        new JButton("Cancel")};
-            }
+            if (!item.isClosed())
+                if (user == null) {
+                    result[i++] = new Object[]{
+                            item.getItemID(),
+                            item.getTitle(),
+                            item.getDescription(),
+                            item.getBids().size(),
+                            item.getVendor().getUsername(),
+                            dateFormat.format(item.getTimeRemaining()),
+                            item.getBids().peek().getBidAmmount()};
+                }
+                else if (user.getUserID() == item.getVendor().getUserID()) {
+                    result[i++] = new Object[] {
+                            item.getItemID(),
+                            item.getTitle(),
+                            item.getBids().size(),
+                            dateFormat.format(item.getTimeRemaining()),
+                            item.getBids().peek().getBidAmmount(),
+                            new JButton("Cancel")};
+                }
         }
 
         return result;
@@ -223,7 +224,7 @@ public class MainAuctionScreen extends JFrame {
         }
 
         public void loadAuctions(Object[][] auctionData) {
-            String[] columnName = {"ID", "Title", "Description", "No. Bidders", "Seller", "Time Remaining", "Price"};
+            String[] columnName = {"ID", "Title", "Description", "No. Bids", "Seller", "Time Remaining", "Price"};
             DefaultTableModel model = new DefaultTableModel(auctionData, columnName);
             tbl_auctions.setModel(model);
             tbl_auctions.setRowHeight(64);

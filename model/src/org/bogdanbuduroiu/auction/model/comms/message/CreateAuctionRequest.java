@@ -12,8 +12,8 @@ public class CreateAuctionRequest extends Message implements Serializable {
 
     private Item auction;
 
-    public CreateAuctionRequest(Item auction) {
-        super(MessageType.CREATE_AUCTION_REQUEST);
+    public CreateAuctionRequest(User sender, Item auction) {
+        super(sender, MessageType.CREATE_AUCTION_REQUEST);
         this.auction = auction;
     }
 

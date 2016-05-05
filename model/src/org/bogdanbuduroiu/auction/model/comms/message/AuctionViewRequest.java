@@ -8,7 +8,7 @@ import java.io.Serializable;
  * Created by bogdanbuduroiu on 23.04.16.
  */
 public class AuctionViewRequest extends Message implements Serializable {
-    public AuctionViewRequest() {
-        super(MessageType.AUCTION_VIEW_REQUEST);
+    public AuctionViewRequest(User sender) {
+        super(sender, MessageType.AUCTION_VIEW_REQUEST);
     }
 }

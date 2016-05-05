@@ -10,8 +10,8 @@ public class BidAcknowledgedMessage extends AcknowledgedMessage {
 
     private final Item ITEM;
 
-    public BidAcknowledgedMessage(Item item) {
-        super(AckType.ACK_NEW_BID);
+    public BidAcknowledgedMessage(User sender, Item item) {
+        super(sender, AckType.ACK_NEW_BID);
         this.ITEM = item;
     }
 
