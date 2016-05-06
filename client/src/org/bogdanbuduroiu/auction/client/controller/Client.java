@@ -112,7 +112,17 @@ public class Client {
                 System.out.println("AUCTIONS_RECV");
                 for (AuctionsReceivedListener listener : auctionsReceivedListeners)
                     listener.auctionDataReceived(dataReceivedMessage.getData());
+                if (dataReceivedMessage.getWonAuctions() == null)
+                    return;
+                for (Item item : dataReceivedMessage.getWonAuctions())
+                    JOptionPane.showConfirmDialog(null, "Congratulations! You have won " + item.getTitle() +
+                            " for " + item.getBids().peek().getBidAmmount());
             }
+        }
+        else if (message.type() == MessageType.AUCTION_WON_NOTIFICATION) {
+            AuctionWonNotification auctionWonNotif = ((AuctionWonNotification) message);
+            JOptionPane.showConfirmDialog(null, "Congratulations! You have won " + auctionWonNotif.getAuction().getTitle() +
+                    " for " + auctionWonNotif.getAuction().getBids().peek().getBidAmmount());
         }
     }
 

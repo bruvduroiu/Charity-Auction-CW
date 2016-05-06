@@ -6,72 +6,46 @@
     </artifacts-to-build>
   </component>
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen.java" line="301" mnemonic="0" />
+    <bookmark url="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen.java" line="302" mnemonic="0" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="388f8a5b-f18b-4d5c-9b7f-2f8195c9d13c" name="Default" comment="Added more .gitignore">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/AuctionGraveWorker.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/DataPersistance.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/security/PasswordStorage.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../client/src/ClientMain.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../client/target/classes/ClientMain.class" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/AuctionFailedNotification.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/AuctionWonNotification.java" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../server/data/auctions.dat" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../server/data/users.dat" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../server/src/ServerMain.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../server/target/classes/ServerMain.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/controller/Client.class" afterPath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/controller/Client.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/AuctionBidScreen.class" afterPath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/AuctionBidScreen.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/ClientLoginPanel.class" afterPath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/ClientLoginPanel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/ClientRegistrationPanel.class" afterPath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/ClientRegistrationPanel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen$1.class" afterPath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen$BrowsePanel$1.class" afterPath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen$BrowsePanel$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen$BrowsePanel.class" afterPath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen$BrowsePanel.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen$SellPanel.class" afterPath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen$SellPanel.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen.class" afterPath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/model_jar/model.jar" afterPath="$PROJECT_DIR$/out/artifacts/model_jar/model.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/Item.class" afterPath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/Item.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/AckType.class" afterPath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/AckType.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/AcknowledgedMessage.class" afterPath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/AcknowledgedMessage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/AuctionViewRequest.class" afterPath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/AuctionViewRequest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/BidAcknowledgedMessage.class" afterPath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/BidAcknowledgedMessage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/BidFailedMessage.class" afterPath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/BidFailedMessage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/CreateAuctionRequest.class" afterPath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/CreateAuctionRequest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/DataReceivedMessage.class" afterPath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/DataReceivedMessage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/DataRequest.class" afterPath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/DataRequest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/DataRequestType.class" afterPath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/DataRequestType.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/ErrMessage.class" afterPath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/ErrMessage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/ErrType.class" afterPath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/ErrType.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/LoginRequest.class" afterPath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/LoginRequest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/Message.class" afterPath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/Message.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/User.class" afterPath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/User.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/MessageType.class" afterPath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/MessageType.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/NewBidRequest.class" afterPath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/NewBidRequest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/PingMessage.class" afterPath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/PingMessage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/RegistrationRequest.class" afterPath="$PROJECT_DIR$/target/classes/org/bogdanbuduroiu/auction/model/comms/message/RegistrationRequest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../server/target/classes/org/bogdanbuduroiu/auction/server/controller/AuctionGraveWorker.class" afterPath="$PROJECT_DIR$/../server/target/classes/org/bogdanbuduroiu/auction/server/controller/AuctionGraveWorker.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../server/target/classes/org/bogdanbuduroiu/auction/server/controller/Server.class" afterPath="$PROJECT_DIR$/../server/target/classes/org/bogdanbuduroiu/auction/server/controller/Server.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../server/target/classes/org/bogdanbuduroiu/auction/server/controller/ServerComms.class" afterPath="$PROJECT_DIR$/../server/target/classes/org/bogdanbuduroiu/auction/server/controller/ServerComms.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/client.iml" afterPath="$PROJECT_DIR$/../client/client.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/pom.xml" afterPath="$PROJECT_DIR$/../client/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/Client.java" afterPath="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/Client.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/ClientLoginPanel.java" afterPath="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/ClientLoginPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/ClientLoginScreen.java" afterPath="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/ClientLoginScreen.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/AuctionBidScreen.java" afterPath="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/AuctionBidScreen.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen.java" afterPath="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/model.iml" afterPath="$PROJECT_DIR$/.idea/model.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/Item.java" afterPath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/Item.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/AckType.java" afterPath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/AckType.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/AcknowledgedMessage.java" afterPath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/AcknowledgedMessage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/AuctionViewRequest.java" afterPath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/AuctionViewRequest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/BidAcknowledgedMessage.java" afterPath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/BidAcknowledgedMessage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/BidFailedMessage.java" afterPath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/BidFailedMessage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/CreateAuctionRequest.java" afterPath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/CreateAuctionRequest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/User.java" afterPath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/User.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/DataReceivedMessage.java" afterPath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/DataReceivedMessage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/DataRequest.java" afterPath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/DataRequest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/DataRequestType.java" afterPath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/DataRequestType.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/ErrMessage.java" afterPath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/ErrMessage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/ErrType.java" afterPath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/ErrType.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/LoginRequest.java" afterPath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/LoginRequest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/Message.java" afterPath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/Message.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/MessageType.java" afterPath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/MessageType.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/NewBidRequest.java" afterPath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/NewBidRequest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/PingMessage.java" afterPath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/PingMessage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/RegistrationRequest.java" afterPath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/RegistrationRequest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../server/pom.xml" afterPath="$PROJECT_DIR$/../server/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../server/server.iml" afterPath="$PROJECT_DIR$/../server/server.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/AuctionGraveWorker.java" afterPath="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/AuctionGraveWorker.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/DataPersistance.java" afterPath="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/DataPersistance.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/Server.java" afterPath="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/Server.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/ServerComms.java" afterPath="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/ServerComms.java" />
     </list>
     <ignored path="model.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -95,102 +69,45 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
-  <component name="DockManager">
-    <window id="3">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="Client.java" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/Client.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="180">
-                    <caret line="30" column="39" selection-start-line="30" selection-start-column="39" selection-end-line="30" selection-end-column="39" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="ClientLoginScreen.java" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/ClientLoginScreen.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="870">
-                    <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="ClientLoginPanel.java" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/ClientLoginPanel.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="255">
-                    <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="Item.java" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/Item.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="1035">
-                    <caret line="96" column="53" selection-start-line="96" selection-start-column="53" selection-end-line="96" selection-end-column="53" />
-                    <folding>
-                      <element signature="e#2323#2324#0" expanded="true" />
-                      <element signature="e#2399#2400#0" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="model" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ErrType.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/ErrType.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DataRequestType.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/DataRequestType.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AckType.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/AckType.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="15" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Server.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="596">
-              <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+            <state relative-caret-position="327">
+              <caret line="197" column="0" selection-start-line="197" selection-start-column="0" selection-end-line="197" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ServerComms.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/ServerComms.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1825">
+              <caret line="197" column="0" selection-start-line="197" selection-start-column="0" selection-end-line="197" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DataReceivedMessage.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/DataReceivedMessage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="540">
+              <caret line="38" column="28" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="28" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1035#1036#0" expanded="true" />
+                <element signature="e#1076#1077#0" expanded="true" />
+                <element signature="e#1117#1118#0" expanded="true" />
+                <element signature="e#1153#1154#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -199,8 +116,63 @@
       <file leaf-file-name="DataPersistance.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/DataPersistance.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="22" column="25" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
+            <state relative-caret-position="660">
+              <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AuctionGraveWorker.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/AuctionGraveWorker.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="465">
+              <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Client.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/Client.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1350">
+              <caret line="108" column="0" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
+              <folding>
+                <element signature="e#6542#6543#0" expanded="true" />
+                <element signature="e#6588#6589#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ResponseHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/ResponseHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="510">
+              <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/User.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClientLoginPanel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/ClientLoginPanel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1230">
+              <caret line="85" column="37" selection-start-line="85" selection-start-column="37" selection-end-line="85" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -227,17 +199,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/../client/src/main/java/org/bogdanbuduroiu/auction/client/controller/ResponseHandler.java" />
-        <option value="$PROJECT_DIR$/../client/src/client/controller/ResponseHandler.java" />
         <option value="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/ResponseHandler.java" />
         <option value="$PROJECT_DIR$/../server/server.iml" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/../client/client.iml" />
         <option value="$PROJECT_DIR$/../server/src/main/java/org/bogdanbuduroiu/auction/server/controller/Server.java" />
         <option value="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/server/controller/AuctionTimerWorker.java" />
         <option value="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/utils/DateLabelFormatter.java" />
-        <option value="$PROJECT_DIR$/../client/pom.xml" />
-        <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/User.java" />
         <option value="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/server/controller/ServerComms.java" />
         <option value="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/server/controller/Server.java" />
         <option value="$PROJECT_DIR$/../server/src/Main.java" />
@@ -247,9 +214,7 @@
         <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/Bid.java" />
         <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/exceptions/InvalidBid.java" />
         <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/exception/InvalidBidException.java" />
-        <option value="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/AuctionBidScreen.java" />
         <option value="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/Comms.java" />
-        <option value="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/DataPersistance.java" />
         <option value="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/security/PasswordStorage.java" />
         <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/AcknowledgedMessage.java" />
         <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/AuctionViewRequest.java" />
@@ -257,7 +222,6 @@
         <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/BidFailedMessage.java" />
         <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/ErrMessage.java" />
         <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/CreateAuctionRequest.java" />
-        <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/DataReceivedMessage.java" />
         <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/DataRequest.java" />
         <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/LoginRequest.java" />
         <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/NewBidRequest.java" />
@@ -266,17 +230,25 @@
         <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/Message.java" />
         <option value="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/ServerComms.java" />
         <option value="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/TimerWorker.java" />
-        <option value="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/AuctionGraveWorker.java" />
         <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/ErrType.java" />
         <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/DataRequestType.java" />
         <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/AckType.java" />
-        <option value="$PROJECT_DIR$/../server/pom.xml" />
-        <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/MessageType.java" />
-        <option value="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/Client.java" />
-        <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/Item.java" />
-        <option value="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen.java" />
         <option value="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/ClientLoginPanel.java" />
         <option value="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/ClientLoginScreen.java" />
+        <option value="$PROJECT_DIR$/../client/pom.xml" />
+        <option value="$PROJECT_DIR$/../server/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen.java" />
+        <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/Item.java" />
+        <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/AuctionWonNotification.java" />
+        <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/MessageType.java" />
+        <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/AuctionFailedNotification.java" />
+        <option value="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/AuctionBidScreen.java" />
+        <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/DataReceivedMessage.java" />
+        <option value="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/AuctionGraveWorker.java" />
+        <option value="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/Client.java" />
+        <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/User.java" />
+        <option value="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/DataPersistance.java" />
         <option value="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/Server.java" />
       </list>
     </option>
@@ -302,8 +274,8 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-836" />
-    <option name="y" value="-2560" />
+    <option name="x" value="-1440" />
+    <option name="y" value="-1507" />
     <option name="width" value="1440" />
     <option name="height" value="2560" />
   </component>
@@ -394,6 +366,171 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="security" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="comms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="comms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="message" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="Scope">
         <subPane subId="Problems">
           <PATH>
@@ -525,229 +662,6 @@
       <pane id="PackagesPane">
         <subPane />
       </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="comms" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="comms" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="message" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1110,6 +1024,28 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="true" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list />
+            </option>
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method />
+    </configuration>
     <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
       <method />
     </configuration>
@@ -1341,12 +1277,13 @@
       <workItem from="1462108370847" duration="17616000" />
       <workItem from="1462196565871" duration="1047000" />
       <workItem from="1462264979635" duration="21776000" />
-      <workItem from="1462461999014" duration="13122000" />
+      <workItem from="1462461999014" duration="13355000" />
+      <workItem from="1462520330540" duration="14703000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="105677000" />
+    <option name="totallyTimeSpent" value="120613000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1358,28 +1295,29 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-836" y="-2560" width="1440" height="2560" extended-state="0" />
-    <editor active="true" />
+    <frame x="-1440" y="-1507" width="1440" height="2560" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32846716" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32811245" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16706827" sideWeight="0.5028612" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32904148" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13493976" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6693989" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13493976" sideWeight="0.49713877" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.6698795" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21888413" sideWeight="0.4964789" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24678111" sideWeight="0.4964789" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32846716" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24892704" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16706827" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16546185" sideWeight="0.49713877" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1388,7 +1326,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21293533" sideWeight="0.50352114" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32846716" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -1401,91 +1338,60 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/ServerComms.java</url>
-          <line>81</line>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/Server.java</url>
+          <line>106</line>
           <properties />
-          <option name="timeStamp" value="101" />
+          <option name="timeStamp" value="110" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/AuctionGraveWorker.java</url>
+          <line>30</line>
+          <properties />
+          <option name="timeStamp" value="113" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen.java</url>
+          <line>373</line>
+          <properties />
+          <option name="timeStamp" value="121" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/Item.java</url>
-          <line>96</line>
+          <url>file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/Server.java</url>
+          <line>262</line>
           <properties />
-          <option name="timeStamp" value="109" />
+          <option name="timeStamp" value="125" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/Client.java</url>
+          <line>108</line>
+          <properties />
+          <option name="timeStamp" value="127" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/Server.java</url>
+          <line>197</line>
+          <properties />
+          <option name="timeStamp" value="131" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="110" />
+      <option name="time" value="134" />
     </breakpoint-manager>
-    <watches-manager />
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="((Date) pck_datePicker.getModel().getValue()).toInstant().toEpochMilli() - System.currentTimeMillis()" language="JAVA" custom="" />
+        <watch expression="new Date(((Date) pck_datePicker.getModel().getValue()).toInstant().toEpochMilli() - System.currentTimeMillis())" language="JAVA" custom="" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$PROJECT_DIR$/out/artifacts/model_jar/model.jar!/org/bogdanbuduroiu/auction/model/comms/message/BidAcknowledgedMessage.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/out/artifacts/model_jar/model.jar!/org/bogdanbuduroiu/auction/model/comms/message/DataReceivedMessage.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/ChangeRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/out/artifacts/model_jar/model.jar!/org/bogdanbuduroiu/auction/model/comms/message/CreateAuctionRequest.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="15" column="11" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_71.jdk/Contents/Home/src.zip!/java/nio/channels/SocketChannel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1355">
-          <caret line="487" column="24" selection-start-line="487" selection-start-column="24" selection-end-line="487" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/out/artifacts/model_jar/model.jar!/org/bogdanbuduroiu/auction/model/comms/message/AcknowledgedMessage.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/ClientRegistrationPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="65">
-          <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../client/src/ClientMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_71.jdk/Contents/Home/src.zip!/java/net/ServerSocket.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -1515,16 +1421,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/AuctionBidScreen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/Comms.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="915">
@@ -1545,17 +1441,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/security/PasswordStorage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-753">
-          <caret line="92" column="26" selection-start-line="92" selection-start-column="26" selection-end-line="92" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1610,14 +1495,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/DataReceivedMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/DataRequest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -1653,51 +1530,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../server/data/auctions.dat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/ResponseWorker.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
           <caret line="41" column="46" selection-start-line="41" selection-start-column="46" selection-end-line="41" selection-end-column="46" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/ServerComms.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-424">
-          <caret line="41" column="80" selection-start-line="41" selection-start-column="80" selection-end-line="41" selection-end-column="80" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/ResponseHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/AuctionGraveWorker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="34" column="8" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#308#309#0" expanded="true" />
-            <element signature="e#344#345#0" expanded="true" />
-            <element signature="e#399#400#0" expanded="true" />
-            <element signature="e#428#429#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1713,23 +1550,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../client/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../server/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1760,64 +1580,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/out/artifacts/model_jar/model.jar!/org/bogdanbuduroiu/auction/model/Item.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="960">
-          <caret line="98" column="21" selection-start-line="98" selection-start-column="21" selection-end-line="98" selection-end-column="21" />
-          <folding>
-            <element signature="e#2570#2571#0" expanded="true" />
-            <element signature="e#2647#2648#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/Item.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1035">
-          <caret line="96" column="53" selection-start-line="96" selection-start-column="53" selection-end-line="96" selection-end-column="53" />
-          <folding>
-            <element signature="e#2323#2324#0" expanded="true" />
-            <element signature="e#2399#2400#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/LoginRequest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/Client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="30" column="39" selection-start-line="30" selection-start-column="39" selection-end-line="30" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/ClientLoginPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/DataPersistance.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="22" column="25" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
           <folding />
         </state>
       </provider>
@@ -1830,28 +1596,246 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/MessageType.java">
+    <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/ErrType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+        <state relative-caret-position="0">
+          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/ErrType.java">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_71.jdk/Contents/Home/src.zip!/java/lang/Thread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+        <state relative-caret-position="682">
+          <caret line="744" column="0" selection-start-line="744" selection-start-column="0" selection-end-line="744" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_71.jdk/Contents/Home/src.zip!/java/util/Date.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1695">
+          <caret line="163" column="11" selection-start-line="163" selection-start-column="11" selection-end-line="163" selection-end-column="11" />
+          <folding>
+            <element signature="e#6390#6391#0" expanded="false" />
+            <element signature="e#6438#6439#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../client/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="41" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="8" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/joda-time/joda-time/2.9.3/joda-time-2.9.3.jar!/org/joda/time/DateTime.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="68" column="11" selection-start-line="68" selection-start-column="11" selection-end-line="68" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../server/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/security/PasswordStorage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../server/data/auctions.dat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1004">
+          <caret line="230" column="16" selection-start-line="230" selection-start-column="12" selection-end-line="230" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/AuctionWonNotification.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="27" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#474#475#0" expanded="true" />
+            <element signature="e#509#510#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/MessageType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/AuctionBidScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="48" column="83" selection-start-line="48" selection-start-column="83" selection-end-line="48" selection-end-column="83" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/Item.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1665">
+          <caret line="140" column="22" selection-start-line="140" selection-start-column="22" selection-end-line="140" selection-end-column="22" />
+          <folding>
+            <element signature="e#1892#1893#0" expanded="true" />
+            <element signature="e#1921#1922#0" expanded="true" />
+            <element signature="e#1953#1954#0" expanded="true" />
+            <element signature="e#1999#2000#0" expanded="true" />
+            <element signature="e#3299#3300#0" expanded="true" />
+            <element signature="e#3368#3369#0" expanded="true" />
+            <element signature="e#3402#3403#0" expanded="true" />
+            <element signature="e#3472#3473#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/AuctionGraveWorker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/AuctionFailedNotification.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="50" selection-start-line="12" selection-start-column="50" selection-end-line="12" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#481#482#0" expanded="true" />
+            <element signature="e#511#512#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/out/artifacts/model_jar/model.jar!/org/bogdanbuduroiu/auction/model/comms/message/DataRequest.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+          <folding>
+            <element signature="e#829#830#0" expanded="true" />
+            <element signature="e#861#862#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/ClientLoginPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1230">
+          <caret line="85" column="37" selection-start-line="85" selection-start-column="37" selection-end-line="85" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/DataReceivedMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="38" column="28" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1035#1036#0" expanded="true" />
+            <element signature="e#1076#1077#0" expanded="true" />
+            <element signature="e#1117#1118#0" expanded="true" />
+            <element signature="e#1153#1154#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/out/artifacts/model_jar/model.jar!/org/bogdanbuduroiu/auction/model/Item.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/DataPersistance.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/ResponseHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/ServerComms.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1825">
+          <caret line="197" column="0" selection-start-line="197" selection-start-column="0" selection-end-line="197" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="596">
-          <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+        <state relative-caret-position="327">
+          <caret line="197" column="0" selection-start-line="197" selection-start-column="0" selection-end-line="197" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1350">
+          <caret line="108" column="0" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
+          <folding>
+            <element signature="e#6542#6543#0" expanded="true" />
+            <element signature="e#6588#6589#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1946,5 +1930,9 @@
         </settings>
       </state>
     </states>
+  </component>
+  <component name="mavenExecuteGoalHistory">
+    <option value="$PROJECT_DIR$/../client" />
+    <option value="dependency:copy-dependencies" />
   </component>
 </project>

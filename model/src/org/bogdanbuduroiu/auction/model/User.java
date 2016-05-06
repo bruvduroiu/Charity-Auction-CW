@@ -1,8 +1,11 @@
 package org.bogdanbuduroiu.auction.model;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.bogdanbuduroiu.auction.model.comms.message.Message;
 
 import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by bogdanbuduroiu on 21.04.16.
@@ -22,7 +25,7 @@ public class User implements Serializable{
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
-        userID = new HashCodeBuilder(17,37).append(username).toHashCode();
+        this.userID = this.hashCode();
     }
 
     @Override
@@ -36,7 +39,9 @@ public class User implements Serializable{
 
     @Override
     public int hashCode() {
-        return userID;
+        return new HashCodeBuilder(17,31)
+                .append(username)
+                .toHashCode();
     }
 
     public String getUsername() {

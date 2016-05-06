@@ -6,6 +6,11 @@ import org.bogdanbuduroiu.auction.model.User;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+
+import static org.bogdanbuduroiu.auction.server.controller.DataPersistance.LoadType.LOAD_AUCTIONS;
+import static org.bogdanbuduroiu.auction.server.controller.DataPersistance.LoadType.LOAD_USERS;
+import static org.bogdanbuduroiu.auction.server.controller.DataPersistance.LoadType.LOAD_WON_AUCTIONS;
 
 /**
  * Created by bogdanbuduroiu on 05.05.16.
@@ -15,12 +20,14 @@ public class DataPersistance {
     private static final String DIR_PATH = "../server/data";
     private static final String USERS_REL_PATH = "users.dat";
     private static final String AUCTIONS_REL_PATH = "auctions.dat";
+    private static final String WON_AUCTIONS_REL_PATH = "won_auctions.dat";
 
-    public static final int LOAD_USERS = 1;
-    public static final int LOAD_AUCTIONS = 2;
+    public static enum LoadType {
+        LOAD_USERS, LOAD_AUCTIONS, LOAD_WON_AUCTIONS
+    }
 
     @SuppressWarnings("unchecked")
-    public static Object loadData(int type) throws IOException, ClassNotFoundException {
+    public static Object loadData(LoadType type) throws IOException, ClassNotFoundException {
 
         File file;
         ObjectInputStream ois;
@@ -40,10 +47,19 @@ public class DataPersistance {
             ois.close();
             return auctions;
         }
+
+        else if (type == LOAD_WON_AUCTIONS) {
+            file = new File(DIR_PATH, WON_AUCTIONS_REL_PATH);
+            ois = new ObjectInputStream(new FileInputStream(file));
+            Map<User, Set<Item>> wonAuctions = ((HashMap<User, Set<Item>>) ois.readObject());
+            return wonAuctions == null
+                    ? new HashMap<User, Set<Item>>()
+                    : wonAuctions;
+        }
         return null;
     }
 
-    public static void storeData(Map<User, String> passwords, Map<Integer, Item> auctions) throws IOException {
+    public static void storeData(Map<User, String> passwords, Map<Integer, Item> auctions, Map<User, Set<Item>> won_auctions) throws IOException {
         File file = new File(DIR_PATH, USERS_REL_PATH);
         if (!(new File(DIR_PATH)).exists())
             new File(DIR_PATH).mkdir();
@@ -63,5 +79,15 @@ public class DataPersistance {
 
         oos = new ObjectOutputStream(new FileOutputStream(file));
         oos.writeObject(auctions);
+        oos.close();
+
+        file = new File(DIR_PATH, WON_AUCTIONS_REL_PATH);
+        if (!file.exists()) {
+            file = new File(DIR_PATH, WON_AUCTIONS_REL_PATH);
+            file.createNewFile();
+        }
+
+        oos = new ObjectOutputStream(new FileOutputStream(file));
+        oos.writeObject(won_auctions);
         oos.close();
     }}

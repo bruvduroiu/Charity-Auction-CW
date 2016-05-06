@@ -9,6 +9,7 @@ import org.bogdanbuduroiu.auction.model.comms.message.DataRequestType;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
+import org.joda.time.Duration;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
@@ -96,7 +97,7 @@ public class MainAuctionScreen extends JFrame {
                             item.getDescription(),
                             item.getBids().size(),
                             item.getVendor().getUsername(),
-                            dateFormat.format(item.getTimeRemaining()),
+                            item.getTimeRemainingString(),
                             item.getBids().peek().getBidAmmount()};
                 }
                 else if (user.getUserID() == item.getVendor().getUserID()) {
@@ -104,7 +105,7 @@ public class MainAuctionScreen extends JFrame {
                             item.getItemID(),
                             item.getTitle(),
                             item.getBids().size(),
-                            dateFormat.format(item.getTimeRemaining()),
+                            item.getTimeRemainingString(),
                             item.getBids().peek().getBidAmmount(),
                             new JButton("Cancel")};
                 }

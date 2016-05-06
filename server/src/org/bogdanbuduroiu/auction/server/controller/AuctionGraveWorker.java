@@ -21,16 +21,22 @@ public class AuctionGraveWorker implements Runnable {
 
     @Override
     public synchronized void run() {
-        try {
-            this.wait();
-        } catch (InterruptedException e) {}
+        while (true) {
+            try {
+                this.wait();
+            } catch (InterruptedException e) {
+            }
 
-        synchronized (server.auctions) {
-            Iterator<Item> auctionIter = server.auctions.values().iterator();
-            while (auctionIter.hasNext()) {
-                Item nextAuct = auctionIter.next();
-                if (nextAuct.isExpired())
-                    nextAuct.closeAuction();
+            synchronized (server.auctions) {
+                Iterator<Item> auctionIter = server.auctions.values().iterator();
+                while (auctionIter.hasNext()) {
+                    Item nextAuct = auctionIter.next();
+
+                    if (nextAuct.isClosed()) continue;
+
+                    if (nextAuct.isExpired())
+                        server.closeAuction(nextAuct);
+                }
             }
         }
     }

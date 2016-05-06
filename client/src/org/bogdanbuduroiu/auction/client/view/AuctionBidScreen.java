@@ -46,7 +46,7 @@ public class AuctionBidScreen extends JFrame {
         lbl_reservePrice = new JLabel("Reserve: " + item.getReservePrice());
         lbl_highestBid = new JLabel("High Bid: " + item.getBids().peek().getBidAmmount());
 
-        lbl_timeRemaining = new JLabel("Remaining: " + DATE_FORMAT.format(item.getTimeRemaining()));
+        lbl_timeRemaining = new JLabel("Remaining: " + item.getTimeRemainingString());
         lbl_err = new JLabel();
         lbl_err.setForeground(Color.RED);
 

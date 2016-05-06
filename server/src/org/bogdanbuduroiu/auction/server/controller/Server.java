@@ -9,6 +9,7 @@ import org.bogdanbuduroiu.auction.model.comms.message.*;
 import org.bogdanbuduroiu.auction.model.exception.InvalidBidException;
 import org.bogdanbuduroiu.auction.server.security.PasswordStorage;
 
+import javax.naming.ldap.ExtendedRequest;
 import java.io.*;
 import java.nio.channels.SocketChannel;
 import java.time.ZonedDateTime;
@@ -62,6 +63,8 @@ public class Server {
 
     Map<Integer, Item> auctions = new HashMap<>();
 
+    Map<User, Set<Item>> wonAuctions = new HashMap<>();
+
     public Server(int port) throws IOException
     {
         this.port = port;
@@ -76,6 +79,11 @@ public class Server {
         System.out.println("[" + Date.from(ZonedDateTime.now().toInstant()) + "][SRV]\tStarting server...");
 
         configureServer();
+
+        Item testItem = new Item("test", "test", Category.AUDIO_VIDEO, passwords.keySet().iterator().next(), System.currentTimeMillis() + 30000, 159.0);
+        synchronized (this.auctions) {
+            auctions.put(testItem.getItemID(), testItem);
+        }
 
         new Thread(commsWorker).start();
         new Thread(responseWorker).start();
@@ -183,7 +191,18 @@ public class Server {
                 DataRequest dataRequest = (DataRequest) message;
 
                 if (dataRequest.data_req_type() == DataRequestType.AUCTIONS_REQ) {
-                    responseWorker.queueResponse(this, socket, new DataReceivedMessage(null, DataRequestType.AUCTIONS_RECV, auctions));
+
+                    DataReceivedMessage dataReceivedMessage;
+
+                    synchronized (wonAuctions) {
+                        dataReceivedMessage =
+                                new DataReceivedMessage(null, DataRequestType.AUCTIONS_RECV, auctions, wonAuctions.get(dataRequest.getSender()));
+                        if (wonAuctions.get(dataRequest.getUser()) != null)
+                            wonAuctions.get(dataRequest.getUser()).clear();
+                    }
+
+                    responseWorker.queueResponse(this, socket, dataReceivedMessage);
+
                 } else if (dataRequest.data_req_type() == DataRequestType.BIDS_REQ) {
 
                 }
@@ -212,7 +231,6 @@ public class Server {
         }
     }
 
-
     private boolean newAuction(Item auction)
     {
         try {
@@ -238,6 +256,34 @@ public class Server {
         return false;
     }
 
+    protected void closeAuction(Item auction) {
+        try {
+            String confirmationMessage = "[" + Date.from(ZonedDateTime.now().toInstant()) + "][AUC]\tAuction Id: " +
+                    auction.getItemID() + " Title: " + auction.getTitle();
+            User winner = auction.getBids().peek().getUser();
+            auction.closeAuction();
+            synchronized (wonAuctions) {
+                Set<Item> wonItems = (wonAuctions.get(winner) == null)
+                        ? new HashSet<>()
+                        : wonAuctions.get(winner);
+
+                wonItems.add(auction);
+                wonAuctions.put(winner, wonItems);
+            }
+            if (auction.getBids().size() == 1) {
+                confirmationMessage = confirmationMessage + " has no bids higher than reserve price. Notifying Vendor " + winner.getUsername();
+            }
+            else {
+                confirmationMessage = confirmationMessage + " has successfully been won by user " + winner.getUsername();
+            }
+            System.out.println(confirmationMessage);
+        }
+        catch (Exception e) {
+            System.out.println("[" + Date.from(ZonedDateTime.now().toInstant()) + "][ERR]\t" + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
     void newClient(Object user, SocketChannel socketChannel)
     {
         this.clients.put((User) user, socketChannel);
@@ -247,8 +293,9 @@ public class Server {
     private void configureServer()
     {
         try {
-            passwords = (HashMap<User, String>) DataPersistance.loadData(DataPersistance.LOAD_USERS);
-            auctions = (HashMap<Integer, Item>) DataPersistance.loadData(DataPersistance.LOAD_AUCTIONS);
+            passwords = (HashMap<User, String>) DataPersistance.loadData(DataPersistance.LoadType.LOAD_USERS);
+            auctions = (HashMap<Integer, Item>) DataPersistance.loadData(DataPersistance.LoadType.LOAD_AUCTIONS);
+            wonAuctions = (HashMap<User, Set<Item>>) DataPersistance.loadData(DataPersistance.LoadType.LOAD_WON_AUCTIONS);
         }
         catch (ClassNotFoundException e) {
             System.out.println("[" + Date.from(ZonedDateTime.now().toInstant()) + "][ERR]\tCorrupted file store.");
@@ -260,7 +307,7 @@ public class Server {
         Runtime.getRuntime().addShutdownHook(new Thread(() ->{
             try {
                 System.out.println("[" + Date.from(ZonedDateTime.now().toInstant()) + "][SRV]\tServer shutting down...");
-                DataPersistance.storeData(passwords, auctions);
+                DataPersistance.storeData(passwords, auctions, wonAuctions);
                 System.out.println("Bye.");
             }
             catch (IOException e) {

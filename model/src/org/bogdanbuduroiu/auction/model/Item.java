@@ -2,10 +2,14 @@ package org.bogdanbuduroiu.auction.model;
 
 
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.bogdanbuduroiu.auction.model.exception.InvalidBidException;
+import org.joda.time.DateTime;
+import org.joda.time.Duration;
 
 import java.io.Serializable;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by bogdanbuduroiu on 21.04.16.
@@ -69,6 +73,10 @@ public class Item implements Serializable {
         return vendor;
     }
 
+    public int getVendorId() {
+        return this.vendor.getUserID();
+    }
+
     public long getStartTime() {
         return startTime;
     }
@@ -93,12 +101,30 @@ public class Item implements Serializable {
         return bids;
     }
 
-    public Date getTimeRemaining() {
-        return new Date((System.currentTimeMillis() - this.expiryTime)/1000);
+    public String getTimeRemainingString() {
+        DateTime currentDate = new DateTime();
+        DateTime expiryDate = new DateTime(expiryTime);
+
+        Duration duration = new Duration(currentDate, expiryDate);
+        String timeRemaining = "N/A";
+        if (duration.getStandardDays() > 0)
+            timeRemaining = duration.getStandardDays() +
+                    "d:" + (duration.getStandardHours() - duration.getStandardDays() * 24) +
+                    "h:" + (duration.getStandardMinutes() - duration.getStandardHours() * 60) + "m";
+
+        else
+            timeRemaining = duration.getStandardHours() +
+                    "h:" + (duration.getStandardMinutes() - duration.getStandardHours() * 60) +
+                    "m:" + (duration.getStandardSeconds() - duration.getStandardMinutes() * 60) + "s";
+        return timeRemaining;
+    }
+
+    public long getMillisRemaining() {
+        return (this.expiryTime - System.currentTimeMillis());
     }
 
     public boolean isExpired() {
-        return ((this.expiryTime - System.currentTimeMillis()) >= 0);
+        return (System.currentTimeMillis() >= this.expiryTime);
     }
 
     public void startAuction() {
@@ -115,5 +141,15 @@ public class Item implements Serializable {
         if (bids.size() > 1)
             return this.bids.peek().getUser();
         return null;
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 31)
+                .append(title)
+                .append(vendor)
+                .append(description)
+                .append(RESERVE_PRICE)
+                .toHashCode();
     }
 }
