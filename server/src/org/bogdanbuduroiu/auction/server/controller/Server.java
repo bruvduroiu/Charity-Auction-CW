@@ -80,11 +80,6 @@ public class Server {
 
         configureServer();
 
-        Item testItem = new Item("test", "test", Category.AUDIO_VIDEO, passwords.keySet().iterator().next(), System.currentTimeMillis() + 30000, 159.0);
-        synchronized (this.auctions) {
-            auctions.put(testItem.getItemID(), testItem);
-        }
-
         new Thread(commsWorker).start();
         new Thread(responseWorker).start();
         new Thread(auctionGraveWorker).start();
