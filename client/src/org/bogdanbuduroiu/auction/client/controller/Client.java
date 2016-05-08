@@ -12,6 +12,11 @@ import org.bogdanbuduroiu.auction.model.User;
 
 import javax.swing.*;
 import java.io.*;
+import java.security.Key;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
@@ -32,6 +37,9 @@ public class Client {
 
     public Client() {
         try {
+            System.setProperty("javax.net.ssl.keyStore", "../clientkeystore");
+            System.setProperty("javax.net.ssl.trustStore", "../trust.jks");
+            System.setProperty("javax.net.ssl.keyStorePassword", "password");
             worker = new Comms(this, 8080);
             Thread t = new Thread(worker);
             t.start();

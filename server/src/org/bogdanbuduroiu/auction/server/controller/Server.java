@@ -12,6 +12,7 @@ import org.bogdanbuduroiu.auction.server.security.PasswordStorage;
 import javax.naming.ldap.ExtendedRequest;
 import java.io.*;
 import java.nio.channels.SocketChannel;
+import java.security.KeyStore;
 import java.time.ZonedDateTime;
 import java.util.*;
 import java.util.concurrent.SynchronousQueue;
@@ -67,6 +68,10 @@ public class Server {
 
     public Server(int port) throws IOException
     {
+        System.setProperty("javax.net.ssl.keyStore", "../clientkeystore");
+        System.setProperty("javax.net.ssl.trustStore", "../trust.jks");
+        System.setProperty("javax.net.ssl.keyStorePassword", "password");
+
         this.port = port;
 
         commsWorker = new ServerComms(this);

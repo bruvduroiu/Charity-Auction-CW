@@ -5,12 +5,15 @@ package org.bogdanbuduroiu.auction.client.controller;
 import org.bogdanbuduroiu.auction.model.comms.ChangeRequest;
 import org.bogdanbuduroiu.auction.model.comms.message.*;
 
+import javax.net.ssl.SSLException;
+import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 import java.io.*;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
@@ -30,12 +33,14 @@ public class Comms implements Runnable {
     private ByteBuffer data;
     private SocketChannel socketChannel;
     private List<ChangeRequest> pendingChanges;
-    private Map<SocketChannel, List<byte[]>> pendingData;
+    private Map<SocketChannel, List<Message>> pendingData;
     private Map<SocketChannel, ResponseHandler> rspHandlers;
     private Map<Socket, SSLSocket> sslSocketMap;
+    private Map<Socket, SSLSession> sslSessionMap;
+    private static final int sslHandshakeTimeout = 30000;
 
     public Comms(Client client, int port) throws IOException {
-        this(client, InetAddress.getLocalHost(), port);
+        this(client, InetAddress.getByName("localhost"), port);
     }
 
     public Comms(Client client, InetAddress host, int port) throws IOException {
@@ -48,6 +53,8 @@ public class Comms implements Runnable {
         this.pendingData = new HashMap<>();
         this.rspHandlers = Collections.synchronizedMap(new HashMap<>());
 
+        this.sslSocketMap = new HashMap<>();
+        this.sslSessionMap = new HashMap<>();
     }
 
     private Selector initSelector() throws IOException {
@@ -70,7 +77,7 @@ public class Comms implements Runnable {
                             key.interestOps(changeRequest.ops);
                         }
                         else if (changeRequest.type == ChangeRequest.REGISTER)
-                            changeRequest.socket.register(this.selector, changeRequest.ops, client.getCurrentUser());
+                            changeRequest.socket.register(this.selector, changeRequest.ops);
                     }
                     this.pendingChanges.clear();
                 }
@@ -105,6 +112,7 @@ public class Comms implements Runnable {
             return this.socketChannel;
 
         SocketChannel socketChannel = SocketChannel.open();
+        Socket socket = socketChannel.socket();
         System.out.println("[CON]\tAttempting to connect to server...");
         socketChannel.configureBlocking(false);
         socketChannel.connect(new InetSocketAddress(this.host, this.port));
@@ -117,6 +125,8 @@ public class Comms implements Runnable {
             this.pendingChanges.add(new ChangeRequest(socketChannel, ChangeRequest.REGISTER, SelectionKey.OP_CONNECT));
         }
 
+        this.registerSocket(socket, this.host.toString(), this.port, true);
+
         return socketChannel;
     }
 
@@ -126,7 +136,6 @@ public class Comms implements Runnable {
         Socket socket = socketChannel.socket();
 
         try {
-            key.attach(client.getCurrentUser());
             socketChannel.finishConnect();
         }
         catch (IOException e) {
@@ -140,7 +149,7 @@ public class Comms implements Runnable {
         key.interestOps(SelectionKey.OP_WRITE);
     }
 
-    private void send(byte[] data, ResponseHandler handler) throws IOException {
+    private void send(Message message, ResponseHandler handler) throws IOException {
 
         SocketChannel socketChannel = this.initiateConnection();
 
@@ -149,10 +158,10 @@ public class Comms implements Runnable {
         synchronized (this.pendingData) {
             List queue = (List) this.pendingData.get(socketChannel);
             if (queue == null) {
-                queue = new ArrayList();
+                queue = new ArrayList<>();
                 this.pendingData.put(socketChannel, queue);
             }
-            queue.add(ByteBuffer.wrap(data));
+            queue.add(message);
         }
         synchronized (this.pendingChanges){
             pendingChanges.add(new ChangeRequest(socketChannel, ChangeRequest.CHANGEOPS, SelectionKey.OP_WRITE));
@@ -163,30 +172,48 @@ public class Comms implements Runnable {
 
     protected void write(SelectionKey key) throws IOException {
         SocketChannel socketChannel = (SocketChannel) key.channel();
+        Socket socket = socketChannel.socket();
 
-        synchronized (this.pendingData) {
-            List queue = this.pendingData.get(socketChannel);
+        try {
+            SSLSocket sslSocket = this.sslSocketMap.get(socket);
+            key.cancel();
+            key.channel().configureBlocking(true);
 
-            while (!queue.isEmpty()) {
-                ByteBuffer buffer = (ByteBuffer) queue.get(0);
-                socketChannel.write(buffer);
-                if (buffer.remaining() > 0)
-                    break;
-                queue.remove(0);
+            this.configureSSLSocket(socket, sslSocket);
+
+            OutputStream os = sslSocket.getOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(os);
+            oos.flush();
+
+            synchronized (this.pendingData) {
+                List queue = this.pendingData.get(socketChannel);
+
+                while (!queue.isEmpty()) {
+                    oos.writeObject(queue.get(0));
+                    queue.remove(0);
+                }
+
+                oos.flush();
+                oos.close();
+
             }
-
-            if (queue.isEmpty()) {
-                key.interestOps(SelectionKey.OP_READ);
-                this.data.flip();
-            }
+            key.channel().configureBlocking(false);
+            this.queueRegistration(socketChannel);
         }
+        catch (SSLException e) {
+            throw e;
+        }
+        catch (IOException e) {
+            this.deregisterSocket(socket);
+            key.cancel();
+            socketChannel.close();
+        }
+
     }
-    private final ByteBuffer lengthByteBuffer = ByteBuffer.wrap(new byte[4]);
+
     private ByteBuffer dataByteBuffer = null;
-    private boolean readLength = true;
 
     private void read(SelectionKey key) throws IOException, ClassNotFoundException {
-
         SocketChannel socketChannel = (SocketChannel) key.channel();
         Socket socket = socketChannel.socket();
 
@@ -197,21 +224,58 @@ public class Comms implements Runnable {
         this.configureSSLSocket(socket, sslSocket);
 
         InputStream is = sslSocket.getInputStream();
-        int numRead;
+        ObjectInputStream ois = new ObjectInputStream(is);
+        Message message = null;
         try {
+            message = (Message) ois.readObject();
+            ois.close();
+        }
+        catch (SocketTimeoutException e) {
+            message = null;
         }
         catch (IOException e) {
-            key.cancel();
-            socketChannel.close();
+            this.deregisterSocket(socket);
             return;
         }
 
-        if (numRead == -1) {
+        if (message == null) {
             System.out.println("[CON]\tServer has closed connection.");
-            key.channel().close();
-            key.cancel();
-            return;
+            this.deregisterSocket(socket);
+            sslSocket.close();
         }
+
+        try {
+            if (message != null)
+                this.handleResponse(socketChannel, message);
+        }
+        finally {
+            key.channel().configureBlocking(false);
+            this.queueRegistration(socketChannel);
+        }
+    }
+
+    private void queueRegistration(SocketChannel socketChannel) {
+        synchronized (this.pendingChanges) {
+            this.pendingChanges.add(new ChangeRequest(socketChannel, ChangeRequest.REGISTER, SelectionKey.OP_CONNECT));
+        }
+    }
+
+    private void configureSSLSocket(Socket socket, SSLSocket sslSocket) throws IOException {
+        if (!this.sslSessionMap.containsKey(socket)) {
+            sslSocket.setSoTimeout(this.sslHandshakeTimeout);
+
+            SSLSession session = sslSocket.getSession();
+            this.sslSessionMap.put(socket, session);
+
+            if (session.isValid())
+                System.out.println("[CON]\tSSL session details: " + session);
+
+            else
+                if (sslSocket.getUseClientMode())
+                    throw new SSLException("[CON]\tSSL Handshake failed!");
+        }
+
+        sslSocket.setSoTimeout(1);
     }
 
     protected void registerSocket(Socket socket, String host, int port, boolean client) throws IOException {
@@ -238,14 +302,7 @@ public class Comms implements Runnable {
     }
 
     public void sendMessage(Message message, ResponseHandler handler) throws  IOException {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        for(int i=0;i<4;i++) baos.write(0);
-        ObjectOutputStream oos = new ObjectOutputStream(baos);
-        oos.writeObject(message);
-        oos.close();
-        final ByteBuffer wrap = ByteBuffer.wrap(baos.toByteArray());
-        wrap.putInt(0, baos.size()-4);
-        this.send(wrap.array(), handler);
+        this.send(message, handler);
     }
 }
 
