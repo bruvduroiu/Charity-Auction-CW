@@ -276,6 +276,11 @@ public class MainAuctionScreen extends JFrame {
                     result[i++] = bid;
                 loadBids(result);
             });
+
+            lst_categories.addListSelectionListener((e ->
+                    client.filterAuctions(CATEGORIES.get(lst_categories.getSelectedValue()))));
+
+            btn_submitSearch.addActionListener(e -> client.filterAuctions(txt_searchField.getText()));
         }
 
         private void loadBids(Object[][] bidData) {

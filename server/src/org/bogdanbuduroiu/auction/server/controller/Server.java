@@ -189,18 +189,22 @@ public class Server {
 
                 if (dataRequest.data_req_type() == DataRequestType.AUCTIONS_REQ)
                     synchronized (wonAuctions) {
-                        dataReceivedMessage =
-                                new DataReceivedMessage(null, DataReceivedType.AUCTIONS_RECV, auctions, wonAuctions.get(dataRequest.getSender()));
+                        if (dataRequest.getCategory() == Category.ALL)
+                            dataReceivedMessage =
+                                    new DataReceivedMessage(null, DataReceivedType.AUCTIONS_RECV, auctions, wonAuctions.get(dataRequest.getSender()));
+                        else if (dataRequest.getKeyword().equals(""))
+                            dataReceivedMessage =
+                                    new DataReceivedMessage(null, DataReceivedType.AUCTIONS_RECV, filterAuctions(dataRequest.getCategory()), wonAuctions.get(dataRequest.getSender()));
+                        else
+                            dataReceivedMessage =
+                                    new DataReceivedMessage(null, DataReceivedType.AUCTIONS_RECV, filterAuctions(dataRequest.getKeyword()));
                         wonAuctions.put(dataRequest.getSender(), new HashSet<>());
                     }
                 else
-                    synchronized (auctions) {
-                        dataReceivedMessage =
-                                new DataReceivedMessage(null, DataReceivedType.BIDS_RECV, auctions);
-                    }
+                    dataReceivedMessage =
+                            new DataReceivedMessage(null, DataReceivedType.BIDS_RECV, auctions);
 
                 responseWorker.queueResponse(this, socket, dataReceivedMessage);
-
             } else if (message.type() == MessageType.CREATE_AUCTION_REQUEST) {
                 CreateAuctionRequest auctionRequest = (CreateAuctionRequest) message;
 
@@ -237,6 +241,37 @@ public class Server {
             System.out.println("[" + Date.from(ZonedDateTime.now().toInstant()) + "][ERR]\tError adding new auction: " + e.getMessage());
         }
         return false;
+    }
+
+    private Map<Integer, Item> filterAuctions(Category category) {
+        Map<Integer, Item> filteredAuctions = new HashMap<>();
+
+        Set<Map.Entry<Integer, Item>> entries;
+
+        synchronized (auctions) {
+             entries = auctions.entrySet();
+        }
+
+        for (Map.Entry<Integer, Item> entry : entries)
+            if (entry.getValue().getCategory().equals(category))
+                filteredAuctions.put(entry.getKey(), entry.getValue());
+        return filteredAuctions;
+    }
+
+    private Map<Integer, Item> filterAuctions(String keyword) {
+        Map<Integer, Item> filteredAuctions = new HashMap<>();
+
+        Set<Map.Entry<Integer, Item>> entries;
+
+        synchronized (auctions) {
+            entries = auctions.entrySet();
+        }
+
+        for (Map.Entry<Integer, Item> entry : entries)
+            if (entry.getValue().getTitle().contains(keyword)
+                    || entry.getValue().getDescription().contains(keyword))
+                filteredAuctions.put(entry.getKey(), entry.getValue());
+        return filteredAuctions;
     }
 
     protected boolean validCredentials(User user, String password)

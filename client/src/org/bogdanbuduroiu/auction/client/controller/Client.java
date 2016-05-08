@@ -5,6 +5,7 @@ import org.bogdanbuduroiu.auction.client.model.event.BidsReceivedListener;
 import org.bogdanbuduroiu.auction.client.view.ClientLoginScreen;
 import org.bogdanbuduroiu.auction.client.view.MainAuctionScreen;
 import org.bogdanbuduroiu.auction.model.Bid;
+import org.bogdanbuduroiu.auction.model.Category;
 import org.bogdanbuduroiu.auction.model.Item;
 import org.bogdanbuduroiu.auction.model.comms.message.*;
 import org.bogdanbuduroiu.auction.model.User;
@@ -134,16 +135,27 @@ public class Client {
         }
     }
 
-
-    public void requestData(DataRequestType dataRequestType) {
+    private void requestData(DataRequest dataRequest) {
         try {
             System.out.println("[REQ]\tRequesting data from server...");
             ResponseHandler rspHandler = new ResponseHandler();
-            worker.sendMessage(new DataRequest(currentUser, dataRequestType), rspHandler);
+            worker.sendMessage(dataRequest, rspHandler);
             rspHandler.waitForResponse(this);
         } catch (IOException e) {
             System.out.println("[ERR]\tError occurred while requesting data. " + e.getMessage());
         }
+    }
+
+    public void requestData(DataRequestType dataRequestType) {
+        requestData(new DataRequest(currentUser, dataRequestType));
+    }
+
+    public void filterAuctions(Category category) {
+        requestData(new DataRequest(currentUser, DataRequestType.AUCTIONS_REQ, category));
+    }
+
+    public void filterAuctions(String keyword) {
+        requestData(new DataRequest(currentUser, DataRequestType.AUCTIONS_REQ, keyword));
     }
 
     public void configureClient() {
