@@ -12,15 +12,15 @@ import java.util.Set;
  */
 public class DataReceivedMessage extends Message{
 
-    private final DataRequestType DATA_RECEIVED_TYPE;
+    private final DataReceivedType DATA_RECEIVED_TYPE;
     private Map<Integer, Item> data;
     private Set<Item> wonItems;
 
-    public DataReceivedMessage(User sender, DataRequestType DATA_RECEIVED_TYPE, Map<Integer, Item> data) {
+    public DataReceivedMessage(User sender, DataReceivedType DATA_RECEIVED_TYPE, Map<Integer, Item> data) {
         this(sender, DATA_RECEIVED_TYPE, data, null);
     }
 
-    public DataReceivedMessage(User sender, DataRequestType DATA_RECEIVED_TYPE, Map<Integer, Item> data, Set<Item> wonItems) {
+    public DataReceivedMessage(User sender, DataReceivedType DATA_RECEIVED_TYPE, Map<Integer, Item> data, Set<Item> wonItems) {
         super(sender, MessageType.DATA_RECEIVED);
         this.DATA_RECEIVED_TYPE = DATA_RECEIVED_TYPE;
         this.data = data;
@@ -31,7 +31,7 @@ public class DataReceivedMessage extends Message{
         return this.data;
     }
 
-    public DataRequestType data_received_type() {
+    public DataReceivedType data_received_type() {
         return DATA_RECEIVED_TYPE;
     }
 

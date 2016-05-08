@@ -76,7 +76,6 @@ public class Server {
         auctionGraveWorker = new AuctionGraveWorker(this);
 
         System.out.println("[" + Date.from(ZonedDateTime.now().toInstant()) + "][SRV]\tStarting server...");
-        System.out.println("[" + Date.from(ZonedDateTime.now().toInstant()) + "][SRV]\tStarting server...");
 
         configureServer();
 
@@ -185,22 +184,23 @@ public class Server {
             } else if (message.type() == MessageType.DATA_REQUEST) {
                 DataRequest dataRequest = (DataRequest) message;
 
-                if (dataRequest.data_req_type() == DataRequestType.AUCTIONS_REQ) {
+                DataReceivedMessage dataReceivedMessage;
 
-                    DataReceivedMessage dataReceivedMessage;
 
+                if (dataRequest.data_req_type() == DataRequestType.AUCTIONS_REQ)
                     synchronized (wonAuctions) {
                         dataReceivedMessage =
-                                new DataReceivedMessage(null, DataRequestType.AUCTIONS_RECV, auctions, wonAuctions.get(dataRequest.getSender()));
-                        if (wonAuctions.get(dataRequest.getUser()) != null)
-                            wonAuctions.get(dataRequest.getUser()).clear();
+                                new DataReceivedMessage(null, DataReceivedType.AUCTIONS_RECV, auctions, wonAuctions.get(dataRequest.getSender()));
+                        wonAuctions.put(dataRequest.getSender(), new HashSet<>());
+                    }
+                else
+                    synchronized (auctions) {
+                        dataReceivedMessage =
+                                new DataReceivedMessage(null, DataReceivedType.BIDS_RECV, auctions);
                     }
 
-                    responseWorker.queueResponse(this, socket, dataReceivedMessage);
+                responseWorker.queueResponse(this, socket, dataReceivedMessage);
 
-                } else if (dataRequest.data_req_type() == DataRequestType.BIDS_REQ) {
-
-                }
             } else if (message.type() == MessageType.CREATE_AUCTION_REQUEST) {
                 CreateAuctionRequest auctionRequest = (CreateAuctionRequest) message;
 
@@ -208,7 +208,7 @@ public class Server {
                     System.out.println("[" + Date.from(ZonedDateTime.now().toInstant()) + "][ERR]\tError adding new auction:");
                     return;
                 }
-                responseWorker.queueResponse(this, socket, new DataReceivedMessage(null, DataRequestType.AUCTIONS_RECV, auctions));
+                responseWorker.queueResponse(this, socket, new DataReceivedMessage(null, DataReceivedType.AUCTIONS_RECV, auctions));
                 System.out.println("[" + Date.from(ZonedDateTime.now().toInstant()) + "][AUC]\t" +
                         "New auction: " + auctionRequest.getAuction().getTitle() + ". Price: " + auctionRequest.getAuction().getReservePrice());
             }

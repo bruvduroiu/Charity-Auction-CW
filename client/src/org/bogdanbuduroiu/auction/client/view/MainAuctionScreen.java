@@ -2,10 +2,12 @@ package org.bogdanbuduroiu.auction.client.view;
 
 import org.bogdanbuduroiu.auction.client.controller.Client;
 import org.bogdanbuduroiu.auction.client.utils.DateLabelFormatter;
+import org.bogdanbuduroiu.auction.model.Bid;
 import org.bogdanbuduroiu.auction.model.Category;
 import org.bogdanbuduroiu.auction.model.Item;
 import org.bogdanbuduroiu.auction.model.User;
 import org.bogdanbuduroiu.auction.model.comms.message.DataRequestType;
+import org.jdatepicker.DateModel;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
@@ -14,6 +16,8 @@ import org.joda.time.Duration;
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.DateFormatter;
+import javax.swing.text.DefaultFormatterFactory;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -21,6 +25,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.List;
 
 /**
  * Created by bogdanbuduroiu on 29.04.16.
@@ -95,7 +100,7 @@ public class MainAuctionScreen extends JFrame {
                             item.getItemID(),
                             item.getTitle(),
                             item.getDescription(),
-                            item.getBids().size(),
+                            item.getBids().size() - 1,
                             item.getVendor().getUsername(),
                             item.getTimeRemainingString(),
                             item.getBids().peek().getBidAmmount()};
@@ -104,7 +109,7 @@ public class MainAuctionScreen extends JFrame {
                     result[i++] = new Object[] {
                             item.getItemID(),
                             item.getTitle(),
-                            item.getBids().size(),
+                            item.getBids().size() - 1,
                             item.getTimeRemainingString(),
                             item.getBids().peek().getBidAmmount(),
                             new JButton("Cancel")};
@@ -132,8 +137,10 @@ public class MainAuctionScreen extends JFrame {
         private JLabel lbl_user;
         private JLabel lbl_categories;
         private JList<String> lst_categories;
+        private JTable tbl_usrBids;
         private JTable tbl_auctions;
         private JScrollPane scrl_auctions;
+        private JScrollPane scrl_usrBids;
 
         public BrowsePanel() {
             String[] categories = CATEGORIES.keySet().toArray(new String[CATEGORIES.size()]);
@@ -149,10 +156,27 @@ public class MainAuctionScreen extends JFrame {
 
             lst_categories = new JList<>(categories);
 
-            tbl_auctions = new JTable();
+            tbl_usrBids = new JTable() {
+                private static final long serialVersionUID = 1L;
+
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
+
+            tbl_auctions = new JTable() {
+                private static final long serialVersionUID = 1L;
+
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
 
             scrl_auctions = new JScrollPane(tbl_auctions);
             scrl_auctions.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+            scrl_usrBids = new JScrollPane(tbl_usrBids);
+            scrl_usrBids.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
             init();
         }
@@ -191,12 +215,22 @@ public class MainAuctionScreen extends JFrame {
             add(lbl_user, c);
 
             c.fill = GridBagConstraints.BOTH;
-            c.weighty = 0.9;
+            c.weighty = 0.1;
             c.weightx = 0.3;
             c.gridx = 1;
             c.gridy = 2;
             c.gridwidth = 1;
+            c.gridheight = 2;
             add(lst_categories, c);
+
+            c.fill = GridBagConstraints.BOTH;
+            c.weighty = 0.1;
+            c.weightx = 0.3;
+            c.gridx = 1;
+            c.gridy = 4;
+            c.gridwidth = 1;
+            c.gridheight = 4;
+            add(tbl_usrBids, c);
 
             c.fill = GridBagConstraints.BOTH;
             c.weighty = 0.9;
@@ -204,6 +238,7 @@ public class MainAuctionScreen extends JFrame {
             c.gridx = 2;
             c.gridy = 2;
             c.gridwidth = 5;
+            c.gridheight = 6;
             add(scrl_auctions, c);
 
             tbl_auctions.addMouseListener(new MouseAdapter() {
@@ -222,7 +257,33 @@ public class MainAuctionScreen extends JFrame {
                     }
                 }
             });
+
+            client.addBidsReceivedListener((auctions, user) -> {
+
+                List<Object[]> bids = new ArrayList<>();
+                for (Item item : auctions.values())
+                    for (Bid bid : item.getBids())
+                        if (bid.getUser().equals(user))
+                            bids.add(new Object[] {
+                                    item.getItemID(),
+                                    item.getTitle(),
+                                    bid.getBidAmmount()});
+
+                Object[][] result = new Object[bids.size()][];
+
+                int i = 0;
+                for (Object[] bid : bids)
+                    result[i++] = bid;
+                loadBids(result);
+            });
         }
+
+        private void loadBids(Object[][] bidData) {
+            String[] columnName = {"ID", "Title", "Bid"};
+            DefaultTableModel model = new DefaultTableModel(bidData, columnName);
+            tbl_usrBids.setModel(model);
+        }
+
 
         public void loadAuctions(Object[][] auctionData) {
             String[] columnName = {"ID", "Title", "Description", "No. Bids", "Seller", "Time Remaining", "Price"};
@@ -263,19 +324,32 @@ public class MainAuctionScreen extends JFrame {
             JLabel lbl_category = new JLabel("Category");
             JLabel lbl_expiryTime = new JLabel("Close date");
             JLabel lbl_reservePrice = new JLabel("Reserve Price");
-            JLabel lbl_itemImage = new JLabel("Image");
             JLabel lbl_err = new JLabel();
+
+            /**
+             * Implementation for the JSpinner that represents the end-time of the auction taken from:
+             * http://stackoverflow.com/questions/21960236/jspinner-time-picker-model-editing
+             */
+
+            JSpinner spnr_Time;
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.HOUR_OF_DAY, 12);
+            calendar.set(Calendar.MINUTE, 00);
+
+            SpinnerDateModel model = new SpinnerDateModel();
+            model.setValue(calendar.getTime());
+            spnr_Time = new JSpinner(model);
+
+            JSpinner.DateEditor editor = new JSpinner.DateEditor(spnr_Time, "dd-MMM-yyyy   h:mm a");
+            spnr_Time.setEditor(editor);
+
+            /**
+             * ************************** END JSpinner code ******************************************
+             */
 
             JTextField txt_title = new JTextField(20);
             JTextField txt_reservePrice = new JTextField(20);
-
-            Properties p = new Properties();
-            p.put("text.today", "Today");
-            p.put("text.month", "Month");
-            p.put("text.year", "Year");
-
-            JDatePanelImpl datePanel = new JDatePanelImpl(new UtilDateModel(), p);
-            JDatePickerImpl pck_datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
 
             lbl_err.setForeground(Color.RED);
 
@@ -339,20 +413,20 @@ public class MainAuctionScreen extends JFrame {
             c.gridheight = 1;
             pnl_sell.add(lbl_expiryTime, c);
 
-            c.gridx = 1;
-            c.gridy = 11;
-            c.gridwidth = 3;
+            c.gridx = 3;
+            c.gridy = 10;
+            c.gridwidth = 1;
             c.gridheight = 1;
-            pnl_sell.add(pck_datePicker, c);
+            pnl_sell.add(spnr_Time, c);
 
             c.gridx = 1;
-            c.gridy = 12;
+            c.gridy = 11;
             c.gridwidth = 1;
             c.gridheight = 1;
             pnl_sell.add(lbl_reservePrice, c);
 
             c.gridx = 2;
-            c.gridy = 12;
+            c.gridy = 11;
             c.gridwidth = 2;
             c.gridheight = 1;
             //TODO: Implement error handling
@@ -371,7 +445,7 @@ public class MainAuctionScreen extends JFrame {
                             txt_description.getText(),
                             CATEGORIES.get(lst_categories.getSelectedValue()),
                             client.getCurrentUser(),
-                            ((Date) pck_datePicker.getModel().getValue()).toInstant().toEpochMilli(),
+                            ((Date) spnr_Time.getModel().getValue()).toInstant().toEpochMilli(),
                             Double.parseDouble(txt_reservePrice.getText())
                     );
 

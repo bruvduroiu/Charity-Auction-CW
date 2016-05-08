@@ -39,7 +39,7 @@ public class User implements Serializable{
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder(17,31)
+        return new HashCodeBuilder()
                 .append(username)
                 .toHashCode();
     }

@@ -2,6 +2,7 @@ package org.bogdanbuduroiu.auction.model;
 
 
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.bogdanbuduroiu.auction.model.exception.InvalidBidException;
 import org.joda.time.DateTime;
@@ -32,7 +33,6 @@ public class Item implements Serializable {
     );
 
     public Item(String title, String description, Category category, User vendor, long expiryTime, Double reservePrice) {
-        this.itemID = this.hashCode();
         this.title = title;
         this.description = description;
         this.category = category;
@@ -40,6 +40,7 @@ public class Item implements Serializable {
         this.expiryTime = expiryTime;
         this.RESERVE_PRICE = reservePrice;
         this.bids.add(new Bid(vendor, RESERVE_PRICE));
+        this.itemID = this.hashCode();
     }
 
     public void setVendor(User vendor) {
@@ -144,8 +145,23 @@ public class Item implements Serializable {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+
+        if (!(obj instanceof Item)) return false;
+
+        final Item other = (Item) obj;
+        return new EqualsBuilder()
+                .append(title, other.title)
+                .append(vendor, other.vendor)
+                .append(description, other.description)
+                .append(RESERVE_PRICE, other.RESERVE_PRICE)
+                .isEquals();
+    }
+
+    @Override
     public int hashCode() {
-        return new HashCodeBuilder(17, 31)
+        return new HashCodeBuilder()
                 .append(title)
                 .append(vendor)
                 .append(description)

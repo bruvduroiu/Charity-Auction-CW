@@ -1,6 +1,7 @@
 package org.bogdanbuduroiu.auction.client.controller;
 
 import org.bogdanbuduroiu.auction.client.model.event.AuctionsReceivedListener;
+import org.bogdanbuduroiu.auction.client.model.event.BidsReceivedListener;
 import org.bogdanbuduroiu.auction.client.view.ClientLoginScreen;
 import org.bogdanbuduroiu.auction.client.view.MainAuctionScreen;
 import org.bogdanbuduroiu.auction.model.Bid;
@@ -11,6 +12,7 @@ import org.bogdanbuduroiu.auction.model.User;
 import javax.swing.*;
 import javax.xml.crypto.Data;
 import java.io.*;
+import java.net.InetAddress;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -30,10 +32,12 @@ public class Client {
     ClientLoginScreen clientLoginScreen;
     MainAuctionScreen mainAuctionScreen;
     List<AuctionsReceivedListener> auctionsReceivedListeners= new ArrayList<>();
+    BidsReceivedListener bidsReceivedListener;
 
     public Client() {
         try {
             worker = new Comms(this, 8080);
+//            worker = new Comms(this, InetAddress.getByName("188.166.169.154"), 8080);
             Thread t = new Thread(worker);
             t.start();
             clientLoginScreen = new ClientLoginScreen(this);
@@ -47,6 +51,7 @@ public class Client {
             ResponseHandler rspHandler = new ResponseHandler();
             worker.sendMessage(new LoginRequest(user, password), rspHandler);
             rspHandler.waitForResponse(this);
+            requestData(DataRequestType.BIDS_REQ);
         } catch (IOException e) {
             System.out.println("[ERR]\tError occurred when attempting logging in. " + e.getMessage());
         }
@@ -74,6 +79,7 @@ public class Client {
         ResponseHandler rspHandler = new ResponseHandler();
         worker.sendMessage(new NewBidRequest(currentUser, item, new Bid(currentUser, bidAmmount)), rspHandler);
         rspHandler.waitForResponse(this);
+        requestData(DataRequestType.BIDS_REQ);
     }
 
     public void processMessage(Message message) {
@@ -83,6 +89,7 @@ public class Client {
                 clientLoginScreen.dispose();
                 mainAuctionScreen = MainAuctionScreen.initializeScreen(this);
                 requestData(DataRequestType.AUCTIONS_REQ);
+                requestData(DataRequestType.BIDS_REQ);
                 configureClient();
             }
             else if (ack_message.ack_type() == AckType.ACK_REGISTRATION)
@@ -90,9 +97,6 @@ public class Client {
 
             else if (ack_message.ack_type() == AckType.ACK_NEW_BID)
                 mainAuctionScreen.bidSuccess(((BidAcknowledgedMessage) ack_message).getItem());
-
-            else if (ack_message.ack_type() == AckType.ACK_TEST)
-                System.out.println("Test Succeeded.\nCurrUser: " + currentUser.getUsername() + "\tMsgUser: ");
         }
         else if(message.type() == MessageType.ERR) {
             ErrMessage errMessage = (ErrMessage) message;
@@ -108,15 +112,19 @@ public class Client {
         else if(message.type() == MessageType.DATA_RECEIVED) {
             DataReceivedMessage dataReceivedMessage = ((DataReceivedMessage) message);
             System.out.print("[DAT]\tData received from server. Data type: ");
-            if (dataReceivedMessage.data_received_type() == DataRequestType.AUCTIONS_RECV) {
+            if (dataReceivedMessage.data_received_type() == DataReceivedType.AUCTIONS_RECV) {
                 System.out.println("AUCTIONS_RECV");
                 for (AuctionsReceivedListener listener : auctionsReceivedListeners)
                     listener.auctionDataReceived(dataReceivedMessage.getData());
                 if (dataReceivedMessage.getWonAuctions() == null)
                     return;
                 for (Item item : dataReceivedMessage.getWonAuctions())
-                    JOptionPane.showConfirmDialog(null, "Congratulations! You have won " + item.getTitle() +
+                    JOptionPane.showMessageDialog(null, "Congratulations! You have won " + item.getTitle() +
                             " for " + item.getBids().peek().getBidAmmount());
+            }
+            else if (dataReceivedMessage.data_received_type() == DataReceivedType.BIDS_RECV) {
+                System.out.println("BIDS_RECV");
+                bidsReceivedListener.bidsReceived(dataReceivedMessage.getData(), currentUser);
             }
         }
         else if (message.type() == MessageType.AUCTION_WON_NOTIFICATION) {
@@ -157,6 +165,10 @@ public class Client {
 
     public void addAuctionDataReceivedListener(AuctionsReceivedListener li) {
         auctionsReceivedListeners.add(li);
+    }
+
+    public void addBidsReceivedListener(BidsReceivedListener li) {
+        this.bidsReceivedListener = li;
     }
 
     public static void main(String[] args) {

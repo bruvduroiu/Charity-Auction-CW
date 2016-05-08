@@ -6,6 +6,4 @@ package org.bogdanbuduroiu.auction.model.comms.message;
 public enum DataRequestType {
     AUCTIONS_REQ,
     BIDS_REQ,
-    AUCTIONS_RECV,
-    BIDS_RECV
 }
