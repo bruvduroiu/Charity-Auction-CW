@@ -4,8 +4,12 @@ package org.bogdanbuduroiu.auction.server.controller;
 import org.bogdanbuduroiu.auction.model.comms.ChangeRequest;
 import org.bogdanbuduroiu.auction.model.comms.message.Message;
 
+import javax.net.ssl.SSLSocket;
+import javax.net.ssl.SSLSocketFactory;
 import java.io.*;
+import java.net.InetAddress;
 import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
@@ -25,16 +29,20 @@ public class ServerComms implements Runnable {
     private Server server;
     private ServerSocketChannel serverSocketChannel;
     private Selector selector;
+    private final String host;
     private final int PORT = 8080;
     private List<ChangeRequest> pendingChanges;
     private Map<Integer, SelectionKey> clients;
     private Map<SocketChannel, List<byte[]>> pendingData;
+    private Map<Socket, SSLSocket> sslSocketMap;
     private ByteBuffer data;
 
     public ServerComms(Server server) throws IOException {
         this.server = server;
         System.out.println("[" + Date.from(ZonedDateTime.now().toInstant()) + "][SRV]\tInitiating Communication Channel...");
         selector = this.initSelector();
+
+        this.host = InetAddress.getLocalHost().toString();
 
         this.pendingChanges = new LinkedList<>();
         this.pendingData = new HashMap<>();
@@ -140,10 +148,12 @@ public class ServerComms implements Runnable {
         SocketChannel socketChannel = serverSocketChannel.accept();
         socketChannel.configureBlocking(false);
 
-        socketChannel.register(this.selector, SelectionKey.OP_READ);
+        Socket socket = socketChannel.socket();
 
-        if (socketChannel.keyFor(this.selector).attachment() != null)
-            server.newClient(socketChannel.keyFor(this.selector).attachment(), socketChannel);
+        this.registerSocket(socket, this.host, this.PORT, false);
+
+        //TODO: Document SSL please
+        socketChannel.register(this.selector, SelectionKey.OP_READ);
     }
 
     /**
@@ -197,10 +207,19 @@ public class ServerComms implements Runnable {
             return;
         }
 
-//        if (numRead == -1) {
-//            key.channel().close();
-//            key.cancel();
-//            return;
-//        }
+        if (numRead == -1) {
+            key.channel().close();
+            key.cancel();
+            return;
+        }
+    }
+
+    protected void registerSocket(Socket socket, String host, int port, boolean client) throws IOException {
+        SSLSocketFactory factory = (SSLSocketFactory) SSLSocketFactory.getDefault();
+        SSLSocket sslSocket = (SSLSocket) factory.createSocket(socket, host, port, true);
+
+        sslSocket.setUseClientMode(client);
+
+        this.sslSocketMap.put(socket, sslSocket);
     }
 }

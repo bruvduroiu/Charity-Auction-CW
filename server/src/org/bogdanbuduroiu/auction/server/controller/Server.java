@@ -189,15 +189,11 @@ public class Server {
 
                 if (dataRequest.data_req_type() == DataRequestType.AUCTIONS_REQ)
                     synchronized (wonAuctions) {
-                        if (dataRequest.getCategory() == Category.ALL)
-                            dataReceivedMessage =
-                                    new DataReceivedMessage(null, DataReceivedType.AUCTIONS_RECV, auctions, wonAuctions.get(dataRequest.getSender()));
-                        else if (dataRequest.getKeyword().equals(""))
-                            dataReceivedMessage =
-                                    new DataReceivedMessage(null, DataReceivedType.AUCTIONS_RECV, filterAuctions(dataRequest.getCategory()), wonAuctions.get(dataRequest.getSender()));
-                        else
-                            dataReceivedMessage =
-                                    new DataReceivedMessage(null, DataReceivedType.AUCTIONS_RECV, filterAuctions(dataRequest.getKeyword()));
+                        dataReceivedMessage =
+                                new DataReceivedMessage(null,
+                                        DataReceivedType.AUCTIONS_RECV,
+                                        auctions,
+                                        wonAuctions.get(dataRequest.getSender()));
                         wonAuctions.put(dataRequest.getSender(), new HashSet<>());
                     }
                 else

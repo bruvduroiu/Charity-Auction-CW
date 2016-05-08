@@ -5,9 +5,12 @@ package org.bogdanbuduroiu.auction.client.controller;
 import org.bogdanbuduroiu.auction.model.comms.ChangeRequest;
 import org.bogdanbuduroiu.auction.model.comms.message.*;
 
+import javax.net.ssl.SSLSocket;
+import javax.net.ssl.SSLSocketFactory;
 import java.io.*;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
@@ -29,6 +32,7 @@ public class Comms implements Runnable {
     private List<ChangeRequest> pendingChanges;
     private Map<SocketChannel, List<byte[]>> pendingData;
     private Map<SocketChannel, ResponseHandler> rspHandlers;
+    private Map<Socket, SSLSocket> sslSocketMap;
 
     public Comms(Client client, int port) throws IOException {
         this(client, InetAddress.getLocalHost(), port);
@@ -119,6 +123,7 @@ public class Comms implements Runnable {
 
     private void finishConnection(SelectionKey key) throws IOException {
         SocketChannel socketChannel = (SocketChannel) key.channel();
+        Socket socket = socketChannel.socket();
 
         try {
             key.attach(client.getCurrentUser());
@@ -129,6 +134,8 @@ public class Comms implements Runnable {
             key.cancel();
             return;
         }
+
+        this.registerSocket(socket, this.host.toString(), this.port, false);
 
         key.interestOps(SelectionKey.OP_WRITE);
     }
@@ -180,19 +187,27 @@ public class Comms implements Runnable {
 
     private void read(SelectionKey key) throws IOException, ClassNotFoundException {
 
-        SocketChannel socket = (SocketChannel) key.channel();
+        SocketChannel socketChannel = (SocketChannel) key.channel();
+        Socket socket = socketChannel.socket();
 
+        SSLSocket sslSocket = this.sslSocketMap.get(socket);
+        key.cancel();
+        key.channel().configureBlocking(true);
+
+        this.configureSSLSocket(socket, sslSocket);
+
+        InputStream is = sslSocket.getInputStream();
         int numRead;
         try {
             if (readLength) {
-                numRead = socket.read(lengthByteBuffer);
+                numRead = socketChannel.read(lengthByteBuffer);
                 if (lengthByteBuffer.remaining() == 0) {
                     readLength = false;
                     dataByteBuffer = ByteBuffer.allocate(lengthByteBuffer.getInt(0));
                     lengthByteBuffer.clear();
                 }
             } else {
-                numRead = socket.read(dataByteBuffer);
+                numRead = socketChannel.read(dataByteBuffer);
                 if (dataByteBuffer.remaining() == 0) {
                     ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(dataByteBuffer.array()));
                     final Message message = (Message) ois.readObject();
@@ -200,13 +215,13 @@ public class Comms implements Runnable {
                     dataByteBuffer = null;
                     readLength = true;
 
-                    this.handleResponse(socket, message);
+                    this.handleResponse(socketChannel, message);
                 }
             }
         }
         catch (IOException e) {
             key.cancel();
-            socket.close();
+            socketChannel.close();
             return;
         }
 
@@ -216,6 +231,20 @@ public class Comms implements Runnable {
             key.cancel();
             return;
         }
+    }
+
+    protected void registerSocket(Socket socket, String host, int port, boolean client) throws IOException {
+        SSLSocketFactory factory = (SSLSocketFactory) SSLSocketFactory.getDefault();
+        SSLSocket sslSocket = (SSLSocket) factory.createSocket(socket, host, port, true);
+
+        sslSocket.setUseClientMode(client);
+
+        this.sslSocketMap.put(socket, sslSocket);
+    }
+
+    protected void deregisterSocket(Socket socket) {
+        this.sslSocketMap.remove(socket);
+        this.sslSessionMap.remove(socket);
     }
 
     private void handleResponse(SocketChannel socketChannel, Message message) throws IOException{

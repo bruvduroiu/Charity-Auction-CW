@@ -11,14 +11,9 @@ import org.bogdanbuduroiu.auction.model.comms.message.*;
 import org.bogdanbuduroiu.auction.model.User;
 
 import javax.swing.*;
-import javax.xml.crypto.Data;
 import java.io.*;
-import java.net.InetAddress;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -38,7 +33,6 @@ public class Client {
     public Client() {
         try {
             worker = new Comms(this, 8080);
-//            worker = new Comms(this, InetAddress.getByName("188.166.169.154"), 8080);
             Thread t = new Thread(worker);
             t.start();
             clientLoginScreen = new ClientLoginScreen(this);
@@ -135,27 +129,15 @@ public class Client {
         }
     }
 
-    private void requestData(DataRequest dataRequest) {
+    public void requestData(DataRequestType dataRequestType) {
         try {
             System.out.println("[REQ]\tRequesting data from server...");
             ResponseHandler rspHandler = new ResponseHandler();
-            worker.sendMessage(dataRequest, rspHandler);
+            worker.sendMessage(new DataRequest(currentUser, dataRequestType), rspHandler);
             rspHandler.waitForResponse(this);
         } catch (IOException e) {
             System.out.println("[ERR]\tError occurred while requesting data. " + e.getMessage());
         }
-    }
-
-    public void requestData(DataRequestType dataRequestType) {
-        requestData(new DataRequest(currentUser, dataRequestType));
-    }
-
-    public void filterAuctions(Category category) {
-        requestData(new DataRequest(currentUser, DataRequestType.AUCTIONS_REQ, category));
-    }
-
-    public void filterAuctions(String keyword) {
-        requestData(new DataRequest(currentUser, DataRequestType.AUCTIONS_REQ, keyword));
     }
 
     public void configureClient() {
