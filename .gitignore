@@ -44,3 +44,7 @@ fabric.properties
 *.jar
 
 *.xml
+
+*.xml
+
+model/.idea/workspace.xml

@@ -199,25 +199,6 @@ public class Comms implements Runnable {
         InputStream is = sslSocket.getInputStream();
         int numRead;
         try {
-            if (readLength) {
-                numRead = socketChannel.read(lengthByteBuffer);
-                if (lengthByteBuffer.remaining() == 0) {
-                    readLength = false;
-                    dataByteBuffer = ByteBuffer.allocate(lengthByteBuffer.getInt(0));
-                    lengthByteBuffer.clear();
-                }
-            } else {
-                numRead = socketChannel.read(dataByteBuffer);
-                if (dataByteBuffer.remaining() == 0) {
-                    ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(dataByteBuffer.array()));
-                    final Message message = (Message) ois.readObject();
-
-                    dataByteBuffer = null;
-                    readLength = true;
-
-                    this.handleResponse(socketChannel, message);
-                }
-            }
         }
         catch (IOException e) {
             key.cancel();
