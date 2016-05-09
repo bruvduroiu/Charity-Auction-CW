@@ -40,7 +40,7 @@ public class Client {
 
     public void validateDetails(User user, char[] password){
         try {
-            worker = new Comms(this, 8080);
+            worker = new Comms(this, currServer);
             Thread t = new Thread(worker);
             t.start();
             ResponseHandler rspHandler = new ResponseHandler();

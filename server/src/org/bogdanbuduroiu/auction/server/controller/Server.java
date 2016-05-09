@@ -8,13 +8,14 @@ import org.bogdanbuduroiu.auction.model.User;
 import org.bogdanbuduroiu.auction.model.comms.message.*;
 import org.bogdanbuduroiu.auction.model.exception.InvalidBidException;
 import org.bogdanbuduroiu.auction.server.security.PasswordStorage;
+import org.bogdanbuduroiu.auction.server.view.ServerGUI;
 
-import javax.naming.ldap.ExtendedRequest;
+import javax.swing.*;
 import java.io.*;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.channels.SocketChannel;
 import java.time.ZonedDateTime;
 import java.util.*;
-import java.util.concurrent.SynchronousQueue;
 
 /**
  * Created by bogdanbuduroiu on 21.04.16.
@@ -65,9 +66,21 @@ public class Server {
 
     Map<User, Set<Item>> wonAuctions = new HashMap<>();
 
+    ServerGUI serverGUI;
+
     public Server(int port) throws IOException
     {
         this.port = port;
+
+        serverGUI = new ServerGUI(this);
+
+        try {
+            SwingUtilities.invokeAndWait(() -> serverGUI.init());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
 
         commsWorker = new ServerComms(this);
 
@@ -333,13 +346,22 @@ public class Server {
         Runtime.getRuntime().addShutdownHook(new Thread(() ->{
             try {
                 System.out.println("[" + Date.from(ZonedDateTime.now().toInstant()) + "][SRV]\tServer shutting down...");
-                DataPersistance.storeData(passwords, auctions, wonAuctions);
+                DataPersistance.storeData(passwords, auctions, wonAuctions, serverGUI.getTxt_console().getText());
                 System.out.println("Bye.");
             }
             catch (IOException e) {
                 System.out.println("[" + Date.from(ZonedDateTime.now().toInstant()) + "][ERR]\tFATAL_ERR: Unable to store session data. Reason: " + e.getMessage());
             }
         }));
+    }
+
+    public HashMap<User, Set<Item>> getWonAuctions() {
+        HashMap<User, Set<Item>> copy;
+        synchronized (wonAuctions) {
+            copy = new HashMap<>(wonAuctions);
+        }
+
+        return copy;
     }
 
     public static void main(String[] args)

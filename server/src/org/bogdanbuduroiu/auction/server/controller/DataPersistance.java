@@ -21,6 +21,7 @@ public class DataPersistance {
     private static final String USERS_REL_PATH = "users.dat";
     private static final String AUCTIONS_REL_PATH = "auctions.dat";
     private static final String WON_AUCTIONS_REL_PATH = "won_auctions.dat";
+    private static final String LOG_REL_PATH = "log.txt";
 
     public static enum LoadType {
         LOAD_USERS, LOAD_AUCTIONS, LOAD_WON_AUCTIONS
@@ -59,7 +60,7 @@ public class DataPersistance {
         return null;
     }
 
-    public static void storeData(Map<User, String> passwords, Map<Integer, Item> auctions, Map<User, Set<Item>> won_auctions) throws IOException {
+    public static void storeData(Map<User, String> passwords, Map<Integer, Item> auctions, Map<User, Set<Item>> won_auctions, String log) throws IOException {
         File file = new File(DIR_PATH, USERS_REL_PATH);
         if (!(new File(DIR_PATH)).exists())
             new File(DIR_PATH).mkdir();
@@ -90,4 +91,15 @@ public class DataPersistance {
         oos = new ObjectOutputStream(new FileOutputStream(file));
         oos.writeObject(won_auctions);
         oos.close();
+
+        file = new File(DIR_PATH, LOG_REL_PATH);
+        if (!file.exists()) {
+            file = new File(DIR_PATH, LOG_REL_PATH);
+            file.createNewFile();
+        }
+
+        BufferedWriter bw = new BufferedWriter(new FileWriter(file, true));
+        bw.write(log);
+        bw.flush();
+        bw.close();
     }}

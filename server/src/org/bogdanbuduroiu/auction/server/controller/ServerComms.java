@@ -41,7 +41,7 @@ public class ServerComms implements Runnable {
         System.out.println("[" + Date.from(ZonedDateTime.now().toInstant()) + "][SRV]\tInitiating Communication Channel...");
         selector = this.initSelector();
 
-        this.host = InetAddress.getLocalHost().toString();
+        this.host = InetAddress.getByName("localhost").toString();
 
         this.pendingChanges = new LinkedList<>();
         this.pendingData = new HashMap<>();

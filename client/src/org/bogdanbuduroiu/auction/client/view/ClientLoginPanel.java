@@ -7,6 +7,7 @@ import java.awt.*;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,6 +28,9 @@ class ClientLoginPanel extends JPanel {
     private JList<String> lst_servers;
     private JScrollPane scrl_servers;
     private Map<String, InetSocketAddress> servers;
+    private JButton btn_addServer;
+    private JButton btn_resetServers;
+    String[] serverNames;
 
     public ClientLoginPanel(ClientLoginScreen cls) {
         this.clientLoginScreen = cls;
@@ -43,19 +47,22 @@ class ClientLoginPanel extends JPanel {
         txt_password = new JPasswordField(20);
         btn_submit = new JButton("Submit");
         btn_register = new JButton("Register");
+        btn_addServer = new JButton("Add server");
+        btn_resetServers = new JButton("Clear");
+        this.servers = new HashMap<>();
 
         try {
-            servers.put("localhost", new InetSocketAddress(InetAddress.getByName("localhost"), 8080));
-            servers.put("raspberrypi", new InetSocketAddress(InetAddress.getByName("raspberrypi"), 8080));
+            this.servers.put("localhost", new InetSocketAddress(InetAddress.getByName("localhost"), 8080));
+            this.servers.put("raspberrypi", new InetSocketAddress(InetAddress.getByName("raspberrypi"), 8080));
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
 
-        String[] serverNames = (String[]) this.servers.keySet().toArray(new String[this.servers.size()]);
+        serverNames = this.servers.keySet().toArray(new String[this.servers.size()]);
         lst_servers = new JList<>(serverNames);
         scrl_servers = new JScrollPane(lst_servers);
 
-        clientLoginScreen.client.setServer(servers.values().iterator().next());
+        clientLoginScreen.client.setServer(servers.get("localhost"));
 
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -108,12 +115,19 @@ class ClientLoginPanel extends JPanel {
         c.gridy = 7;
         add(btn_register, c);
 
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.insets = new Insets(20,0,10,0);
         c.gridx = 2;
-        c.gridy = 8;
-        c.gridwidth = 2;
+        c.gridy = 9;
+        c.gridwidth = 4;
         c.weightx = 1;
         add(scrl_servers, c);
 
+        c.insets = new Insets(0,0,0,0);
+        c.gridx = 3;
+        c.gridy = 11;
+        c.gridwidth = 1;
+        add(btn_addServer, c);
 
         btn_submit.addActionListener((e) -> {
             User tmpUser = new User(txt_username.getText());
@@ -124,6 +138,18 @@ class ClientLoginPanel extends JPanel {
         lst_servers.addListSelectionListener(e -> clientLoginScreen.client.setServer(servers.get(lst_servers.getSelectedValue())));
 
         btn_register.addActionListener(e -> clientLoginScreen.cardLayout.show(clientLoginScreen.cards, ClientLoginScreen.REGISTRATION_CARD));
+
+        btn_resetServers.addActionListener(e -> servers.clear());
+
+        btn_addServer.addActionListener(e -> new AddServerScreen(this));
+    }
+
+    public void addServer(String identifier, InetSocketAddress server) {
+        servers.put(identifier, server);
+        serverNames = Arrays.copyOf(serverNames, serverNames.length + 1);
+        serverNames[serverNames.length - 1] = identifier;
+        lst_servers = new JList<>(serverNames);
+        scrl_servers = new JScrollPane(lst_servers);
     }
 
     public void setErr(String errMsg) {
