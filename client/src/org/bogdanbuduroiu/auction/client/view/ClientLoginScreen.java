@@ -20,12 +20,14 @@ public class ClientLoginScreen extends JFrame {
     static final String REGISTRATION_CARD = "Registration";
 
     Client client;
-    ClientLoginPanel clientLoginPanel = new ClientLoginPanel(this);
-    ClientRegistrationPanel clientRegistrationPanel = new ClientRegistrationPanel(this);
+    ClientLoginPanel clientLoginPanel;
+    ClientRegistrationPanel clientRegistrationPanel;
 
     public ClientLoginScreen(Client client) {
         this.client = client;
-        init();
+        SwingUtilities.invokeLater(() -> clientLoginPanel = new ClientLoginPanel(this));
+        SwingUtilities.invokeLater(() -> clientRegistrationPanel = new ClientRegistrationPanel(this));
+        SwingUtilities.invokeLater(() -> init());
     }
 
     private void init() {

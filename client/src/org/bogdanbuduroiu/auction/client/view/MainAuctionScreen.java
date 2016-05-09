@@ -10,15 +10,10 @@ import org.bogdanbuduroiu.auction.model.comms.message.DataRequestType;
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.AbstractDocument;
-import javax.swing.text.Document;
-import javax.swing.text.DocumentFilter;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
 
@@ -122,8 +117,7 @@ public class MainAuctionScreen extends JFrame {
                         item.getTitle(),
                         item.getBids().size() - 1,
                         item.getTimeRemainingString(),
-                        item.getBids().peek().getBidAmmount(),
-                        new JButton("Cancel")};
+                        item.getBids().peek().getBidAmmount()};
             }
         }
 
@@ -223,6 +217,7 @@ public class MainAuctionScreen extends JFrame {
 
             c.anchor = GridBagConstraints.NORTHWEST;
             c.fill = GridBagConstraints.HORIZONTAL;
+            c.insets = new Insets(10,10,10,10);
             c.weighty = 0.1;
             c.weightx = 1;
             c.gridx = 1;
@@ -297,8 +292,13 @@ public class MainAuctionScreen extends JFrame {
                         for (int i = 0; i < auctionData.size(); i++)
                             rowData[i] = table.getModel().getValueAt(row, i);
                         Item item = auctionData.get(rowData[0]);
+                        if (item.getVendor().equals(client.getCurrentUser())) {
+                            JOptionPane.showMessageDialog(null, "You can't bid on your own auction");
+                            return;
+                        }
                         //TODO: Fix this leading to NullPointerException
-                        bidScreensActive.put(item.getItemID(), new AuctionBidScreen(client, item));
+                        SwingUtilities.invokeLater(() ->
+                            bidScreensActive.put(item.getItemID(), new AuctionBidScreen(client, item)));
                     }
                 }
             });
@@ -555,7 +555,7 @@ public class MainAuctionScreen extends JFrame {
 
         private void loadUsrAuctions(Object[][] usr_auctions) {
 
-            String[] columnName = {"ID", "Title", "No. Bidders", "Time Remaining", "Highest Bid", "Cancel"};
+            String[] columnName = {"ID", "Title", "No. Bidders", "Time Remaining", "Highest Bid"};
             DefaultTableModel model = new DefaultTableModel(usr_auctions, columnName);
             tbl_myAuctions.setModel(model);
             tbl_myAuctions.setRowHeight(64);

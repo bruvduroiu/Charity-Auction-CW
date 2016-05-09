@@ -40,7 +40,8 @@ public class AuctionBidScreen extends JFrame {
         this.currItem = item;
 
         lbl_title = new JLabel(item.getTitle());
-        lbl_description = new JLabel(item.getDescription());
+        String description = String.format("<html><div style=\"width:%dpx;\">%s</div><html>", 200, item.getDescription());
+        lbl_description = new JLabel(description);
         lbl_seller = new JLabel("Seller: " + item.getVendor().getUsername());
         lbl_noBidders = new JLabel("Bidders: " + item.getBids().size());
         lbl_reservePrice = new JLabel("Reserve: " + item.getReservePrice());
