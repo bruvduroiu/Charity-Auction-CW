@@ -24,8 +24,7 @@ import java.util.*;
 public class Comms implements Runnable {
 
     private Client client;
-    private InetAddress host;
-    private int port;
+    private InetSocketAddress server;
     private Selector selector;
     private ByteBuffer data;
     private SocketChannel socketChannel;
@@ -34,13 +33,12 @@ public class Comms implements Runnable {
     private Map<SocketChannel, ResponseHandler> rspHandlers;
 
     public Comms(Client client, int port) throws IOException {
-        this(client, InetAddress.getLocalHost(), port);
+        this(client, new InetSocketAddress(InetAddress.getByName("localhost"), port));
     }
 
-    public Comms(Client client, InetAddress host, int port) throws IOException {
+    public Comms(Client client, InetSocketAddress server) throws IOException {
         this.client = client;
-        this.host = host;
-        this.port = port;
+        this.server = server;
         this.selector = this.initSelector();
         this.data = ByteBuffer.allocate(8192);
         this.pendingChanges = new LinkedList<>();
@@ -106,7 +104,7 @@ public class Comms implements Runnable {
         SocketChannel socketChannel = SocketChannel.open();
         System.out.println("[CON]\tAttempting to connect to server...");
         socketChannel.configureBlocking(false);
-        socketChannel.connect(new InetSocketAddress(this.host, this.port));
+        socketChannel.connect(this.server);
 
         while (!socketChannel.finishConnect()) {
 

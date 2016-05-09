@@ -12,6 +12,7 @@ import org.bogdanbuduroiu.auction.model.User;
 
 import javax.swing.*;
 import java.io.*;
+import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
@@ -29,20 +30,19 @@ public class Client {
     MainAuctionScreen mainAuctionScreen;
     List<AuctionsReceivedListener> auctionsReceivedListeners= new ArrayList<>();
     BidsReceivedListener bidsReceivedListener;
+    InetSocketAddress currServer;
 
     public Client() {
-        try {
-            worker = new Comms(this, 8080);
-            Thread t = new Thread(worker);
-            t.start();
-            clientLoginScreen = new ClientLoginScreen(this);
-        } catch (IOException e) {
-            System.out.println("[ERR]\tError occurred when initializing the client. " + e.getMessage());
-        }
+        JOptionPane.showMessageDialog(null, "Warning! Use the \"over the network\" capabilities at your own risk! Communication is not encrypted; sorry, I tried!", "Warning!", JOptionPane.WARNING_MESSAGE);
+
+        clientLoginScreen = new ClientLoginScreen(this);
     }
 
     public void validateDetails(User user, char[] password){
         try {
+            worker = new Comms(this, 8080);
+            Thread t = new Thread(worker);
+            t.start();
             ResponseHandler rspHandler = new ResponseHandler();
             worker.sendMessage(new LoginRequest(user, password), rspHandler);
             rspHandler.waitForResponse(this);
@@ -147,6 +147,10 @@ public class Client {
 
         scheduler.scheduleAtFixedRate(requester, 10, 10, TimeUnit.SECONDS);
 
+    }
+
+    public void setServer(InetSocketAddress server) {
+        this.currServer = server;
     }
 
     public User getCurrentUser() {
