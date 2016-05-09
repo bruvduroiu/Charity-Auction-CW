@@ -14,7 +14,7 @@ public class DataRequest extends Message {
     private final String KEYWORD;
 
     public DataRequest(User sender, DataRequestType DATA_REQUEST_TYPE) {
-        this(sender, DATA_REQUEST_TYPE, Category.ALL);
+        this(sender, DATA_REQUEST_TYPE, (Category) null);
     }
 
     public DataRequest(User sender, DataRequestType DATA_REQUEST_TYPE, Category category) {

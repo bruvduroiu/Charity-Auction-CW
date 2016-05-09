@@ -1,23 +1,18 @@
 package org.bogdanbuduroiu.auction.client.view;
 
 import org.bogdanbuduroiu.auction.client.controller.Client;
-import org.bogdanbuduroiu.auction.client.utils.DateLabelFormatter;
 import org.bogdanbuduroiu.auction.model.Bid;
 import org.bogdanbuduroiu.auction.model.Category;
 import org.bogdanbuduroiu.auction.model.Item;
 import org.bogdanbuduroiu.auction.model.User;
 import org.bogdanbuduroiu.auction.model.comms.message.DataRequestType;
-import org.jdatepicker.DateModel;
-import org.jdatepicker.impl.JDatePanelImpl;
-import org.jdatepicker.impl.JDatePickerImpl;
-import org.jdatepicker.impl.UtilDateModel;
-import org.joda.time.Duration;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.DateFormatter;
-import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.Document;
+import javax.swing.text.DocumentFilter;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -42,13 +37,27 @@ public class MainAuctionScreen extends JFrame {
     private Map<Integer, AuctionBidScreen> bidScreensActive = new HashMap<>();
 
     private final HashMap<String, Category> CATEGORIES = new HashMap<String, Category>() {{
-        put("Audio & Video", Category.AUDIO_VIDEO);
+        put("ALL", Category.ALL);
+        put("Accessories", Category.ACCESSORIES);
+        put("Action Cameras", Category.ACTION_CAMERAS);
+        put("Antiques", Category.ANTIQUES);
+        put("Audio Video", Category.AUDIO_VIDEO);
         put("Auto", Category.AUTO);
-        put("Home & Garden", Category.HOME_GARDEN);
+        put("Beauty", Category.BEAUTY);
+        put("Clothing", Category.CLOTHING);
+        put("Consumables", Category.CONSUMABLES);
+        put("Crypto-Currency", Category.CRYPTO_CURRENCY);
+        put("E-Books", Category.EBOOKS);
         put("Health & Nutrition", Category.HEALTH_NUTRITION);
+        put("Home & Garden", Category.HOME_GARDEN);
+        put("Home Networking", Category.HOME_NETWORKING);
+        put("Household", Category.HOUSEHOLD);
         put("Jewelry", Category.JEWELRY);
+        put("Laptops", Category.LAPTOPS);
+        put("Software", Category.SOFTWARE);
         put("Sports & Outdoor", Category.SPORTS_OUTDOOR);
         put("Watches", Category.WATCHES);
+        put("Weapons", Category.WEAPONS);
     }};
     private MainAuctionScreen(Client client) {
         //TODO: Sort the Categories List
@@ -90,33 +99,48 @@ public class MainAuctionScreen extends JFrame {
 
     private Object[][] processAuctionData(Map<Integer, Item> auctions, User user) {
         Object[][] result = new Object[auctions.size()][];
-        DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
 
         int i = 0;
         for (Item item : auctions.values()) {
-            if (!item.isClosed())
-                if (user == null) {
-                    result[i++] = new Object[]{
-                            item.getItemID(),
-                            item.getTitle(),
-                            item.getDescription(),
-                            item.getBids().size() - 1,
-                            item.getVendor().getUsername(),
-                            item.getTimeRemainingString(),
-                            item.getBids().peek().getBidAmmount()};
-                }
-                else if (user.getUserID() == item.getVendor().getUserID()) {
-                    result[i++] = new Object[] {
-                            item.getItemID(),
-                            item.getTitle(),
-                            item.getBids().size() - 1,
-                            item.getTimeRemainingString(),
-                            item.getBids().peek().getBidAmmount(),
-                            new JButton("Cancel")};
-                }
+            if (item.isClosed())
+                continue;
+            if (!matchesCategory(item) || !matchesInfo(item))
+                continue;
+            if (user == null) {
+                result[i++] = new Object[]{
+                        item.getItemID(),
+                        item.getTitle(),
+                        item.getDescription(),
+                        item.getBids().size() - 1,
+                        item.getVendor().getUsername(),
+                        item.getTimeRemainingString(),
+                        item.getBids().peek().getBidAmmount()};
+            }
+            else if (user.getUserID() == item.getVendor().getUserID()) {
+                result[i++] = new Object[] {
+                        item.getItemID(),
+                        item.getTitle(),
+                        item.getBids().size() - 1,
+                        item.getTimeRemainingString(),
+                        item.getBids().peek().getBidAmmount(),
+                        new JButton("Cancel")};
+            }
         }
 
         return result;
+    }
+
+    private boolean matchesInfo(Item item) {
+        if (pnl_auctions.filter_keyword.equals(""))
+            return true;
+        return item.getTitle().contains(pnl_auctions.filter_keyword)
+                || item.getDescription().contains(pnl_auctions.filter_keyword);
+    }
+
+    private boolean matchesCategory(Item item) {
+        if (pnl_auctions.filter_category == Category.ALL)
+            return true;
+        return item.getCategory() == pnl_auctions.filter_category;
     }
 
     public void bidSuccess(Item item) {
@@ -135,12 +159,17 @@ public class MainAuctionScreen extends JFrame {
         private JComboBox<String> cmb_searchCategory;
         private JButton btn_submitSearch;
         private JLabel lbl_user;
-        private JLabel lbl_categories;
+        private JLabel lbl_usrBids;
         private JList<String> lst_categories;
         private JTable tbl_usrBids;
         private JTable tbl_auctions;
         private JScrollPane scrl_auctions;
         private JScrollPane scrl_usrBids;
+        private JScrollPane scrl_tblUsrBids;
+        private JScrollPane scrl_lstCategories;
+
+        private Category filter_category = Category.ALL;
+        private String filter_keyword = "";
 
         public BrowsePanel() {
             String[] categories = CATEGORIES.keySet().toArray(new String[CATEGORIES.size()]);
@@ -152,7 +181,7 @@ public class MainAuctionScreen extends JFrame {
             btn_submitSearch = new JButton("Search");
 
             lbl_user = new JLabel(client.getCurrentUser().getUsername());
-            lbl_categories = new JLabel("Categories");
+            lbl_usrBids = new JLabel("My Bids");
 
             lst_categories = new JList<>(categories);
 
@@ -177,6 +206,12 @@ public class MainAuctionScreen extends JFrame {
 
             scrl_usrBids = new JScrollPane(tbl_usrBids);
             scrl_usrBids.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+            scrl_tblUsrBids = new JScrollPane(tbl_usrBids);
+            scrl_tblUsrBids.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+            scrl_lstCategories = new JScrollPane(lst_categories);
+            scrl_lstCategories.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
             init();
         }
@@ -215,22 +250,32 @@ public class MainAuctionScreen extends JFrame {
             add(lbl_user, c);
 
             c.fill = GridBagConstraints.BOTH;
-            c.weighty = 0.1;
             c.weightx = 0.3;
+            c.weighty = 0.5;
             c.gridx = 1;
             c.gridy = 2;
             c.gridwidth = 1;
-            c.gridheight = 2;
-            add(lst_categories, c);
+            c.gridheight = 3;
+            add(scrl_lstCategories, c);
+
+            c.fill = GridBagConstraints.NONE;
+            c.anchor = GridBagConstraints.SOUTHWEST;
+            c.weightx = 0.3;
+            c.weighty = 0.1;
+            c.gridx = 1;
+            c.gridy = 5;
+            c.gridwidth = 1;
+            c.gridheight = 1;
+            add(lbl_usrBids, c);
 
             c.fill = GridBagConstraints.BOTH;
-            c.weighty = 0.1;
             c.weightx = 0.3;
+            c.weighty = 0.6;
             c.gridx = 1;
-            c.gridy = 4;
+            c.gridy = 6;
             c.gridwidth = 1;
-            c.gridheight = 4;
-            add(tbl_usrBids, c);
+            c.gridheight = 2;
+            add(scrl_tblUsrBids, c);
 
             c.fill = GridBagConstraints.BOTH;
             c.weighty = 0.9;
@@ -238,7 +283,7 @@ public class MainAuctionScreen extends JFrame {
             c.gridx = 2;
             c.gridy = 2;
             c.gridwidth = 5;
-            c.gridheight = 6;
+            c.gridheight = 7;
             add(scrl_auctions, c);
 
             tbl_auctions.addMouseListener(new MouseAdapter() {
@@ -277,10 +322,15 @@ public class MainAuctionScreen extends JFrame {
                 loadBids(result);
             });
 
-            lst_categories.addListSelectionListener((e ->
-                    client.filterAuctions(CATEGORIES.get(lst_categories.getSelectedValue()))));
+            lst_categories.addListSelectionListener(e -> {
+                client.requestData(DataRequestType.AUCTIONS_REQ);
+                this.filter_category = CATEGORIES.get(lst_categories.getSelectedValue());
+            });
 
-            btn_submitSearch.addActionListener(e -> client.filterAuctions(txt_searchField.getText()));
+            btn_submitSearch.addActionListener(e -> {
+                client.requestData(DataRequestType.AUCTIONS_REQ);
+                this.filter_keyword = txt_searchField.getText();
+            });
         }
 
         private void loadBids(Object[][] bidData) {
@@ -359,11 +409,17 @@ public class MainAuctionScreen extends JFrame {
             lbl_err.setForeground(Color.RED);
 
             JTextArea txt_description = new JTextArea(6,20);
-            txt_description.setWrapStyleWord(true);
+            txt_description.setLineWrap(true);
 
             JList<String> lst_categories = new JList<>(categories);
 
             JButton btn_submit = new JButton("Submit");
+
+            JScrollPane scrl_description = new JScrollPane(txt_description);
+            scrl_description.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+            JScrollPane scrl_categories = new JScrollPane(lst_categories);
+            scrl_categories.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
             pnl_sell.setBorder(BorderFactory.createTitledBorder(
                     BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), "Sell"
@@ -374,66 +430,84 @@ public class MainAuctionScreen extends JFrame {
 
             c.fill = GridBagConstraints.HORIZONTAL;
             c.weightx = 0.6;
-
             c.gridx = 1;
             c.gridy = 1;
             c.gridwidth = 1;
             c.gridheight = 1;
-            c.insets = new Insets(20,20,20,20);
+            c.insets = new Insets(2,20,20,2);
             pnl_sell.add(lbl_title, c);
 
+            c.fill = GridBagConstraints.HORIZONTAL;
             c.gridx = 2;
             c.gridy = 1;
             c.gridwidth = 2;
             c.gridheight = 1;
+            c.insets = new Insets(2,20,20,2);
             pnl_sell.add(txt_title, c);
 
+            c.fill = GridBagConstraints.HORIZONTAL;
             c.gridx = 1;
             c.gridy = 2;
             c.gridwidth = 1;
             c.gridheight = 1;
+            c.insets = new Insets(2,20,20,2);
             pnl_sell.add(lbl_description, c);
 
+            c.fill = GridBagConstraints.BOTH;
             c.gridx = 2;
             c.gridy = 2;
+            c.weighty = 0.6;
             c.gridwidth = 3;
             c.gridheight = 3;
-            pnl_sell.add(txt_description, c);
+            c.insets = new Insets(2,20,20,2);
+            pnl_sell.add(scrl_description, c);
 
+            c.fill = GridBagConstraints.HORIZONTAL;
             c.gridx = 1;
             c.gridy = 7;
             c.gridwidth = 1;
             c.gridheight = 1;
+            c.insets = new Insets(2,20,20,2);
             pnl_sell.add(lbl_category, c);
 
+            c.fill = GridBagConstraints.BOTH;
             c.gridx = 2;
             c.gridy = 7;
             c.gridwidth = 3;
             c.gridheight = 3;
-            pnl_sell.add(lst_categories, c);
+            c.insets = new Insets(2,20,20,2);
+            pnl_sell.add(scrl_categories, c);
 
+            c.fill = GridBagConstraints.HORIZONTAL;
             c.gridx = 1;
             c.gridy = 10;
             c.gridwidth = 1;
             c.gridheight = 1;
+            c.insets = new Insets(2,20,20,2);
             pnl_sell.add(lbl_expiryTime, c);
 
+            c.fill = GridBagConstraints.HORIZONTAL;
             c.gridx = 3;
             c.gridy = 10;
             c.gridwidth = 1;
             c.gridheight = 1;
+            c.insets = new Insets(2,20,20,2);
             pnl_sell.add(spnr_Time, c);
 
+            c.fill = GridBagConstraints.HORIZONTAL;
             c.gridx = 1;
             c.gridy = 11;
             c.gridwidth = 1;
             c.gridheight = 1;
+            c.insets = new Insets(2,20,20,2);
             pnl_sell.add(lbl_reservePrice, c);
 
+            c.fill = GridBagConstraints.HORIZONTAL;
             c.gridx = 2;
             c.gridy = 11;
             c.gridwidth = 2;
             c.gridheight = 1;
+            c.insets = new Insets(2,20,20,2);
             //TODO: Implement error handling
             pnl_sell.add(txt_reservePrice, c);
 
@@ -441,6 +515,7 @@ public class MainAuctionScreen extends JFrame {
             c.gridy = 13;
             c.gridwidth = 1;
             c.gridheight = 1;
+            c.insets = new Insets(2,20,20,2);
             pnl_sell.add(btn_submit, c);
 
             btn_submit.addActionListener((e) -> {

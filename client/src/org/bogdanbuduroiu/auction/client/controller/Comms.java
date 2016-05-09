@@ -5,9 +5,12 @@ package org.bogdanbuduroiu.auction.client.controller;
 import org.bogdanbuduroiu.auction.model.comms.ChangeRequest;
 import org.bogdanbuduroiu.auction.model.comms.message.*;
 
+import javax.net.ssl.SSLSocket;
+import javax.net.ssl.SSLSocketFactory;
 import java.io.*;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
@@ -119,6 +122,7 @@ public class Comms implements Runnable {
 
     private void finishConnection(SelectionKey key) throws IOException {
         SocketChannel socketChannel = (SocketChannel) key.channel();
+        Socket socket = socketChannel.socket();
 
         try {
             key.attach(client.getCurrentUser());
@@ -180,19 +184,21 @@ public class Comms implements Runnable {
 
     private void read(SelectionKey key) throws IOException, ClassNotFoundException {
 
-        SocketChannel socket = (SocketChannel) key.channel();
+        SocketChannel socketChannel = (SocketChannel) key.channel();
+        key.channel().configureBlocking(false);
+
 
         int numRead;
         try {
             if (readLength) {
-                numRead = socket.read(lengthByteBuffer);
+                numRead = socketChannel.read(lengthByteBuffer);
                 if (lengthByteBuffer.remaining() == 0) {
                     readLength = false;
                     dataByteBuffer = ByteBuffer.allocate(lengthByteBuffer.getInt(0));
                     lengthByteBuffer.clear();
                 }
             } else {
-                numRead = socket.read(dataByteBuffer);
+                numRead = socketChannel.read(dataByteBuffer);
                 if (dataByteBuffer.remaining() == 0) {
                     ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(dataByteBuffer.array()));
                     final Message message = (Message) ois.readObject();
@@ -200,13 +206,13 @@ public class Comms implements Runnable {
                     dataByteBuffer = null;
                     readLength = true;
 
-                    this.handleResponse(socket, message);
+                    this.handleResponse(socketChannel, message);
                 }
             }
         }
         catch (IOException e) {
             key.cancel();
-            socket.close();
+            socketChannel.close();
             return;
         }
 
