@@ -12,6 +12,7 @@ import org.bogdanbuduroiu.auction.model.User;
 
 import javax.swing.*;
 import java.io.*;
+import java.net.InetAddress;
 import java.security.Key;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
@@ -34,23 +35,23 @@ public class Client {
     MainAuctionScreen mainAuctionScreen;
     List<AuctionsReceivedListener> auctionsReceivedListeners= new ArrayList<>();
     BidsReceivedListener bidsReceivedListener;
+    InetAddress host;
+    int port;
 
     public Client() {
-        try {
-            System.setProperty("javax.net.ssl.keyStore", "../clientkeystore");
-            System.setProperty("javax.net.ssl.trustStore", "../trust.jks");
-            System.setProperty("javax.net.ssl.keyStorePassword", "password");
-            worker = new Comms(this, 8080);
-            Thread t = new Thread(worker);
-            t.start();
-            clientLoginScreen = new ClientLoginScreen(this);
-        } catch (IOException e) {
-            System.out.println("[ERR]\tError occurred when initializing the client. " + e.getMessage());
-        }
+        JOptionPane.showMessageDialog(null, "Warning! This application works over networks. " +
+                "However, any transfer is NOT encrypted. I tried to implement SSL, but failed miserably",
+                "Warning!", JOptionPane.WARNING_MESSAGE);
+
+
+        clientLoginScreen = new ClientLoginScreen(this);
     }
 
     public void validateDetails(User user, char[] password){
         try {
+            worker = new Comms(this, this.host, this.port);
+            Thread t = new Thread(worker);
+            t.start();
             ResponseHandler rspHandler = new ResponseHandler();
             worker.sendMessage(new LoginRequest(user, password), rspHandler);
             rspHandler.waitForResponse(this);
@@ -171,6 +172,14 @@ public class Client {
 
     public void addBidsReceivedListener(BidsReceivedListener li) {
         this.bidsReceivedListener = li;
+    }
+
+    public void setHost(InetAddress host) {
+        this.host = host;
+    }
+
+    public void setPort(int port) {
+        this.port = port;
     }
 
     public static void main(String[] args) {

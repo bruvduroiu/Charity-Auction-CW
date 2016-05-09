@@ -24,8 +24,7 @@ import java.util.*;
 public class Comms implements Runnable {
 
     private Client client;
-    private InetAddress host;
-    private int port;
+    private InetSocketAddress host;
     private Selector selector;
     private ByteBuffer data;
     private List<ChangeRequest> pendingChanges;
@@ -36,13 +35,12 @@ public class Comms implements Runnable {
     private static final int sslHandshakeTimeout = 30000;
 
     public Comms(Client client, int port) throws IOException {
-        this(client, InetAddress.getByName("localhost"), port);
+        this(client, new InetSocketAddress(InetAddress.getByName("localhost"), 8080));
     }
 
-    public Comms(Client client, InetAddress host, int port) throws IOException {
+    public Comms(Client client, InetSocketAddress host) throws IOException {
         this.client = client;
         this.host = host;
-        this.port = port;
         this.selector = this.initSelector();
         this.data = ByteBuffer.allocate(8192);
         this.pendingChanges = new LinkedList<>();
@@ -110,7 +108,7 @@ public class Comms implements Runnable {
         Socket socket = socketChannel.socket();
         System.out.println("[CON]\tAttempting to connect to server...");
         socketChannel.configureBlocking(false);
-        socketChannel.connect(new InetSocketAddress(this.host, this.port));
+        socketChannel.connect(this.host);
 
         while (!socketChannel.finishConnect()) {
 
@@ -289,20 +287,6 @@ public class Comms implements Runnable {
                 e1.printStackTrace();
             }
         });
-    }
-
-    protected void registerSocket(Socket socket, String host, int port, boolean client) throws IOException {
-        SSLSocketFactory factory = (SSLSocketFactory) SSLSocketFactory.getDefault();
-        SSLSocket sslSocket = (SSLSocket) factory.createSocket(socket, host, port, true);
-
-        sslSocket.setUseClientMode(client);
-
-        this.sslSocketMap.put(socket, sslSocket);
-    }
-
-    protected void deregisterSocket(Socket socket) {
-        this.sslSocketMap.remove(socket);
-        this.sslSessionMap.remove(socket);
     }
 
     private void handleResponse(SocketChannel socketChannel, Message message) throws IOException{

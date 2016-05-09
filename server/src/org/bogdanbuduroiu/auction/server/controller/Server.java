@@ -68,10 +68,6 @@ public class Server {
 
     public Server(int port) throws IOException
     {
-        System.setProperty("javax.net.ssl.keyStore", "../clientkeystore");
-        System.setProperty("javax.net.ssl.trustStore", "../trust.jks");
-        System.setProperty("javax.net.ssl.keyStorePassword", "password");
-
         this.port = port;
 
         commsWorker = new ServerComms(this);
