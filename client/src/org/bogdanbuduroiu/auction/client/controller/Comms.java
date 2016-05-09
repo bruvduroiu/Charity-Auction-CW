@@ -74,6 +74,7 @@ public class Comms implements Runnable {
                         }
                         else if (changeRequest.type == ChangeRequest.REGISTER)
                             changeRequest.socket.register(this.selector, changeRequest.ops);
+
                     }
                     this.pendingChanges.clear();
                 }
@@ -215,7 +216,7 @@ public class Comms implements Runnable {
 
         SSLSocket sslSocket = this.sslSocketMap.get(socket);
         key.cancel();
-        key.channel().configureBlocking(true);
+        socketChannel.configureBlocking(true);
 
         this.configureSSLSocket(socket, sslSocket);
         InputStream is = sslSocket.getInputStream();
