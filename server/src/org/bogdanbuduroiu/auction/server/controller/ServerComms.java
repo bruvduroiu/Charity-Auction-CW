@@ -34,7 +34,6 @@ public class ServerComms implements Runnable {
     private List<ChangeRequest> pendingChanges;
     private Map<Integer, SelectionKey> clients;
     private Map<SocketChannel, List<byte[]>> pendingData;
-    private Map<Socket, SSLSocket> sslSocketMap;
     private ByteBuffer data;
 
     public ServerComms(Server server) throws IOException {
@@ -148,11 +147,6 @@ public class ServerComms implements Runnable {
         SocketChannel socketChannel = serverSocketChannel.accept();
         socketChannel.configureBlocking(false);
 
-        Socket socket = socketChannel.socket();
-
-        this.registerSocket(socket, this.host, this.PORT, false);
-
-        //TODO: Document SSL please
         socketChannel.register(this.selector, SelectionKey.OP_READ);
     }
 
@@ -212,14 +206,5 @@ public class ServerComms implements Runnable {
             key.cancel();
             return;
         }
-    }
-
-    protected void registerSocket(Socket socket, String host, int port, boolean client) throws IOException {
-        SSLSocketFactory factory = (SSLSocketFactory) SSLSocketFactory.getDefault();
-        SSLSocket sslSocket = (SSLSocket) factory.createSocket(socket, host, port, true);
-
-        sslSocket.setUseClientMode(client);
-
-        this.sslSocketMap.put(socket, sslSocket);
     }
 }

@@ -32,7 +32,6 @@ public class Comms implements Runnable {
     private List<ChangeRequest> pendingChanges;
     private Map<SocketChannel, List<byte[]>> pendingData;
     private Map<SocketChannel, ResponseHandler> rspHandlers;
-    private Map<Socket, SSLSocket> sslSocketMap;
 
     public Comms(Client client, int port) throws IOException {
         this(client, InetAddress.getLocalHost(), port);
@@ -135,8 +134,6 @@ public class Comms implements Runnable {
             return;
         }
 
-        this.registerSocket(socket, this.host.toString(), this.port, false);
-
         key.interestOps(SelectionKey.OP_WRITE);
     }
 
@@ -188,15 +185,9 @@ public class Comms implements Runnable {
     private void read(SelectionKey key) throws IOException, ClassNotFoundException {
 
         SocketChannel socketChannel = (SocketChannel) key.channel();
-        Socket socket = socketChannel.socket();
+        key.channel().configureBlocking(false);
 
-        SSLSocket sslSocket = this.sslSocketMap.get(socket);
-        key.cancel();
-        key.channel().configureBlocking(true);
 
-        this.configureSSLSocket(socket, sslSocket);
-
-        InputStream is = sslSocket.getInputStream();
         int numRead;
         try {
             if (readLength) {
@@ -231,20 +222,6 @@ public class Comms implements Runnable {
             key.cancel();
             return;
         }
-    }
-
-    protected void registerSocket(Socket socket, String host, int port, boolean client) throws IOException {
-        SSLSocketFactory factory = (SSLSocketFactory) SSLSocketFactory.getDefault();
-        SSLSocket sslSocket = (SSLSocket) factory.createSocket(socket, host, port, true);
-
-        sslSocket.setUseClientMode(client);
-
-        this.sslSocketMap.put(socket, sslSocket);
-    }
-
-    protected void deregisterSocket(Socket socket) {
-        this.sslSocketMap.remove(socket);
-        this.sslSessionMap.remove(socket);
     }
 
     private void handleResponse(SocketChannel socketChannel, Message message) throws IOException{
