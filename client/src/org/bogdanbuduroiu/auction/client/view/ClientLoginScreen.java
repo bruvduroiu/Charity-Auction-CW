@@ -24,6 +24,7 @@ public class ClientLoginScreen extends JFrame {
     ClientRegistrationPanel clientRegistrationPanel;
 
     public ClientLoginScreen(Client client) {
+        super(TITLE);
         this.client = client;
         SwingUtilities.invokeLater(() -> clientLoginPanel = new ClientLoginPanel(this));
         SwingUtilities.invokeLater(() -> clientRegistrationPanel = new ClientRegistrationPanel(this));

@@ -10,6 +10,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.io.PrintStream;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -27,7 +29,10 @@ public class ServerGUI extends JFrame {
     private JTable tbl_report;
     private TextAreaOutputStream out_console;
 
+    private Set<Map.Entry<User, Set<Item>>> won_auctions_store = new HashSet<>();
+
     public ServerGUI(Server server) throws HeadlessException {
+        super("Server");
         this.server = server;
 
     }
@@ -41,7 +46,11 @@ public class ServerGUI extends JFrame {
         tbl_report = new JTable();
         scrl_report = new JScrollPane(tbl_report);
         scrl_report.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        scrl_report.setPreferredSize(new Dimension(400,800));
+        scrl_report.setMinimumSize(new Dimension(400,800));
+        scrl_report.setSize(new Dimension(600,800));
+        txt_console.setMaximumSize(new Dimension(600,800));
+        txt_console.setLineWrap(true);
+
 
         btn_report = new JButton("Generate Report");
 
@@ -81,7 +90,7 @@ public class ServerGUI extends JFrame {
         btn_report.addActionListener(e -> loadTableData());
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800,600);
+        setSize(1200,800);
         setVisible(true);
     }
 
@@ -92,18 +101,23 @@ public class ServerGUI extends JFrame {
     private void loadTableData() {
         HashMap<User, Set<Item>> data = server.getWonAuctions();
 
-        String[] columnName = new String[] {"Username", "ItemID", "Item"};
+        String[] columnName = new String[] {"Username", "Item", "Seller", "Price"};
+
         int totalSize = 0;
-        for (Set<Item> set : data.values())
-            totalSize+=set.size();
+        for (Map.Entry<User, Set<Item>> entry : data.entrySet()) {
+            won_auctions_store.add(entry);
+            totalSize+=entry.getValue().size();
+        }
 
         int i = 0;
-        Object[][] formatted_data = new Object[totalSize][];
-        for (User entry : data.keySet())
-            for (Item item : data.get(entry))
+        Object[][] formatted_data = new Object[won_auctions_store.size()][];
+
+        for (Map.Entry<User, Set<Item>> entry : won_auctions_store)
+            for (Item item : entry.getValue())
                 formatted_data[i++] = new Object[] {
-                        entry.getUsername(),
+                        entry.getKey().getUsername(),
                         item.getTitle(),
+                        item.getVendor().getUsername(),
                         item.getBids().peek().getBidAmmount()
                 };
 

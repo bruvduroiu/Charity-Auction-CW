@@ -97,11 +97,11 @@ public class MainAuctionScreen extends JFrame {
 
         int i = 0;
         for (Item item : auctions.values()) {
-            if (item.isClosed())
-                continue;
             if (!matchesCategory(item) || !matchesInfo(item))
                 continue;
             if (user == null) {
+                if (item.isClosed())
+                    continue;
                 result[i++] = new Object[]{
                         item.getItemID(),
                         item.getTitle(),
@@ -238,13 +238,15 @@ public class MainAuctionScreen extends JFrame {
             c.gridheight = 2;
             add(btn_submitSearch, c);
 
-            c.gridx = 5;
+            c.anchor = GridBagConstraints.NORTHEAST;
+            c.gridx = 6;
             c.gridy = 1;
             c.gridwidth = 1;
             c.gridheight = 1;
             add(lbl_user, c);
 
             c.fill = GridBagConstraints.BOTH;
+            c.anchor = GridBagConstraints.NORTHWEST;
             c.weightx = 0.3;
             c.weighty = 0.5;
             c.gridx = 1;
