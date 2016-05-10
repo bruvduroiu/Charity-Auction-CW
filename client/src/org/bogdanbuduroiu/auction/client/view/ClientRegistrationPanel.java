@@ -128,8 +128,6 @@ class ClientRegistrationPanel extends JPanel {
             clientLoginScreen.client.newRegistration(tmpUser, tmpPass);
         });
 
-        btn_back.addActionListener((event) -> {
-            clientLoginScreen.cardLayout.show(clientLoginScreen.cards, ClientLoginScreen.LOGIN_CARD);
-        });
+        btn_back.addActionListener(event -> clientLoginScreen.cardLayout.show(clientLoginScreen.cards, ClientLoginScreen.LOGIN_CARD));
     }
 }

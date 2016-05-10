@@ -1,5 +1,6 @@
 package org.bogdanbuduroiu.auction.client.view;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.bogdanbuduroiu.auction.client.controller.Client;
 import org.bogdanbuduroiu.auction.model.Bid;
 import org.bogdanbuduroiu.auction.model.Category;
@@ -286,22 +287,25 @@ public class MainAuctionScreen extends JFrame {
             tbl_auctions.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mousePressed(MouseEvent e) {
-                    JTable table = (JTable) e.getSource();
-                    Point p = e.getPoint();
-                    int row = table.rowAtPoint(p);
-                    if (e.getClickCount() == 2) {
-                        Object[] rowData = new Object[table.getModel().getColumnCount()];
-                        for (int i = 0; i < auctionData.size(); i++)
-                            rowData[i] = table.getModel().getValueAt(row, i);
-                        Item item = auctionData.get(rowData[0]);
-                        if (item.getVendor().equals(client.getCurrentUser())) {
-                            JOptionPane.showMessageDialog(null, "You can't bid on your own auction");
-                            return;
+                    try {
+                        JTable table = (JTable) e.getSource();
+                        Point p = e.getPoint();
+                        int row = table.rowAtPoint(p);
+                        if (e.getClickCount() == 2) {
+                            Object[] rowData = new Object[table.getModel().getColumnCount()];
+                            for (int i = 0; i < auctionData.size(); i++)
+                                rowData[i] = table.getModel().getValueAt(row, i);
+                            Item item = auctionData.get(rowData[0]);
+                            if (item.getVendor().equals(client.getCurrentUser())) {
+                                JOptionPane.showMessageDialog(null, "You can't bid on your own auction");
+                                return;
+                            }
+                            //TODO: Fix this leading to NullPointerException
+                            SwingUtilities.invokeLater(() ->
+                                    bidScreensActive.put(item.getItemID(), new AuctionBidScreen(client, item)));
                         }
-                        //TODO: Fix this leading to NullPointerException
-                        SwingUtilities.invokeLater(() ->
-                            bidScreensActive.put(item.getItemID(), new AuctionBidScreen(client, item)));
                     }
+                    catch (NullPointerException ex) {}
                 }
             });
 

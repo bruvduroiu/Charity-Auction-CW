@@ -48,7 +48,7 @@ public class Item implements Serializable {
     }
 
     public void addBid(Bid bid) throws InvalidBidException {
-        if (bid.getBidAmmount() < bids.peek().getBidAmmount())
+        if (bid.getBidAmmount() <= bids.peek().getBidAmmount())
             throw new InvalidBidException();
 
         bids.offer(bid);
