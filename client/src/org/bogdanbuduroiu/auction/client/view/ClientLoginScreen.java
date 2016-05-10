@@ -4,6 +4,7 @@ import org.bogdanbuduroiu.auction.client.controller.Client;
 
 import javax.swing.*;
 import java.awt.*;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * Created by bogdanbuduroiu on 29.04.16.
@@ -26,12 +27,13 @@ public class ClientLoginScreen extends JFrame {
     public ClientLoginScreen(Client client) {
         super(TITLE);
         this.client = client;
-        SwingUtilities.invokeLater(() -> clientLoginPanel = new ClientLoginPanel(this));
-        SwingUtilities.invokeLater(() -> clientRegistrationPanel = new ClientRegistrationPanel(this));
-        SwingUtilities.invokeLater(() -> init());
+        this.init();
     }
 
     private void init() {
+
+        this.clientLoginPanel = new ClientLoginPanel(this);
+        this.clientRegistrationPanel = new ClientRegistrationPanel(this);
 
         cards = new JPanel(new CardLayout());
 

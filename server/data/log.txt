@@ -61,3 +61,81 @@
 [Mon May 09 15:51:27 BST 2016][USR]	Failed login attempt; User: cristina9809. Host: /127.0.0.1
 [Mon May 09 15:51:30 BST 2016][USR]	New login from user cristina9809; Host: /127.0.0.1
 [Mon May 09 15:52:06 BST 2016][USR]	New login from user cristina9809; Host: /127.0.0.1
+[Mon May 09 15:59:23 BST 2016][SRV]	Initiating Communication Channel...
+[Mon May 09 15:59:24 BST 2016][SRV]	ServerComms channel initiated.
+[Mon May 09 15:59:24 BST 2016][SRV]	Starting server...
+[Mon May 09 15:59:24 BST 2016][SRV]	Server initialized on port 8080.
+[Mon May 09 15:59:31 BST 2016][USR]	New login from user cristina9809; Host: /127.0.0.1
+[Mon May 09 15:59:55 BST 2016][USR]	New login from user cristina9809; Host: /127.0.0.1
+[Tue May 10 15:47:03 BST 2016][SRV]	Initiating Communication Channel...
+[Tue May 10 15:47:03 BST 2016][SRV]	ServerComms channel initiated.
+[Tue May 10 15:47:03 BST 2016][SRV]	Starting server...
+[Tue May 10 15:47:04 BST 2016][SRV]	Server initialized on port 8080.
+[Tue May 10 15:47:23 BST 2016][USR]	New login from user lightsTempest; Host: /127.0.0.1
+[Tue May 10 15:47:37 BST 2016][AUC]	New auction: Test. Price: 159.0
+[Tue May 10 17:38:57 BST 2016][SRV]	Initiating Communication Channel...
+[Tue May 10 17:38:58 BST 2016][SRV]	ServerComms channel initiated.
+[Tue May 10 17:38:58 BST 2016][SRV]	Starting server...
+[Tue May 10 17:38:58 BST 2016][SRV]	Server initialized on port 8080.
+[Tue May 10 17:39:10 BST 2016][AUC]	Auction Id: -191546024 Title: Test has no bids higher than reserve price. Notifying Vendor lightsTempest
+[Tue May 10 17:39:10 BST 2016][USR]	New login from user cristina9809; Host: /127.0.0.1
+[Tue May 10 17:39:33 BST 2016][USR]	New login from user lightsTempest; Host: /127.0.0.1
+[Tue May 10 17:40:00 BST 2016][AUC]	New auction: Test. Price: 160.0
+[Tue May 10 17:40:00 BST 2016][AUC]	Auction Id: -1554086733 Title: Test has no bids higher than reserve price. Notifying Vendor cristina9809
+[Tue May 10 17:40:24 BST 2016][AUC]	New auction: Test. Price: 160.0
+[Tue May 10 17:40:38 BST 2016][USR]	New login from user lightsTempest; Host: /127.0.0.1
+[Tue May 10 17:40:40 BST 2016][BID]	New bid on item Test. Value: 170.0
+[Tue May 10 17:41:01 BST 2016][AUC]	Auction Id: -1554086733 Title: Test has successfully been won by user lightsTempest
+[Tue May 10 17:41:51 BST 2016][SRV]	Initiating Communication Channel...
+[Tue May 10 17:41:51 BST 2016][SRV]	ServerComms channel initiated.
+[Tue May 10 17:41:51 BST 2016][SRV]	Starting server...
+[Tue May 10 17:41:51 BST 2016][SRV]	Server initialized on port 8080.
+[Tue May 10 17:42:13 BST 2016][USR]	New login from user lightsTempest; Host: /127.0.0.1
+[Tue May 10 17:42:36 BST 2016][AUC]	New auction: 1Test. Price: 199.0
+[Tue May 10 17:43:05 BST 2016][USR]	New login from user cristina9809; Host: /127.0.0.1
+[Tue May 10 17:43:09 BST 2016][BID]	New bid on item 1Test. Value: 209.0
+[Tue May 10 17:44:03 BST 2016][AUC]	Auction Id: -1527256673 Title: 1Test has successfully been won by user cristina9809
+[Tue May 10 17:46:11 BST 2016][SRV]	Initiating Communication Channel...
+[Tue May 10 17:46:11 BST 2016][SRV]	ServerComms channel initiated.
+[Tue May 10 17:46:11 BST 2016][SRV]	Starting server...
+[Tue May 10 17:46:11 BST 2016][SRV]	Server initialized on port 8080.
+[Tue May 10 17:46:22 BST 2016][USR]	New login from user lightsTempest; Host: /127.0.0.1
+[Tue May 10 17:46:42 BST 2016][AUC]	New auction: Test. Price: 199.0
+[Tue May 10 17:46:57 BST 2016][USR]	New login from user cristina9809; Host: /127.0.0.1
+[Tue May 10 17:47:50 BST 2016][BID]	New bid on item Test. Value: 209.0
+[Tue May 10 17:48:07 BST 2016][AUC]	Auction Id: 82641455 Title: Test has successfully been won by user cristina9809
+[Tue May 10 17:49:06 BST 2016][SRV]	Initiating Communication Channel...
+[Tue May 10 17:49:06 BST 2016][SRV]	ServerComms channel initiated.
+[Tue May 10 17:49:06 BST 2016][SRV]	Starting server...
+[Tue May 10 17:49:06 BST 2016][SRV]	Server initialized on port 8080.
+[Tue May 10 18:01:16 BST 2016][USR]	New registration. Username: pop.vlad38; Host: /127.0.0.1
+[Tue May 10 18:01:20 BST 2016][USR]	New login from user pop.vlad38; Host: /127.0.0.1
+[Tue May 10 18:08:24 BST 2016][USR]	New login from user pop.vlad38; Host: /127.0.0.1
+[Tue May 10 18:13:15 BST 2016][USR]	New login from user pop.vlad38; Host: /127.0.0.1
+[Tue May 10 18:13:40 BST 2016][USR]	New login from user pop.vlad38; Host: /127.0.0.1
+[Tue May 10 18:14:29 BST 2016][AUC]	New auction: Test. Price: 109.0
+[Tue May 10 18:14:46 BST 2016][USR]	New login from user cristina9809; Host: /127.0.0.1
+[Tue May 10 18:14:52 BST 2016][USR]	Failed login attempt; User: lighsTempest. Host: /127.0.0.1
+[Tue May 10 18:14:56 BST 2016][USR]	New login from user lightsTempest; Host: /127.0.0.1
+[Tue May 10 18:15:53 BST 2016][BID]	New bid on item Test. Value: 119.0
+[Tue May 10 18:16:00 BST 2016][BID]	New bid on item Test. Value: 129.0
+[Tue May 10 18:16:08 BST 2016][BID]	New bid on item Test. Value: 129.0
+[Tue May 10 18:16:14 BST 2016][BID]	New bid on item Test. Value: 139.0
+[Tue May 10 18:16:18 BST 2016][BID]	New bid on item Test. Value: 149.0
+[Tue May 10 18:16:26 BST 2016][BID]	New bid on item Test. Value: 149.0
+[Tue May 10 18:16:30 BST 2016][BID]	New bid on item Test. Value: 159.0
+[Tue May 10 18:16:32 BST 2016][BID]	New bid on item Test. Value: 159.0
+[Tue May 10 18:16:37 BST 2016][BID]	New bid on item Test. Value: 159.0
+[Tue May 10 18:17:06 BST 2016][AUC]	Auction Id: 1239002997 Title: Test has successfully been won by user cristina9809
+[Tue May 10 18:17:57 BST 2016][AUC]	New auction: Test. Price: 113.0
+[Tue May 10 18:18:10 BST 2016][BID]	New bid on item Test. Value: 123.0
+[Tue May 10 18:18:19 BST 2016][USR]	New login from user pop.vlad38; Host: /127.0.0.1
+[Tue May 10 18:18:22 BST 2016][BID]	New bid on item Test. Value: 133.0
+[Tue May 10 18:18:30 BST 2016][BID]	New bid on item Test. Value: 133.0
+[Tue May 10 18:19:14 BST 2016][USR]	Failed login attempt; User: lightsTemepest. Host: /127.0.0.1
+[Tue May 10 18:19:17 BST 2016][USR]	New login from user lightsTempest; Host: /127.0.0.1
+[Tue May 10 18:19:22 BST 2016][USR]	New login from user pop.vlad38; Host: /127.0.0.1
+[Tue May 10 18:19:25 BST 2016][BID]	New bid on item Test. Value: 143.0
+[Tue May 10 18:19:34 BST 2016][BID]	New bid on item Test. Value: 153.0
+[Tue May 10 18:19:45 BST 2016][BID]	New bid on item Test. Value: 163.0
+[Tue May 10 18:20:03 BST 2016][AUC]	Auction Id: -1554590049 Title: Test has successfully been won by user lightsTempest

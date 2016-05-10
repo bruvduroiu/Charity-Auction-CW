@@ -12,6 +12,7 @@ import org.bogdanbuduroiu.auction.model.User;
 
 import javax.swing.*;
 import java.io.*;
+import java.lang.reflect.InvocationTargetException;
 import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,14 +36,22 @@ public class Client {
     public Client() {
         JOptionPane.showMessageDialog(null, "Warning! Use the \"over the network\" capabilities at your own risk! Communication is not encrypted; sorry, I tried!", "Warning!", JOptionPane.WARNING_MESSAGE);
 
-        clientLoginScreen = new ClientLoginScreen(this);
+        try {
+            SwingUtilities.invokeAndWait(() -> clientLoginScreen = new ClientLoginScreen(this));
+            worker = new Comms(this, currServer);
+            Thread t = new Thread(worker);
+            t.start();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void validateDetails(User user, char[] password){
         try {
-            worker = new Comms(this, currServer);
-            Thread t = new Thread(worker);
-            t.start();
             ResponseHandler rspHandler = new ResponseHandler();
             worker.sendMessage(new LoginRequest(user, password), rspHandler);
             rspHandler.waitForResponse(this);
