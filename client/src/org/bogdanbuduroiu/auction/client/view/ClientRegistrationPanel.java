@@ -126,6 +126,12 @@ class ClientRegistrationPanel extends JPanel {
             char[] tmpPass = txt_passwd.getPassword();
 
             clientLoginScreen.client.newRegistration(tmpUser, tmpPass);
+
+            this.txt_fName.setText("");
+            this.txt_lName.setText("");
+            this.txt_username.setText("");
+            this.txt_passwd.setText("");
+            this.txt_cnfrmPasswd.setText("");
         });
 
         btn_back.addActionListener(event -> clientLoginScreen.cardLayout.show(clientLoginScreen.cards, ClientLoginScreen.LOGIN_CARD));

@@ -2,6 +2,7 @@ package org.bogdanbuduroiu.auction.client.view;
 
 import org.apache.commons.lang3.ObjectUtils;
 import org.bogdanbuduroiu.auction.client.controller.Client;
+import org.bogdanbuduroiu.auction.client.utils.JTextFieldLimit;
 import org.bogdanbuduroiu.auction.model.Bid;
 import org.bogdanbuduroiu.auction.model.Category;
 import org.bogdanbuduroiu.auction.model.Item;
@@ -90,7 +91,7 @@ public class MainAuctionScreen extends JFrame {
     private void initListeners() {
         client.addAuctionDataReceivedListener((data) -> {
             this.auctionData = this.filterClosedAuctions(data);
-            pnl_auctions.loadAuctions(processAuctionData(data, null));
+            pnl_auctions.loadAuctions(processAuctionData(this.auctionData, null));
         });
     }
 
@@ -114,7 +115,6 @@ public class MainAuctionScreen extends JFrame {
             if (user == null) {
                 if (item.isClosed())
                     continue;
-                result = new Object[this.auctionData.size()][];
                 result[i++] = new Object[]{
                         item.getItemID(),
                         item.getTitle(),
@@ -156,8 +156,7 @@ public class MainAuctionScreen extends JFrame {
     }
 
     public void bidFail(Item item) {
-        AuctionBidScreen bidScreen = bidScreensActive.get(item);
-        bidScreen.setErrorMessage("Error: Your bid must be higher than the current highest bid.");
+        JOptionPane.showMessageDialog(null, "Error: Your bid must be higher than the current highest bid.");
     }
 
     class BrowsePanel extends JPanel {
@@ -418,12 +417,15 @@ public class MainAuctionScreen extends JFrame {
              */
 
             JTextField txt_title = new JTextField(20);
+            txt_title.setDocument(new JTextFieldLimit(20));
+
             JTextField txt_reservePrice = new JTextField(20);
 
             lbl_err.setForeground(Color.RED);
 
             JTextArea txt_description = new JTextArea(6,20);
             txt_description.setLineWrap(true);
+            txt_description.setDocument(new JTextFieldLimit(352));
 
             JList<String> lst_categories = new JList<>(categories);
 
@@ -545,6 +547,10 @@ public class MainAuctionScreen extends JFrame {
 
                     client.newAuction(newItem);
                     JOptionPane.showMessageDialog(null, "Auction Created Successfully!");
+
+                    txt_title.setText("");
+                    txt_description.setText("");
+                    txt_reservePrice.setText("");
                 }
                 catch (IOException ioe) {
                     System.out.println("[ERR]\tError occurred when submitting new auction. " + ioe.getMessage());

@@ -94,12 +94,8 @@ public class ServerGUI extends JFrame {
         setVisible(true);
     }
 
-    public TextAreaOutputStream getOutConsole() {
-        return out_console;
-    }
-
     private void loadTableData() {
-        HashMap<User, Set<Item>> data = server.getWonAuctions();
+        HashMap<User, Set<Item>> data = server.getWon_auctions_report();
 
         String[] columnName = new String[] {"Username", "Item", "Seller", "Price"};
 
@@ -110,7 +106,7 @@ public class ServerGUI extends JFrame {
         }
 
         int i = 0;
-        Object[][] formatted_data = new Object[won_auctions_store.size()][];
+        Object[][] formatted_data = new Object[totalSize][];
 
         for (Map.Entry<User, Set<Item>> entry : won_auctions_store)
             for (Item item : entry.getValue())

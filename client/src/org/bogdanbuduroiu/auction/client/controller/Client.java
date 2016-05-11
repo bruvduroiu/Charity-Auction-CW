@@ -34,8 +34,6 @@ public class Client {
     InetSocketAddress currServer;
 
     public Client() {
-        JOptionPane.showMessageDialog(null, "Warning! Use the \"over the network\" capabilities at your own risk! Communication is not encrypted; sorry, I tried!", "Warning!", JOptionPane.WARNING_MESSAGE);
-
         try {
             SwingUtilities.invokeAndWait(() -> clientLoginScreen = new ClientLoginScreen(this));
             worker = new Comms(this, currServer);

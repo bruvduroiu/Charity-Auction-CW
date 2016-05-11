@@ -64,9 +64,9 @@ public class Server {
 
     Map<Integer, Item> auctions = new HashMap<>();
 
-    Map<User, Set<Item>> wonAuctions = new HashMap<>();
+    Map<User, Set<Item>> won_auctions_notif = new HashMap<>();
 
-    Map<User, Set<Item>> won_auctions_Report = new HashMap<>();
+    Map<User, Set<Item>> won_auctions_report = new HashMap<>();
 
     ServerGUI serverGUI;
 
@@ -209,19 +209,19 @@ public class Server {
 
                 if (dataRequest.data_req_type() == DataRequestType.AUCTIONS_REQ)
                     // Client requests Auction data
-                    synchronized (this.wonAuctions) {
+                    synchronized (this.won_auctions_notif) {
                         dataReceivedMessage =
                                 new DataReceivedMessage(null,
                                         DataReceivedType.AUCTIONS_RECV,
                                         auctions,
-                                        wonAuctions.get(dataRequest.getSender()));
+                                        won_auctions_notif.get(dataRequest.getSender()));
 
                         // Store the current won auctions for logging & reporting purposes (See Part Five of the Spec)
-                        this.appendToLoggedWins(this.wonAuctions);
+                        this.appendToLoggedWins(this.won_auctions_notif);
 
-                        // Reset the wonAuctions set for this client. Prevents client
+                        // Reset the won_auctions_notif set for this client. Prevents client
                         // being notified about wins every time it requests data
-                        this.wonAuctions.put(dataRequest.getSender(), new HashSet<>());
+                        this.won_auctions_notif.put(dataRequest.getSender(), new HashSet<>());
                     }
                 else
                     // Client requests bid data
@@ -270,7 +270,7 @@ public class Server {
             // For some reason, I need to keep track of this because my client is always
             //  opening / closing connections everytime it sends a message.
             // Tried a workaround... no success.
-            this.clients.put(message.getSender(), socket);
+            this.newClient(message.getSender(), socket);
         }
     }
 
@@ -385,17 +385,17 @@ public class Server {
 
             // Set closeTime on the auction and set it's closed flag to TRUE
             auction.closeAuction();
-            synchronized (this.wonAuctions) {
+            synchronized (this.won_auctions_notif) {
 
                 // Get the set of items won by this winner and append this item to it.
                 //      See: wonItems comments at the top.
                 //          wonItems stores the pending notifications to be sent to the client mapped in the key.
-                Set<Item> wonItems = (this.wonAuctions.get(winner) == null)
+                Set<Item> wonItems = (this.won_auctions_notif.get(winner) == null)
                         ? new HashSet<>()                       // create a new HashSet if the current winner has no other won items
-                        : this.wonAuctions.get(winner);         // get existing HashSet otherwise
+                        : this.won_auctions_notif.get(winner);         // get existing HashSet otherwise
 
                 wonItems.add(auction);
-                this.wonAuctions.put(winner, wonItems);
+                this.won_auctions_notif.put(winner, wonItems);
             }
 
             // Only one bid means that the highest bid is the vendor's reserve price. Return notification to the vendor
@@ -429,7 +429,7 @@ public class Server {
     }
 
     /**
-     * Loads all the stored data (Auctions, Bids, Pending notifications(in form of wonAuctions))
+     * Loads all the stored data (Auctions, Bids, Pending notifications(in form of won_auctions_notif))
      */
     @SuppressWarnings("unchecked")
     private void configureServer()
@@ -437,7 +437,7 @@ public class Server {
         try {
             this.passwords = (HashMap<User, String>) DataPersistance.loadData(DataPersistance.LoadType.LOAD_USERS);
             this.auctions = (HashMap<Integer, Item>) DataPersistance.loadData(DataPersistance.LoadType.LOAD_AUCTIONS);
-            this.wonAuctions = (HashMap<User, Set<Item>>) DataPersistance.loadData(DataPersistance.LoadType.LOAD_WON_AUCTIONS);
+            this.won_auctions_report = (HashMap<User, Set<Item>>) DataPersistance.loadData(DataPersistance.LoadType.LOAD_WON_AUCTIONS);
         }
         catch (ClassNotFoundException e) {
             System.out.println("[" + Date.from(ZonedDateTime.now().toInstant()) + "][ERR]\tCorrupted file store.");
@@ -451,7 +451,7 @@ public class Server {
         Runtime.getRuntime().addShutdownHook(new Thread(() ->{
             try {
                 System.out.println("[" + Date.from(ZonedDateTime.now().toInstant()) + "][SRV]\tServer shutting down...");
-                DataPersistance.storeData(this.passwords, this.auctions, this.wonAuctions, this.serverGUI.getTxt_console().getText());
+                DataPersistance.storeData(this.passwords, this.auctions, this.won_auctions_report, this.serverGUI.getTxt_console().getText());
                 System.out.println("Bye.");
             }
             catch (IOException e) {
@@ -463,13 +463,13 @@ public class Server {
     private void appendToLoggedWins(Map<User, Set<Item>> wonAuctions) {
 
         for (User user : wonAuctions.keySet()) {
-            if (!this.won_auctions_Report.keySet().contains(user)) {
-                this.won_auctions_Report.put(user, wonAuctions.get(user));
+            if (!this.won_auctions_report.keySet().contains(user)) {
+                this.won_auctions_report.put(user, wonAuctions.get(user));
                 continue;
             }
             for (Item item : wonAuctions.get(user))
-                if (!this.won_auctions_Report.get(user).contains(item))
-                    this.won_auctions_Report.get(user).add(item);
+                if (!this.won_auctions_report.get(user).contains(item))
+                    this.won_auctions_report.get(user).add(item);
         }
     }
 
@@ -478,14 +478,14 @@ public class Server {
      *
      * @return HashMap of won Auctions
      */
-    public HashMap<User, Set<Item>> getWonAuctions() {
+    public HashMap<User, Set<Item>> getWon_auctions_report() {
         HashMap<User, Set<Item>> copy;
 
         // Synchronizing to avoid concurrency issues when returning the won auctions
-        // I am grabbing a copy of the wonAuctions Map to reduce the amount of operations
+        // I am grabbing a copy of the won_auctions_notif Map to reduce the amount of operations
         // held in the synchronized blod.
-        synchronized (this.won_auctions_Report) {
-            copy = new HashMap<>(this.won_auctions_Report);
+        synchronized (this.won_auctions_report) {
+            copy = new HashMap<>(this.won_auctions_report);
         }
 
         return copy;
