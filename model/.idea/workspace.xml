@@ -6,28 +6,24 @@
     </artifacts-to-build>
   </component>
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen.java" line="442" mnemonic="0" />
+    <bookmark url="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen.java" line="439" mnemonic="0" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="388f8a5b-f18b-4d5c-9b7f-2f8195c9d13c" name="Default" comment="Added more .gitignore">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/ClientLoginScreen.class" afterPath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/ClientLoginScreen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../server/target/classes/org/bogdanbuduroiu/auction/server/controller/AuctionGraveWorker.class" afterPath="$PROJECT_DIR$/../server/target/classes/org/bogdanbuduroiu/auction/server/controller/AuctionGraveWorker.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../server/target/classes/org/bogdanbuduroiu/auction/server/controller/DataPersistance$LoadType.class" afterPath="$PROJECT_DIR$/../server/target/classes/org/bogdanbuduroiu/auction/server/controller/DataPersistance$LoadType.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../server/target/classes/org/bogdanbuduroiu/auction/server/controller/DataPersistance.class" afterPath="$PROJECT_DIR$/../server/target/classes/org/bogdanbuduroiu/auction/server/controller/DataPersistance.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../server/target/classes/org/bogdanbuduroiu/auction/server/controller/Server.class" afterPath="$PROJECT_DIR$/../server/target/classes/org/bogdanbuduroiu/auction/server/controller/Server.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/Client.java" afterPath="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/Client.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/ClientLoginScreen.java" afterPath="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/ClientLoginScreen.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/ClientRegistrationPanel.java" afterPath="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/ClientRegistrationPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/controller/Comms.class" afterPath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/controller/Comms.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/AuctionBidScreen.class" afterPath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/AuctionBidScreen.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/ClientLoginPanel.class" afterPath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/ClientLoginPanel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/ClientRegistrationPanel.class" afterPath="$PROJECT_DIR$/../client/target/classes/org/bogdanbuduroiu/auction/client/view/ClientRegistrationPanel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../server/target/classes/org/bogdanbuduroiu/auction/server/controller/ResponseWorker.class" afterPath="$PROJECT_DIR$/../server/target/classes/org/bogdanbuduroiu/auction/server/controller/ResponseWorker.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../server/target/classes/org/bogdanbuduroiu/auction/server/controller/ServerComms.class" afterPath="$PROJECT_DIR$/../server/target/classes/org/bogdanbuduroiu/auction/server/controller/ServerComms.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/Comms.java" afterPath="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/Comms.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen.java" afterPath="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/Item.java" afterPath="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/Item.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../server/data/auctions.dat" afterPath="$PROJECT_DIR$/../server/data/auctions.dat" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../server/data/log.txt" afterPath="$PROJECT_DIR$/../server/data/log.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../server/data/users.dat" afterPath="$PROJECT_DIR$/../server/data/users.dat" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../server/data/won_auctions.dat" afterPath="$PROJECT_DIR$/../server/data/won_auctions.dat" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/AuctionGraveWorker.java" afterPath="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/AuctionGraveWorker.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/DataPersistance.java" afterPath="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/DataPersistance.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/Server.java" afterPath="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/Server.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/ResponseWorker.java" afterPath="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/ResponseWorker.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/ServerComms.java" afterPath="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/ServerComms.java" />
     </list>
     <ignored path="model.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -64,21 +60,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DataPersistance.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/DataPersistance.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1001">
-              <caret line="121" column="26" selection-start-line="121" selection-start-column="26" selection-end-line="121" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="534">
-              <caret line="470" column="60" selection-start-line="470" selection-start-column="60" selection-end-line="470" selection-end-column="60" />
+            <state relative-caret-position="5892">
+              <caret line="496" column="0" selection-start-line="496" selection-start-column="0" selection-end-line="496" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -89,31 +75,31 @@
       <file leaf-file-name="Client.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
-              <caret line="116" column="81" selection-start-line="116" selection-start-column="81" selection-end-line="116" selection-end-column="81" />
-              <folding>
-                <element signature="e#7711#7712#0" expanded="true" />
-                <element signature="e#7739#7740#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Item.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/Item.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-8">
-              <caret line="100" column="39" selection-start-line="100" selection-start-column="39" selection-end-line="100" selection-end-column="39" />
+            <state relative-caret-position="300">
+              <caret line="55" column="25" selection-start-line="55" selection-start-column="25" selection-end-line="55" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainAuctionScreen.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Item.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/Item.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="100" column="39" selection-start-line="100" selection-start-column="39" selection-end-line="100" selection-end-column="39" />
+              <folding>
+                <element signature="e#2431#2432#0" expanded="true" />
+                <element signature="e#2458#2459#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainAuctionScreen.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="907">
-              <caret line="321" column="0" selection-start-line="321" selection-start-column="0" selection-end-line="321" selection-end-column="0" />
+            <state relative-caret-position="281">
+              <caret line="295" column="0" selection-start-line="295" selection-start-column="0" selection-end-line="295" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -134,7 +120,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1860">
               <caret line="127" column="0" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -142,8 +130,28 @@
       <file leaf-file-name="ServerComms.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/ServerComms.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="891">
-              <caret line="201" column="0" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
+            <state relative-caret-position="-1620">
+              <caret line="42" column="53" selection-start-line="42" selection-start-column="53" selection-end-line="42" selection-end-column="53" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Comms.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/Comms.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="37" column="39" selection-start-line="37" selection-start-column="39" selection-end-line="37" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ResponseWorker.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/ResponseWorker.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="462">
+              <caret line="50" column="39" selection-start-line="50" selection-start-column="39" selection-end-line="50" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -152,9 +160,15 @@
       <file leaf-file-name="ServerGUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/view/ServerGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="832">
+            <state relative-caret-position="1305">
               <caret line="101" column="51" selection-start-line="101" selection-start-column="51" selection-end-line="101" selection-end-column="51" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#2668#2669#0" expanded="false" />
+                <element signature="e#2702#2703#0" expanded="false" />
+                <element signature="e#3751#3752#0" expanded="false" />
+                <element signature="e#3785#3786#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -180,7 +194,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/server/controller/ServerComms.java" />
         <option value="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/server/controller/Server.java" />
         <option value="$PROJECT_DIR$/../server/src/Main.java" />
         <option value="$PROJECT_DIR$/../client/src/Main.java" />
@@ -220,17 +233,18 @@
         <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/DataReceivedMessage.java" />
         <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/Category.java" />
         <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/DataRequest.java" />
-        <option value="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/Comms.java" />
         <option value="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/view/ServerGUI.java" />
-        <option value="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/ServerComms.java" />
         <option value="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/AuctionGraveWorker.java" />
         <option value="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/DataPersistance.java" />
-        <option value="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/Server.java" />
         <option value="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/ClientRegistrationPanel.java" />
         <option value="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/ClientLoginScreen.java" />
-        <option value="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen.java" />
-        <option value="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/Client.java" />
         <option value="$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/Item.java" />
+        <option value="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/ResponseWorker.java" />
+        <option value="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/Client.java" />
+        <option value="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/Server.java" />
+        <option value="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/Comms.java" />
+        <option value="$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/ServerComms.java" />
+        <option value="$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen.java" />
       </list>
     </option>
   </component>
@@ -255,10 +269,8 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="296" />
-    <option name="y" value="-1440" />
-    <option name="width" value="1527" />
-    <option name="height" value="1440" />
+    <option name="width" value="1280" />
+    <option name="height" value="800" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -347,6 +359,84 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane">
+        <subPane />
+      </pane>
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="security" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="Scope">
         <subPane subId="Problems">
           <PATH>
@@ -474,84 +564,6 @@
             </PATH_ELEMENT>
           </PATH>
         </subPane>
-      </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane">
-        <subPane />
       </pane>
     </panes>
   </component>
@@ -1178,11 +1190,12 @@
       <workItem from="1462804384789" duration="1286000" />
       <workItem from="1462805814243" duration="1265000" />
       <workItem from="1462889952078" duration="8984000" />
+      <workItem from="1462963580141" duration="3599000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="168896000" />
+    <option name="totallyTimeSpent" value="172495000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1194,24 +1207,23 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="296" y="-1440" width="1527" height="1440" extended-state="6" />
+    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3282504" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3270073" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3260274" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16706827" sideWeight="0.5028612" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32904148" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2080292" sideWeight="0.49713877" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20684932" sideWeight="0.49713877" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6693419" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26329967" sideWeight="0.4964789" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2673667" sideWeight="0.4964789" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32846716" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24892704" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1225,6 +1237,7 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21293533" sideWeight="0.50352114" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32846716" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -1285,14 +1298,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/ResponseWorker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="41" column="46" selection-start-line="41" selection-start-column="46" selection-end-line="41" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/AckType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -1546,14 +1551,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/Comms.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="34" column="35" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/comms/message/DataReceivedMessage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -1580,25 +1577,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/DataPersistance.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1001">
+        <state relative-caret-position="1665">
           <caret line="121" column="26" selection-start-line="121" selection-start-column="26" selection-end-line="121" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/ServerComms.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="891">
-          <caret line="201" column="0" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/view/ServerGUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="832">
+        <state relative-caret-position="1305">
           <caret line="101" column="51" selection-start-line="101" selection-start-column="51" selection-end-line="101" selection-end-column="51" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#2668#2669#0" expanded="false" />
+            <element signature="e#2702#2703#0" expanded="false" />
+            <element signature="e#3751#3752#0" expanded="false" />
+            <element signature="e#3785#3786#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1606,7 +1603,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="49" column="16" selection-start-line="49" selection-start-column="16" selection-end-line="49" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1614,33 +1610,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1860">
           <caret line="127" column="0" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/ClientLoginScreen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="907">
-          <caret line="321" column="0" selection-start-line="321" selection-start-column="0" selection-end-line="321" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/Client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="116" column="81" selection-start-line="116" selection-start-column="81" selection-end-line="116" selection-end-column="81" />
           <folding>
-            <element signature="e#7711#7712#0" expanded="true" />
-            <element signature="e#7739#7740#0" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1653,20 +1624,71 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/Item.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="100" column="39" selection-start-line="100" selection-start-column="39" selection-end-line="100" selection-end-column="39" />
+          <folding>
+            <element signature="e#2431#2432#0" expanded="true" />
+            <element signature="e#2458#2459#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/ClientLoginScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/ResponseWorker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="50" column="39" selection-start-line="50" selection-start-column="39" selection-end-line="50" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="55" column="25" selection-start-line="55" selection-start-column="25" selection-end-line="55" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="534">
-          <caret line="470" column="60" selection-start-line="470" selection-start-column="60" selection-end-line="470" selection-end-column="60" />
+        <state relative-caret-position="5892">
+          <caret line="496" column="0" selection-start-line="496" selection-start-column="0" selection-end-line="496" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/bogdanbuduroiu/auction/model/Item.java">
+    <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/controller/Comms.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="100" column="39" selection-start-line="100" selection-start-column="39" selection-end-line="100" selection-end-column="39" />
+        <state relative-caret-position="285">
+          <caret line="37" column="39" selection-start-line="37" selection-start-column="39" selection-end-line="37" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../server/src/org/bogdanbuduroiu/auction/server/controller/ServerComms.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1620">
+          <caret line="42" column="53" selection-start-line="42" selection-start-column="53" selection-end-line="42" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../client/src/org/bogdanbuduroiu/auction/client/view/MainAuctionScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="295" column="0" selection-start-line="295" selection-start-column="0" selection-end-line="295" selection-end-column="0" />
           <folding />
         </state>
       </provider>

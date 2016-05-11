@@ -3,8 +3,12 @@ package org.bogdanbuduroiu.auction.server.controller;
 import org.bogdanbuduroiu.auction.model.comms.message.*;
 import org.bogdanbuduroiu.auction.server.model.ServerMessageEvent;
 
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
 import java.nio.channels.SocketChannel;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -38,9 +42,16 @@ public class ResponseWorker implements Runnable {
                 }
                 messageEvent = queue.remove(0);
                 try {
-                    //TODO: Fix getting connection closed everytime
                     server.commsWorker.sendMessage(messageEvent.socket, messageEvent.message);
                 } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (NoSuchPaddingException e) {
+                    e.printStackTrace();
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                } catch (IllegalBlockSizeException e) {
+                    e.printStackTrace();
+                } catch (InvalidKeyException e) {
                     e.printStackTrace();
                 }
             }
