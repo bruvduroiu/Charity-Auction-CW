@@ -27,6 +27,13 @@ import java.util.*;
  * Created by bogdanbuduroiu on 28.04.16.
  */
 
+/**
+ * The ServerComms class manages all of the server's communication with ALL
+ * of the clients
+ *
+ * I used the java.nio package to implement a non-blocking
+ */
+
 //TODO: Add console messages
 public class ServerComms implements Runnable {
 

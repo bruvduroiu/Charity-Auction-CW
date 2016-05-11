@@ -15,8 +15,19 @@ import java.util.List;
 /**
  * Created by bogdanbuduroiu on 29.04.16.
  */
+
+/**
+ * Separate thread that manages responding to client requests
+ *
+ * I used this tutorial to implement this:
+ * http://rox-xmlrpc.sourceforge.net/niotut/
+ */
 public class ResponseWorker implements Runnable {
+
+    // Queue of all the responses
     private List<ServerMessageEvent> queue = new LinkedList<>();
+
+    // Reference to the server for sending messages through the commsWorker
     private Server server;
 
     public void queueResponse(Server server, SocketChannel socketChannel, Message message) {
