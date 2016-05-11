@@ -5,6 +5,8 @@ package org.bogdanbuduroiu.auction.client.controller;
 import org.bogdanbuduroiu.auction.model.comms.ChangeRequest;
 import org.bogdanbuduroiu.auction.model.comms.message.*;
 
+import javax.crypto.*;
+import javax.crypto.spec.SecretKeySpec;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 import java.io.*;
@@ -16,6 +18,8 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
 import java.nio.channels.spi.SelectorProvider;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 /**
@@ -31,6 +35,8 @@ public class Comms implements Runnable {
     private List<ChangeRequest> pendingChanges;
     private Map<SocketChannel, List<byte[]>> pendingData;
     private Map<SocketChannel, ResponseHandler> rspHandlers;
+    private static final byte[] KEY = "B@4e25154fbogdan".getBytes();
+    private static final String TRANSFORMATION = "AES";
 
     public Comms(Client client, int port) throws IOException {
         this(client, new InetSocketAddress(InetAddress.getByName("localhost"), port));
@@ -180,7 +186,7 @@ public class Comms implements Runnable {
     private ByteBuffer dataByteBuffer = null;
     private boolean readLength = true;
 
-    private void read(SelectionKey key) throws IOException, ClassNotFoundException {
+    private void read(SelectionKey key) throws IOException, ClassNotFoundException, NoSuchAlgorithmException, BadPaddingException, NoSuchPaddingException, IllegalBlockSizeException, InvalidKeyException {
 
         SocketChannel socketChannel = (SocketChannel) key.channel();
         key.channel().configureBlocking(false);
@@ -198,8 +204,8 @@ public class Comms implements Runnable {
             } else {
                 numRead = socketChannel.read(dataByteBuffer);
                 if (dataByteBuffer.remaining() == 0) {
-                    ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(dataByteBuffer.array()));
-                    final Message message = (Message) ois.readObject();
+                    ByteArrayInputStream bais = new ByteArrayInputStream(dataByteBuffer.array());
+                    final Message message = (Message) decrypt(bais);
 
                     dataByteBuffer = null;
                     readLength = true;
@@ -231,15 +237,55 @@ public class Comms implements Runnable {
         }
     }
 
-    public void sendMessage(Message message, ResponseHandler handler) throws  IOException {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        for(int i=0;i<4;i++) baos.write(0);
-        ObjectOutputStream oos = new ObjectOutputStream(baos);
-        oos.writeObject(message);
+    public void sendMessage(Message message, ResponseHandler handler) throws IOException{
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            for(int i=0;i<4;i++) baos.write(0);
+            encrypt(message, baos);
+            final ByteBuffer wrap = ByteBuffer.wrap(baos.toByteArray());
+            wrap.putInt(0, baos.size()-4);
+            this.send(wrap.array(), handler);
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (IllegalBlockSizeException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private void encrypt(Message message, OutputStream outputStream)
+            throws InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException, IOException, IllegalBlockSizeException {
+
+        SecretKeySpec sks = new SecretKeySpec(KEY, TRANSFORMATION);
+
+        Cipher cipher = Cipher.getInstance(TRANSFORMATION);
+        cipher.init(Cipher.ENCRYPT_MODE, sks);
+
+        SealedObject sealedObject = new SealedObject(message, cipher);
+
+        CipherOutputStream cos = new CipherOutputStream(outputStream, cipher);
+        ObjectOutputStream oos = new ObjectOutputStream(cos);
+        oos.writeObject(sealedObject);
         oos.close();
-        final ByteBuffer wrap = ByteBuffer.wrap(baos.toByteArray());
-        wrap.putInt(0, baos.size()-4);
-        this.send(wrap.array(), handler);
+    }
+
+    private Object decrypt(InputStream inputStream) throws InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException, IOException, ClassNotFoundException, BadPaddingException, IllegalBlockSizeException {
+
+        SecretKeySpec sks = new SecretKeySpec(KEY, TRANSFORMATION);
+
+        Cipher cipher = Cipher.getInstance(TRANSFORMATION);
+        cipher.init(Cipher.DECRYPT_MODE, sks);
+
+        CipherInputStream cis = new CipherInputStream(inputStream, cipher);
+        ObjectInputStream ois = new ObjectInputStream(cis);
+
+        SealedObject sealedObject = (SealedObject) ois.readObject();
+
+        return sealedObject.getObject(cipher);
     }
 }
 
