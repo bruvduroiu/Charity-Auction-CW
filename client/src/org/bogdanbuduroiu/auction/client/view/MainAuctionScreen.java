@@ -15,6 +15,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.List;
 
@@ -88,9 +89,19 @@ public class MainAuctionScreen extends JFrame {
 
     private void initListeners() {
         client.addAuctionDataReceivedListener((data) -> {
-            this.auctionData = data;
+            this.auctionData = this.filterClosedAuctions(data);
             pnl_auctions.loadAuctions(processAuctionData(data, null));
         });
+    }
+
+    private Map<Integer, Item> filterClosedAuctions(Map<Integer, Item> data) {
+        Map<Integer, Item> filteredData = new HashMap<>();
+
+        for (Map.Entry<Integer, Item> entry : data.entrySet())
+            if (!entry.getValue().isClosed())
+                filteredData.put(entry.getKey(), entry.getValue());
+
+        return filteredData;
     }
 
     private Object[][] processAuctionData(Map<Integer, Item> auctions, User user) {
@@ -103,6 +114,7 @@ public class MainAuctionScreen extends JFrame {
             if (user == null) {
                 if (item.isClosed())
                     continue;
+                result = new Object[this.auctionData.size()][];
                 result[i++] = new Object[]{
                         item.getItemID(),
                         item.getTitle(),
@@ -292,7 +304,7 @@ public class MainAuctionScreen extends JFrame {
                     int row = table.rowAtPoint(p);
                     if (e.getClickCount() == 2) {
                         Object[] rowData = new Object[table.getModel().getColumnCount()];
-                        for (int i = 0; i < auctionData.size(); i++)
+                        for (int i = 0; i <= auctionData.size() - 1; i++)
                             rowData[i] = table.getModel().getValueAt(row, i);
                         Item item = auctionData.get(rowData[0]);
                         if (item.getVendor().equals(client.getCurrentUser())) {
@@ -300,8 +312,7 @@ public class MainAuctionScreen extends JFrame {
                             return;
                         }
                         //TODO: Fix this leading to NullPointerException
-                        SwingUtilities.invokeLater(() ->
-                                bidScreensActive.put(item.getItemID(), new AuctionBidScreen(client, item)));
+                        bidScreensActive.put(item.getItemID(), new AuctionBidScreen(client, item));
                     }
                 }
             });

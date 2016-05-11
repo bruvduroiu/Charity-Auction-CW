@@ -183,4 +183,31 @@
 [Wed May 11 12:53:31 BST 2016][USR]	New login from user pop.vlad38; Host: /127.0.0.1
 [Wed May 11 12:53:58 BST 2016][AUC]	New auction: [LOL] Bloodlord Vladimir. Price: 159.0
 [Wed May 11 12:54:12 BST 2016][USR]	New login from user lightsTempest; Host: /127.0.0.1
-[Wed May 11 12:55:17 BST 2016][SRV]	Server shutting down...
+[Wed May 11 12:55:17 BST 2016][SRV]	Server shutting down...[Wed May 11 13:04:05 BST 2016][SRV]	Initiating Communication Channel...
+[Wed May 11 13:04:06 BST 2016][SRV]	ServerComms channel initiated.
+[Wed May 11 13:04:06 BST 2016][SRV]	Starting server...
+[Wed May 11 13:04:06 BST 2016][SRV]	Server initialized on port 8080.
+[Wed May 11 13:04:30 BST 2016][AUC]	Auction Id: -1473765724 Title: [LOL] Bloodlord Vladimir has no bids higher than reserve price. Notifying Vendor pop.vlad38
+[Wed May 11 13:04:30 BST 2016][USR]	New login from user cristina9809; Host: /127.0.0.1
+[Wed May 11 13:04:58 BST 2016][AUC]	New auction: Michael Kors Handbag. Price: 209.0
+[Wed May 11 13:05:18 BST 2016][USR]	New login from user lightsTempest; Host: /127.0.0.1
+[Wed May 11 13:05:22 BST 2016][USR]	New login from user pop.vlad38; Host: /127.0.0.1
+[Wed May 11 13:06:16 BST 2016][USR]	New login from user lightsTempest; Host: /127.0.0.1
+[Wed May 11 13:07:44 BST 2016][USR]	New login from user lightsTempest; Host: /127.0.0.1
+[Wed May 11 13:08:38 BST 2016][USR]	New login from user pop.vlad38; Host: /127.0.0.1
+[Wed May 11 13:13:39 BST 2016][SRV]	Initiating Communication Channel...
+[Wed May 11 13:13:39 BST 2016][SRV]	ServerComms channel initiated.
+[Wed May 11 13:13:39 BST 2016][SRV]	Starting server...
+[Wed May 11 13:13:39 BST 2016][SRV]	Server initialized on port 8080.
+[Wed May 11 13:13:51 BST 2016][AUC]	Auction Id: -282686428 Title: Michael Kors Handbag has no bids higher than reserve price. Notifying Vendor cristina9809
+[Wed May 11 13:13:51 BST 2016][USR]	Failed login attempt; User: cristina9809. Host: /127.0.0.1
+[Wed May 11 13:13:54 BST 2016][USR]	New login from user cristina9809; Host: /127.0.0.1
+[Wed May 11 13:14:16 BST 2016][AUC]	New auction: Michael Kors Bag. Price: 190.0
+[Wed May 11 13:14:55 BST 2016][AUC]	New auction: Michael Kors Bag. Price: 190.0
+[Wed May 11 13:15:25 BST 2016][USR]	New login from user cristina9809; Host: /127.0.0.1
+[Wed May 11 13:15:44 BST 2016][USR]	New login from user pop.vlad38; Host: /127.0.0.1
+[Wed May 11 13:16:29 BST 2016][USR]	New login from user pop.vlad38; Host: /127.0.0.1
+[Wed May 11 13:16:36 BST 2016][BID]	New bid on item Michael Kors Bag. Value: 200.0
+[Wed May 11 13:19:47 BST 2016][USR]	New login from user lightsTempest; Host: /127.0.0.1
+[Wed May 11 13:19:50 BST 2016][BID]	New bid on item Michael Kors Bag. Value: 210.0
+[Wed May 11 13:20:08 BST 2016][AUC]	Auction Id: 1141167671 Title: Michael Kors Bag has successfully been won by user lightsTempest
