@@ -133,6 +133,8 @@ class ClientLoginPanel extends JPanel {
             User tmpUser = new User(txt_username.getText());
             clientLoginScreen.client.setCurrentUser(tmpUser);
             clientLoginScreen.client.validateDetails(tmpUser, txt_password.getPassword());
+
+            this.txt_password.setText("");
         });
 
         lst_servers.addListSelectionListener(e -> clientLoginScreen.client.setServer(servers.get(lst_servers.getSelectedValue())));
